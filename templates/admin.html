@@ -1,0 +1,27 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Sign Up
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <form class="form-signin" method="POST" action="/admin">
+    <h2 class="form-signin-heading">Crear ID</h2>
+    {{ form.hidden_tag() }}
+    {{ wtf.form_field(form.user_id) }}
+    <p>{{ wrong_id }}</p>
+    {{ wtf.form_field(form.admin) }}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Crear ID</button>
+    <p>{{ complete }}</p>
+  </form>
+
+</div> <!-- /container -->
+{% endblock %}
