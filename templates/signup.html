@@ -2,7 +2,7 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}
-Sign Up
+Registro
 {% endblock %}
 
 {% block styles %}
@@ -39,6 +39,8 @@ Sign Up
     {{ form.hidden_tag() }}
     {{ wtf.form_field(form.username) }}
     <p>{{ user_in_use }}</p>
+    {{ wtf.form_field(form.nombre) }}
+    {{ wtf.form_field(form.apellido) }}
     {{ wtf.form_field(form.email) }}
     <p>{{ email_in_use }}</p>
     {{ wtf.form_field(form.user_id) }}
