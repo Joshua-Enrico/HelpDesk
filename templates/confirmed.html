@@ -36,7 +36,8 @@ Confirmacion
 
       <form class="form-signin" method="POST">
         <h2 class="form-signin-heading">Confirmacion De Email</h2>
-        <p>{{ predict_content }}: <a href="{{ url_for('login') }}">Ingresar</a></p>
+        <p>{{ message }}</p>
+        {{ predict_content|safe}}
       </form>
 
     </div> <!-- /container -->
