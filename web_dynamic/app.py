@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 from flask import Flask, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
@@ -11,10 +11,13 @@ import os
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 import pymysql
 import smtplib
-from .Class import *
-from .functions.signup import *
-from .functions.login import *
-from .functions.recover_pwd import *
+from Class import *
+from functions.signup import *
+from functions.login import *
+from functions.recover_pwd import *
+from functions.confirmed import *
+from functions.recover_account import *
+
 
 
 @login_manager.user_loader
@@ -66,38 +69,12 @@ def logout():
 
 @app.route('/confirm_email/<token>/<user_id>', methods=['GET', 'POST'] )
 def confirmed(token, user_id):
-    print(token, user_id, "hola")
-    if request.method == 'POST':
-        update_user = Users.query.filter_by(User_id=user_id).first()
-        print(update_user)
-        token = s.dumps(update_user.Email, salt='email-confirm')
-
-        link = url_for('confirmed', token=token, user_id=user_id, _external=True)
-        message = '\nTu link de confirmacion es: {}'.format(link) 
-        print(message)
-        server = smtplib.SMTP("smtp.gmail.com",587)
-        server.starttls()
-        server.login("helpdesk.notificacions@gmail.com", "vwwgjfvxxlwseqlz")
-        server.sendmail("helpdesk.notificacions@gmail.com", update_user.Email, message)
-        return render_template('confirmed.html', message="Link De confirmacion Enviado, verifique su Correo")
-    try:
-        email = s.loads(token, salt='email-confirm', max_age=3600)
-        update_user = Users.query.filter_by(User_id=user_id).update({'Confirmed_mail':'yes'})
-        db.session.commit()
-        return render_template('confirmed.html', message="Email Confirmado Ya puede ingresar al Sistema" ,predict_content='<a class="btn btn-lg btn-primary btn-block" href="/login">Ingresar</a>')    
-    except (BadSignature, SignatureExpired):
-        return render_template('confirmed.html', message="Link de Confirmacion Expirado, Reenvie Confirmacion", predict_content='<button class="btn btn-lg btn-primary btn-block" type="submit">Reenviar Confirmacion</button>')
+    return  confirmed_func(token, user_id)
 
 
 @app.route('/recover_acount/<token>/<user_id>/<password>', methods=['GET', 'POST'] )
 def recover_account(token, user_id, password):
-    try:
-        email = s.loads(token, salt='recover', max_age=3600)
-        update_user = Users.query.filter_by(User_id=user_id).update({'Confirmed_mail':'yes', 'Password': password})
-        db.session.commit()
-        return render_template('confirmed.html',predict_content="Recuperacion de cuenta Realizado, ya puedes ingresar al Sistema")
-    except (BadSignature, SignatureExpired):
-        return render_template('confirmed.html',predict_content="El Link de confirmacion ya expiro")
+    return recover_account_func(token, user_id, password)
 
 
 if __name__ == '__main__':
