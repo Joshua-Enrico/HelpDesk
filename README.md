@@ -7,3 +7,6 @@ Para hacer uso del mvp, crea la base de datos y setealo con python, primero crea
 para crear un usuario necesitaras un user id, en mysql crea ese id
 - INSERT INTO user_id (user_id, used, admin) VALUES ('321', 'false', 'yes');
 - luego ya puedes interactuar con el app
+
+Para ejecutar la aplicaicon 
+- LASK_APP=app.py flask run

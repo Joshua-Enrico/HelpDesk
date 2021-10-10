@@ -14,6 +14,17 @@ import smtplib
 from datetime import datetime
 
 
+app = Flask(__name__, template_folder='../functions/templates', static_folder='../static')
+Bootstrap(app)
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Helpdesk:Helpdesk@localhost/HelpDesk'#create database and user
+s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+db = SQLAlchemy(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
 class LoginForm(FlaskForm):
     username = StringField('Usuario', validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField('Contraseña', validators=[InputRequired(), Length(min=8, max=80)])
@@ -35,16 +46,7 @@ class recover(FlaskForm):
     user_id = StringField('ID de usuario', validators=[InputRequired(), Length(min=3, max=3)])
     new_password = PasswordField('Contraseña', validators=[InputRequired(), Length(min=6, max=80)])
 
-app = Flask(__name__)
-Bootstrap(app)
-SECRET_KEY = os.urandom(32)
-app.config['SECRET_KEY'] = SECRET_KEY
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Helpdesk:Helpdesk@localhost/HelpDesk'#create database and user
-s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-db = SQLAlchemy(app)
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
+
 
 class Users(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -11,12 +11,12 @@ import os
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 import pymysql
 import smtplib
-from Class import *
-from functions.signup import *
-from functions.login import *
-from functions.recover_pwd import *
-from functions.confirmed import *
-from functions.recover_account import *
+from .models.Class import *
+from .functions.signup import *
+from .functions.login import *
+from .functions.recover_pwd import *
+from .functions.confirmed import *
+from .functions.recover_account import *
 
 
 
