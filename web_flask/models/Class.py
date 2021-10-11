@@ -13,7 +13,7 @@ import pymysql
 import smtplib
 from datetime import datetime
 
-
+time = "%Y-%m-%dT%H:%M:%S.%f"
 app = Flask(__name__, template_folder='../functions/templates', static_folder='../static')
 Bootstrap(app)
 SECRET_KEY = os.urandom(32)
@@ -62,7 +62,18 @@ class Users(UserMixin, db.Model):
     Tickets_Summary_Agent = db.relationship('Agent_Tickets_Summary', backref='Users', lazy=True, cascade="all, delete, delete-orphan")
     DateTime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     UpdateTime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-
+    def to_dict(self, save_sf=None):
+        new_dict = self.__dict__.copy()
+        if "DateTime" in new_dict:
+            new_dict["DateTime"] = new_dict["DateTime"].strftime(time)
+        if "UpdateTime" in new_dict:
+            new_dict["UpdateTime"] = new_dict["UpdateTime"].strftime(time)
+        new_dict["__class__"] = self.__class__.__name__
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
+        if "Password" in new_dict:
+            del new_dict["Password"]
+        return new_dict
 
 class Workers_ids(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
