@@ -1,0 +1,58 @@
+{% extends "base/basic_template.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block main %}
+
+<section class="hero is-primary is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-4">
+            <!-- Form -->
+            <form action="" class="box">
+              <div class="field">
+                <label class="label"> Usuario </label>
+                <div class="control has-icons-left">
+                  <input
+                    type="email"
+                    class="input"
+                    placeholder="ex:rperez"
+                  />
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-user"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Contraseña</label>
+                <div class="control has-icons-left">
+                  <input
+                    type="password"
+                    class="input"
+                    placeholder="no la olvides"
+                  />
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">
+                  <input type="checkbox" class="checkbox" />
+                  Recuerdame
+                </label>
+              </div>
+              <!-- Boton -->
+              <div class="field">
+                <button class="button is-success">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+  </section>
+
+{% endblock %}
