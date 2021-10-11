@@ -17,7 +17,7 @@ from datetime import datetime
 app = Flask(__name__, template_folder='../functions/templates', static_folder='../static')
 Bootstrap(app)
 SECRET_KEY = os.urandom(32)
-app.config['SECRET_KEY'] = SECRET_KEY
+app.config['SECRET_KEY'] = "testing"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Helpdesk:Helpdesk@localhost/HelpDesk'#create database and user
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 db = SQLAlchemy(app)
