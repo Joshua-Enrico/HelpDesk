@@ -7,12 +7,5 @@ from flask import abort, jsonify, make_response, request
 
 @app_views.route('/', methods=['GET'], strict_slashes=False)
 def get_users():
-    """
-    Retrieves the list of all user objects
-    or a specific user
-    """
-    all_users = storage.all(User).values()
-    list_users = []
-    for user in all_users:
-        list_users.append(user.to_dict())
-    return jsonify(list_users)
+
+    return jsonify("fine")
