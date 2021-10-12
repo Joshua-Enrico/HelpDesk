@@ -21,6 +21,11 @@ def user_registre():
     return render_template('registra_usuario.html')
 
 
+@app.route("/administracion_usuario")
+def user_administration():
+    return render_template('administracion_usuario.html')
+
+
 @app.route("/registra_ticket")
 def ticket_registre():
     return render_template('registra_ticket.html')
