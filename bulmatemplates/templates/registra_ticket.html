@@ -1,12 +1,23 @@
 {% extends "base/basic_template.html" %}
 
+{% block cssimport %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+{% endblock %}
+
 {% block title %}Registra un ticket{% endblock %}
+
+{% block header %}
+<div class="hero">
+  <p class="panel-heading ">
+  Registra un ticket
+  </p>
+</div>
+{% endblock %}
 
 {% block main %}
 
-<div class="hero is-primary is-fullheight">
-  <div class="hero-body">
-    <div class="container">
+
+    
       <div class="columns is-centered">
         <div class="column is-8">
           <!-- Form -->
@@ -47,8 +58,11 @@
             
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
+
+
+{% endblock %}
+
+{% block jsimport %}
 
 {% endblock %}

@@ -1,6 +1,18 @@
 {% extends "base/basic_template.html" %}
 
-{% block title %}Home{% endblock %}
+{% block cssimport %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+{% endblock %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block header %}
+<div class="hero">
+  <p class="panel-heading ">
+    Inicio
+  </p>
+</div>
+{% endblock %}
 
 {% block main %}
 
@@ -11,5 +23,9 @@
     </div>
   </div>
 </div>
+
+{% endblock %}
+
+{% block jsimport %}
 
 {% endblock %}

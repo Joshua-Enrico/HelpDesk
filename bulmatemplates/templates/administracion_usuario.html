@@ -1,0 +1,223 @@
+{% extends "base/basic_template.html" %}
+
+{% block cssimport %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hidde_button.css') }}">
+{% endblock %}
+
+{% block title %}Registrar Usuario{% endblock %}
+
+{% block header %}
+<div class="hero">
+  <p class="panel-heading ">
+    Usuarios
+  </p>
+</div>
+{% endblock %}
+
+{% block main %}
+<section class="hero is-primary">
+  <div class="hero-body">
+    
+    <div class="box">
+        <!-- Filtros -->
+        <div class="field is-grouped">
+          <p class="control is-expanded">
+            <input class="input" type="text" placeholder="Buscar usuario">
+          </p>
+          <p class="control">
+            <a class="button is-info">
+              Buscar
+            </a>
+          </p>
+
+          
+        </div>
+        <div class="field is-grouped">
+          <p class="control">
+            <div class="select">
+              <select>
+                <option>Todos</option>
+                <option>Activos</option>
+                <option>Inactivos</option>
+              </select>
+            </div>
+          </p>
+        </div>
+        <div class="field is-grouped">
+          <p class="control">
+            <div class="select">
+              <select>
+                <option>Acciones</option>
+                <option>Habilitar usuario</option>
+                <option>Deshabilitar usuario</option>
+              </select>
+            </div>
+          </p>
+          <p class="control">
+            <a class="button is-info">
+              Aplicar
+            </a>
+          </p>
+        </div>
+        <!-- Filtros Fin -->
+    </div>
+  </div>
+</section>
+<section class="hero is-primary">
+  <div class="box">
+    <nav class="panel">
+    
+      <p class="panel-tabs">
+        <a class="is-active">Todos</a>
+        <a>Activos</a>
+        <a>Inactivos</a>
+      </p>
+      <!-- Tabla -->
+      <div class="table-container">
+        <table class="table is-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Foto</th>
+              <th>Nombre</th>
+              <th>Area</th>
+              <th>Rol</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>ID</th>
+              <th>Foto</th>
+              <th>Nombre</th>
+              <th>Area</th>
+              <th>Rol</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </tfoot>
+        
+          <tbody>
+            <tr>
+              <th>001</th>
+              <td>
+                <div class="media-left">
+                  <figure class="image is-64x64">
+                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                  </figure>
+                </div>
+              </td>
+              <td>Bulma ABC</td>
+              <td>IT</td>
+              <td>Administrador</td>
+              <td>Activo</td>
+              <td>
+                <a class="button">
+                  <span class="icon is-small">
+                    <i class="fa fa-ellipsis-v "></i>
+                  </span>
+                </a>
+              </td>
+            </tr>
+        
+            <tr>
+              <th>002</th>
+              <td>
+                <div class="media-left">
+                  <figure class="image is-64x64">
+                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                  </figure>
+                </div>
+              </td>
+              <td>Vegeta ABC</td>
+              <td>IT</td>
+              <td>HelpDesk</td>
+              <td>Activo</td>
+              <td>
+                <a class="button">
+                  <span class="icon is-small">
+                    <i class="fa fa-ellipsis-v "></i>
+                  </span>
+                </a>
+              </td>
+            </tr>
+      
+            <tr>
+              <th>003</th>
+              <td>
+                <div class="media-left">
+                  <figure class="image is-64x64">
+                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                  </figure>
+                </div>
+              </td>
+              <td>Goku ABC</td>
+              <td>Finanzas</td>
+              <td>Usuario</td>
+              <td>Activo</td>
+              <td>
+                <a class="button">
+                  <span class="icon is-small">
+                    <i class="fa fa-ellipsis-v "></i>
+                  </span>
+                </a>
+              </td>
+            </tr>
+            
+            <tr>
+              <th>004</th>
+              <td>
+                <div class="media-left">
+                  <figure class="image is-64x64">
+                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                  </figure>
+                </div>
+              </td>
+              <td>Yamcha ABC</td>
+              <td>Ventas</td>
+              <td>Usuario</td>
+              <td>Inactivo</td>
+              <td>
+                <a class="button">
+                  <span class="icon is-small">
+                    <i class="fa fa-ellipsis-v "></i>
+                  </span>
+                </a>
+              </td>
+            </tr>
+      
+          </tbody>
+        </table>
+      </div>
+      <!-- Tabla Fin-->
+      
+      <div class="panel-block" id="reset-button">
+        <button class="button is-primary is-outlined is-fullwidth">
+          Reset
+        </button>
+      </div>
+    </nav>
+
+    <div class="block">
+      <a class="button is-info" id="toggler" value="Toggler" onClick="action();">Info</a>
+      <div class="box" id="togglee" value="Togglee">
+        <a class="button is-info" id="b1">b1</a>
+        <a class="button is-info" id="b2">b2</a>
+      </div>
+    </div>
+    
+
+  </div>
+
+
+</section>
+
+
+{% endblock %}
+
+{% block jsimport %}
+<script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+<script src="{{ url_for('static', filename='js/hidde_button.js') }}"></script>
+{% endblock %}
