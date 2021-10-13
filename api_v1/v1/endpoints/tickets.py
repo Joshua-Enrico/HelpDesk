@@ -17,4 +17,3 @@ def get_Tickets():
         new_dic.append(Ticket.to_dict())
     print(new_dic)
     return jsonify(new_dic)
-

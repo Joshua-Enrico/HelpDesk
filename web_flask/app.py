@@ -78,6 +78,7 @@ def dashboard():
             all_summary.Pendings += 1
             all_summary.UpdateTime = datetime.now()
             db.session.commit()
+
     return render_template('dashboard.html', ticket=ticket, name=current_user.Nombre, id=current_user.id)
 
 @app.route('/admin', methods=['GET', 'POST'])
