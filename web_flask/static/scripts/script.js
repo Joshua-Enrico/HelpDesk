@@ -9,15 +9,18 @@ $(document).ready(function () {
                 const template = `<tr>
             <td>
               <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
-              <a href="#" class="user-link">Full name 1</a>
+              <a href="#" class="user-link">${ user.Nombre } ${ user.Apellido }</a>
               <span class="user-subhead">Member</span>
             </td>
-            <td>2013/08/12</td>
+            <td>${ user.DateTime }</td>
             <td class="text-center">
-              <span class="label label-default">pending</span>
+              <span class="label label-default">${ user.Confirmed_mail }</span>
             </td>
             <td>
               <a href="#">${ user.Email }</a>
+            </td>
+            <td>
+              <a href="#">${ user.User_id }</a>
             </td>
             <td style="width: 20%;">
               <a href="#" class="table-link text-warning">
@@ -40,7 +43,7 @@ $(document).ready(function () {
               </a>
             </td>
           </tr>`;
-                $('section.users').append(template);
+                $('tbody.users').append(template);
             }
 
         }

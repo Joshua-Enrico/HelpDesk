@@ -2,7 +2,7 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField
+from wtforms import StringField, PasswordField, BooleanField, SelectField, TextAreaField
 from wtforms.validators import InputRequired, Email, Length
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -30,6 +30,24 @@ class LoginForm(FlaskForm):
     password = PasswordField('Contraseña', validators=[InputRequired(), Length(min=8, max=80)])
     remember = BooleanField('Recordar sesion')
 
+class TicketForm(FlaskForm):
+    subject = StringField('Asunto', validators=[InputRequired(), Length(max=100)])
+    description = TextAreaField('Descripcion', validators=[InputRequired(), Length(max=1000)])
+    problemType = SelectField(
+        'Tipo de Problema',
+        choices=[
+            ('Hardware', 'Hardware'),
+            ('Software', 'Software'),
+        ], validators=[InputRequired()]
+    )
+    company_area = SelectField(
+        'Seleccione su Area',
+        choices=[
+            ('Recursos Humanos', 'Recursos Humanos'),
+            ('Marketing', 'Marketing'),
+            ('Gerencia', 'Gerencia'),
+        ], validators=[InputRequired()]
+    )
 class RegisterForm(FlaskForm):
     email = StringField('Correo', validators=[InputRequired(), Email(message='Correo Invalido'), Length(max=50)])
     username = StringField('Nombre de Usuario', validators=[InputRequired(), Length(min=4, max=15)])
@@ -40,7 +58,8 @@ class RegisterForm(FlaskForm):
 
 class CreateID(FlaskForm):
     user_id = StringField('ID de usuario', validators=[InputRequired(), Length(min=3, max=3)])
-    admin = StringField('Admin?', validators=[InputRequired(), Length(min=3, max=3)])
+    admin = StringField('Tipo De Usuario', validators=[InputRequired(), Length(min=3, max=3)])
+
 class recover(FlaskForm):
     email = StringField('Correo', validators=[InputRequired(), Email(message='Correo Invalido'), Length(max=50)])
     user_id = StringField('ID de usuario', validators=[InputRequired(), Length(min=3, max=3)])
@@ -82,15 +101,36 @@ class Workers_ids(UserMixin, db.Model):
     Admin = db.Column(db.String(15))
     DateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
     UpdateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+    def to_dict(self, save_sf=None):
+        new_dict = self.__dict__.copy()
+        if "DateTime" in new_dict:
+            new_dict["DateTime"] = new_dict["DateTime"].strftime(time)
+        if "UpdateTime" in new_dict:
+            new_dict["UpdateTime"] = new_dict["UpdateTime"].strftime(time)
+        new_dict["__class__"] = self.__class__.__name__
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
+        return new_dict
 
 class User_Tickets_Summary(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     All_tickets = db.Column(db.Integer)
     Pendings = db.Column(db.Integer)
+    Assigned =  db.Column(db.Integer)
     Solved = db.Column(db.Integer)
     User_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     DateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
     UpdateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+    def to_dict(self, save_sf=None):
+        new_dict = self.__dict__.copy()
+        if "DateTime" in new_dict:
+            new_dict["DateTime"] = new_dict["DateTime"].strftime(time)
+        if "UpdateTime" in new_dict:
+            new_dict["UpdateTime"] = new_dict["UpdateTime"].strftime(time)
+        new_dict["__class__"] = self.__class__.__name__
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
+        return new_dict
 
 class Agent_Tickets_Summary(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -100,23 +140,45 @@ class Agent_Tickets_Summary(UserMixin, db.Model):
     User_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     DateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
     UpdateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+    def to_dict(self, save_sf=None):
+        new_dict = self.__dict__.copy()
+        if "DateTime" in new_dict:
+            new_dict["DateTime"] = new_dict["DateTime"].strftime(time)
+        if "UpdateTime" in new_dict:
+            new_dict["UpdateTime"] = new_dict["UpdateTime"].strftime(time)
+        new_dict["__class__"] = self.__class__.__name__
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
+        return new_dict
 
 """ Tickets Summary, show last month or last 15 days information  """
 class Tickets_Summary(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     All_tickets = db.Column(db.Integer)
     Pendings = db.Column(db.Integer)
+    Assigned = db.Column(db.Integer)
     Solved = db.Column(db.Integer)
     DateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
     UpdateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+    def to_dict(self, save_sf=None):
+        new_dict = self.__dict__.copy()
+        if "DateTime" in new_dict:
+            new_dict["DateTime"] = new_dict["DateTime"].strftime(time)
+        if "UpdateTime" in new_dict:
+            new_dict["UpdateTime"] = new_dict["UpdateTime"].strftime(time)
+        new_dict["__class__"] = self.__class__.__name__
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
+        return new_dict
 
 """ Tickets Table """
 class Tickets(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     Agent_ID = db.Column(db.String(15))
+    User_ID = db.Column(db.String(15))
     Subject = db.Column(db.String(100))
     Description = db.Column(db.String(1000))
-    Problem_Type = db.Column(db.String(45))
+    Problem_Type = db.Column(db.String(100))
     Company_Area = db.Column(db.String(45))
     Service_Score = db.Column(db.Integer)
     Review = db.relationship('Reviews', backref='Tickets', lazy=True, cascade="all, delete, delete-orphan")
@@ -124,6 +186,16 @@ class Tickets(UserMixin, db.Model):
     Status = db.Column(db.Integer)
     DateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
     UpdateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+    def to_dict(self, save_sf=None):
+        new_dict = self.__dict__.copy()
+        if "DateTime" in new_dict:
+            new_dict["DateTime"] = new_dict["DateTime"].strftime(time)
+        if "UpdateTime" in new_dict:
+            new_dict["UpdateTime"] = new_dict["UpdateTime"].strftime(time)
+        new_dict["__class__"] = self.__class__.__name__
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
+        return new_dict
 
 """ Reviews table , the idea here is use it when necessary"""
 class Reviews(UserMixin, db.Model):
@@ -132,3 +204,13 @@ class Reviews(UserMixin, db.Model):
     Ticket_id = db.Column(db.Integer, db.ForeignKey('tickets.id'))
     DateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
     UpdateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+    def to_dict(self, save_sf=None):
+        new_dict = self.__dict__.copy()
+        if "DateTime" in new_dict:
+            new_dict["DateTime"] = new_dict["DateTime"].strftime(time)
+        if "UpdateTime" in new_dict:
+            new_dict["UpdateTime"] = new_dict["UpdateTime"].strftime(time)
+        new_dict["__class__"] = self.__class__.__name__
+        if "_sa_instance_state" in new_dict:
+            del new_dict["_sa_instance_state"]
+        return new_dict
