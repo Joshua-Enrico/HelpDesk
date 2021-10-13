@@ -2,7 +2,9 @@
 
 desde mysql
 - create database HelpDesk;
+- 
 - grant usage on *.* to 'Helpdesk'@'localhost';
+- grant all privileges on HelpDesk.* to 'Helpdesk'@'localhost';
 
 Para hacer uso del mvp, crea la base de datos y setealo con python, primero crea la base de datos con mysql y crea el usuario que se muetra en el codigo con los permisos en la misma base de datos, desde el directorio web_dynamic
 - from Class import db
