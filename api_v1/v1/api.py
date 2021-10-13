@@ -29,5 +29,5 @@ if __name__ == "__main__":
    #create table
     db.create_all()
     db.init_app(app)
-    port = '5001'
+    port = 5001
     app.run(host='0.0.0.0', port=port, threaded=True, debug=True)

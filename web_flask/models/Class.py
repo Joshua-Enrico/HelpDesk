@@ -26,8 +26,8 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 class LoginForm(FlaskForm):
-    username = StringField('Usuario', validators=[InputRequired(), Length(min=4, max=15)])
-    password = PasswordField('Contraseña', validators=[InputRequired(), Length(min=8, max=80)])
+    username = StringField('', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('', validators=[InputRequired(), Length(min=0, max=80)])
     remember = BooleanField('Recordar sesion')
 
 class TicketForm(FlaskForm):

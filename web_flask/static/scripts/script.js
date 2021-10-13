@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $.ajax({
         type: 'GET',
-        url: 'http://172.18.201.15:5001/api/endpoints/users',
+        url: 'http://localhost:5001/api/endpoints/users',
         contentType: 'application/json',
         success: data => {
             console.log(data);

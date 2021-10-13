@@ -2,6 +2,7 @@
 
 desde mysql
 - create database HelpDesk;
+- CREATE USER 'Helpdesk'@'localhost' IDENTIFIED BY 'Helpdesk';
 - 
 - grant usage on *.* to 'Helpdesk'@'localhost';
 - grant all privileges on HelpDesk.* to 'Helpdesk'@'localhost';
@@ -18,7 +19,7 @@ para crear un usuario necesitaras un user id, en mysql crea ese id
 
 
 Para ejecutar la aplicacion desde el directorio web_dynamic
-- LASK_APP=app.py flask run
+- FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000
 
 Para ejecutar api, desde root
 - python3 -m api_v1.v1.api

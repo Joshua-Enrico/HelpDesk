@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/b1d50740c6.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+  {% block cssimport %}
+  <!-- Bloque CSS -->
+  {% endblock %}
+
+  <!-- debugger.css es para ayudar con el maketado -->
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+  <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+  <!-- Burger Menu js/navbar.js to work-->
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>
+  <!-- navbar -->
+  <div class="navbar-menu" id="navMenu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/">
+        Inicio
+      </a>
+      <a class="navbar-item" href="/dashboard">
+        Dashboard
+      </a>
+      <a class="navbar-item" href="/registra_ticket">
+        Crea un ticket
+      </a>
+      <a class="navbar-item" href="/administracion_usuario">
+        Administra Usuarios
+      </a>
+    </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary" href="/registra_usuario">
+            <strong>Registrarse</strong>
+          </a>
+          <a class="button is-light" href="/login">
+            Entrar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- navbar Fin -->
+
+  {% block header %}
+  {% endblock %}
+
+  {% block main %}
+  {% endblock %}
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          Este Projecto fue hecho por
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  {% block jsimport %}
+    <!-- js block -->
+    
+  {% endblock %}
+  
+</body>
+
+</html>

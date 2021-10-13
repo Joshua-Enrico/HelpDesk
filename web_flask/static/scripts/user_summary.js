@@ -3,7 +3,7 @@ $(document).ready(function () {
     console.log(User_id);
     $.ajax({
         type: 'GET',
-        url: 'http://172.18.201.15:5001/api/endpoints/user_summary/' + User_id,
+        url: 'http://localhost:5001/api/endpoints/user_summary/' + User_id,
         contentType: 'application/json',
         success: data => {
             console.log(data);
