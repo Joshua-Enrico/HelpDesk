@@ -35,6 +35,10 @@ def ticket_registre():
 def dashboard():
     return render_template('dashboard.html')
 
+@app.route("/user_dashboard")
+def user_dashboard():
+    return render_template('user_dashboard.html')
+
 
 if __name__ == "__main__":
     app.run(debug = True)
