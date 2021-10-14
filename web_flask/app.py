@@ -82,17 +82,41 @@ def dashboard():
 @app.route('/admin', methods=['GET', 'POST'])
 @login_required
 def admin():
-    form = CreateID()
-    if form.validate_on_submit():
-        user_id = Workers_ids.query.filter_by(User_id=form.user_id.data).first()
-        if (user_id):
-            return render_template('admin.html', form=form, wrong_id='EL ID ya existe')
-        else:
-            new_user = Workers_ids(User_id=form.user_id.data, Used='false', Admin=form.admin.data)
-            db.session.add(new_user)
+    ticket = TicketForm()
+    if ticket.validate_on_submit():
+        New_Ticket = Tickets(User_ID=current_user.id, Subject=ticket.subject.data, Problem_Type=ticket.problemType.data, Company_Area=ticket.company_area.data, Description=ticket.description.data)
+        db.session.add(New_Ticket)
+        db.session.commit()
+        summary = User_Tickets_Summary.query.filter_by(User_id=current_user.id).first()
+        all_summary = Tickets_Summary.query.first()
+        if (all_summary == None):
+            obj = Tickets_Summary(All_tickets=0, Pendings=0, Solved=0, Assigned=0)
+            db.session.add(obj)
             db.session.commit()
-            return render_template('admin.html', form=form, complete='ID Creado Correctamente')
-    return render_template('admin.html', form=form)
+
+
+        if (summary == None):
+            User_Summary =  User_Tickets_Summary(All_tickets=1, Pendings=1, Assigned=0, Solved=0, User_id=current_user.id)
+            db.session.add(User_Summary)
+
+            """ updating all summary """
+            all_summary.All_tickets += 1
+            all_summary.Pendings += 1
+            all_summary.UpdateTime = datetime.now()
+
+            db.session.commit()
+        else:
+            """ updating user summary table """
+            summary.All_tickets +=  1
+            summary.Pendings +=  1
+            summary.UpdateTime = datetime.now()
+            """ updating all summary table """
+            all_summary.All_tickets += 1
+            all_summary.Pendings += 1
+            all_summary.UpdateTime = datetime.now()
+            db.session.commit()
+
+    return render_template('dashboard.html', ticket=ticket, name=current_user.Nombre, id=current_user.id)
 
 @app.route('/logout') 
 @login_required
@@ -108,6 +132,26 @@ def confirmed(token, user_id):
 @app.route('/recover_acount/<token>/<Email>/<password>', methods=['GET', 'POST'] )
 def recover_account(token, Email, password):
     return recover_account_func(token, Email, password)
+
+@app.route("/registra_ticket")
+@login_required
+def ticket_registre():
+    return render_template('registra_ticket.html')
+
+@app.route("/administracion_usuario")
+@login_required
+def user_administration():
+    form = CreateID()
+    if form.validate_on_submit():
+        user_id = Workers_ids.query.filter_by(User_id=form.user_id.data).first()
+        if (user_id):
+            return render_template('administracion_usuario.html', form=form, wrong_id='EL ID ya existe')
+        else:
+            new_user = Workers_ids(User_id=form.user_id.data, Used='false', Admin=form.admin.data)
+            db.session.add(new_user)
+            db.session.commit()
+            return render_template('administracion_usuario.html', form=form, complete='ID Creado Correctamente')
+    return render_template('administracion_usuario.html', form=form)
 
 
 if __name__ == '__main__':

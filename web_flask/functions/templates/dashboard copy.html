@@ -1,0 +1,95 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='user_tickets.css')}}">
+<script type="text/javascript" src="../../static/scripts/user_summary.js"></script>
+{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+        aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Help Desk</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Configuracion</a></li>
+        <li><a href="#">Perfil</a></li>
+        <li><a href="{{ url_for('logout')}}">Salir</a></li>
+      </ul>
+      <form class="navbar-form navbar-right">
+        <input type="text" class="form-control" placeholder="Search...">
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Reportes</a></li>
+        <li><a href="#">Analicis</a></li>
+        <li><a href="#">Exportar</a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="">Nav item</a></li>
+        <li><a href="">Nav item again</a></li>
+        <li><a href="">One more nav</a></li>
+        <li><a href="">Another nav item</a></li>
+        <li><a href="">More navigation</a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="">Nav item again</a></li>
+        <li><a href="">One more nav</a></li>
+        <li><a href="">Another nav item</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h1 class="page-header" data-id='{{ id }}'>Welcome, {{ name }} {{ id }}</h1>
+      <form class="form-signin" method="POST" action="/dashboard">
+        <h2 class="form-signin-heading">Crear Ticket</h2>
+        {{ ticket.hidden_tag() }}
+        {{ wtf.form_field(ticket.subject) }}
+        {{ wtf.form_field(ticket.problemType) }}
+        {{ wtf.form_field(ticket.company_area) }}
+        {{ wtf.form_field(ticket.description) }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Crear Ticket</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container bootdey">
+  <div class="row bootstrap snippets bootdey">
+    <div class="col-md-4">
+      <div class="box box-widget widget-user-2">
+        <div class="widget-user-header bg-yellow">
+          <h3 class="widget-user-username">Tus tickets</h3>
+        </div>
+        <div class="box-footer no-padding">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
