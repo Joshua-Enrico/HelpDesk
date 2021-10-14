@@ -1,9 +1,6 @@
 #!/usr/bin/python3
-from flask import Flask, render_template, redirect, url_for
-from ..models.Class import *
-from ..app import *
-from flask_wtf import FlaskForm
-
+from flask import render_template, url_for
+from ..models.forms.register import RegisterForm
 
 def signup_validations():
     form = RegisterForm()
@@ -16,7 +13,7 @@ def signup_validations():
             return render_template('signup.html', form=form, user_in_use='El Usuario Ingresado Ya existe')
         if(email):
             return render_template('signup.html', form=form, email_in_use='El Correo Ingresado Ye exite')
-        
+
         if(user_id):
             print(user_id)
             if (user_id.Used != 'used'):
@@ -29,7 +26,7 @@ def signup_validations():
         token = s.dumps(form.email.data, salt='email-confirm')
 
         link = url_for('confirmed', token=token, user_id=form.user_id.data, _external=True)
-        message = '\nTu link de confirmacion es: {}'.format(link) 
+        message = '\nTu link de confirmacion es: {}'.format(link)
         print(message)
         server = smtplib.SMTP("smtp.gmail.com",587)
         server.starttls()
