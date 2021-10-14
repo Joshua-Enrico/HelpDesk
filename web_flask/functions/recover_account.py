@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 from flask import Flask, render_template, redirect, url_for
-from ..models.Class import *
-from ..app import *
 from flask_wtf import FlaskForm
 
 def recover_account_func(token, Email, password):

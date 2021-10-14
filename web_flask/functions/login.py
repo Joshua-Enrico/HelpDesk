@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-from flask import Flask, render_template, redirect, url_for
-from ..models.Class import *
-from ..app import *
-from flask_wtf import FlaskForm
+from flask import render_template, redirect, url_for
+from werkzeug.security import check_password_hash
+from ..models.forms.login import LoginForm
+from ..models.user import Users
+from flask_login import login_user
 from datetime import datetime
 import datetime as nowdate
 

@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+<<<<<<< HEAD
 from flask import Flask, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
@@ -117,3 +118,17 @@ if __name__ == '__main__':
     app.run(debug=True)
     port = 5000
     app.run(host='0.0.0.0', port=port, threaded=True, debug=True)
+=======
+from .models import app
+from .routes.admin import *
+from .routes.admin_user import *
+from .routes.auth import *
+from .routes.confirm_email import *
+from .routes.dashboard import *
+from .routes.home import *
+from .routes.recover import *
+from .routes.registra_ticket import *
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, threaded=True, debug=True)
+>>>>>>> 2baffc19f0b36aa4424c8be2d6d2525dfc37bd7f

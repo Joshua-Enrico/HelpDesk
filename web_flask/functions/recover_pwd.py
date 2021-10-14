@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 from flask import Flask, render_template, redirect, url_for
-from ..models.Class import *
-from ..app import *
 from flask_wtf import FlaskForm
 
 def recover_validations():
@@ -15,7 +13,7 @@ def recover_validations():
         token = s.dumps(form.email.data, salt='recover')
 
         link = url_for('recover_account', token=token, Email=form.email.data , password=hashed_paswrd,  _external=True)
-        message = '\nTu link de confirmacion es:  {}'.format(link) 
+        message = '\nTu link de confirmacion es:  {}'.format(link)
         print(message)
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
@@ -26,4 +24,8 @@ def recover_validations():
         return render_template('recover_account.html', form=form, complete='Ya casi listo, Solo necesita confirmar su correo')
 
 
+<<<<<<< HEAD
     return render_template('recover_account.html', form=form)
+=======
+    return render_template('recover_account.html', form=form)
+>>>>>>> 2baffc19f0b36aa4424c8be2d6d2525dfc37bd7f
