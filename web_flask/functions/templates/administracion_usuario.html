@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/hidde_button.css') }}">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
   crossorigin="anonymous"></script>
-<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
 <script type="text/javascript" src="../../static/scripts/script.js"></script>
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
@@ -109,7 +108,7 @@
             </tr>
           </tfoot>
         
-          <tbody>
+          <tbody class='users'>
             <tr>
               <th>001</th>
               <td>
@@ -216,75 +215,28 @@
     
 
   </div>
-  <form class="form-signin" method="POST" action="/admin">
-    <h2 class="form-signin-heading">Crear ID</h2>
+  <form class="form-signin" id='create_user'>
+    <h2 class="form-signin-heading">Crear Nuevo Usuario</h2>
     {{ form.hidden_tag() }}
-    {{ wtf.form_field(form.user_id) }}
-    <p>{{ wrong_id }}</p>
-    {{ wtf.form_field(form.admin) }}
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Crear ID</button>
+    {{ wtf.form_field(form.Username) }}
+    <p>{{ User_Exists }}</p>
+    {{ wtf.form_field(form.Email)}}
+    <p>{{ Email_Exist }}</p>
+    {{ wtf.form_field(form.Nombre) }}
+    {{ wtf.form_field(form.Apellido) }}
+    {{ wtf.form_field(form.Password) }}
+    {{ wtf.form_field(form.Confirmed_Password) }}
+    <p>{{ Not_equal }}</p>
+    {{ wtf.form_field(form.Area) }}
+    <p>{{ Area_validation }}</p>
+    {{ wtf.form_field(form.Rol) }}
+    <p>{{ Rol_validation }}</p>
+    {{ form.Desde }}
+    {{ wtf.form_field(form.Hasta) }}
+    <p>{{ Wrong_date }}</p>
+    <button class="btn btn-lg btn-primary btn-block" >Crear Usuario</button>
     <p>{{ complete }}</p>
   </form>
-  <div class="container bootstrap snippets bootdey">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="main-box no-header clearfix">
-          <div class="main-box-body clearfix">
-            <div class="table-responsive">
-              <table class="table user-list">
-                <thead>
-                  <tr>
-                    <th><span>Usuario</span></th>
-                    <th><span>Creado</span></th>
-                    <th class="text-center"><span>Estado</span></th>
-                    <th><span>Correo</span></th>
-                    <th><span>ID</span></th>
-                    <th>&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody class='users'>
-                    <tr>
-                      <td>
-                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
-                        <a href="#" class="user-link">Full name 1</a>
-                        <span class="user-subhead">Member</span>
-                      </td>
-                      <td>2013/08/12</td>
-                      <td class="text-center">
-                        <span class="label label-default">pending</span>
-                      </td>
-                      <td>
-                        <a href="#">marlon@brando.com</a>
-                      </td>
-                      <td style="width: 20%;">
-                        <a href="#" class="table-link text-warning">
-                          <span class="fa-stack">
-                            <i class="fa fa-square fa-stack-2x"></i>
-                            <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                          </span>
-                        </a>
-                        <a href="#" class="table-link text-info">
-                          <span class="fa-stack">
-                            <i class="fa fa-square fa-stack-2x"></i>
-                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                          </span>
-                        </a>
-                        <a href="#" class="table-link danger">
-                          <span class="fa-stack">
-                            <i class="fa fa-square fa-stack-2x"></i>
-                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                          </span>
-                        </a>
-                      </td>
-                    </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </section>
 

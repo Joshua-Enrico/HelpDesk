@@ -26,4 +26,4 @@ def recover_validations():
         return render_template('recover_account.html', form=form, complete='Ya casi listo, Solo necesita confirmar su correo')
 
 
-    return render_template('recover_account.html', form=form) 
+    return render_template('recover_account.html', form=form)

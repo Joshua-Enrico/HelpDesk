@@ -1,4 +1,10 @@
 $(document).ready(function () {
+  var data = $("#create_user :input").serializeArray();
+  console.log(data);
+  $('#create_user').submit(function() {
+    var data = $("#create_user :input").serializeArray();
+    console.log(data);
+});
     $.ajax({
         type: 'GET',
         url: 'http://localhost:5001/api/endpoints/users',
@@ -7,42 +13,26 @@ $(document).ready(function () {
             console.log(data);
             for (const user of data) {
                 const template = `<tr>
-            <td>
-              <img src="https://bootdey.com/img/Content/user_1.jpg" alt="">
-              <a href="#" class="user-link">${ user.Nombre } ${ user.Apellido }</a>
-              <span class="user-subhead">Member</span>
-            </td>
-            <td>${ user.DateTime }</td>
-            <td class="text-center">
-              <span class="label label-default">${ user.Confirmed_mail }</span>
-            </td>
-            <td>
-              <a href="#">${ user.Email }</a>
-            </td>
-            <td>
-              <a href="#">${ user.User_id }</a>
-            </td>
-            <td style="width: 20%;">
-              <a href="#" class="table-link text-warning">
-                <span class="fa-stack">
-                  <i class="fa fa-square fa-stack-2x"></i>
-                  <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-              <a href="#" class="table-link text-info">
-                <span class="fa-stack">
-                  <i class="fa fa-square fa-stack-2x"></i>
-                  <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-              <a href="#" class="table-link danger">
-                <span class="fa-stack">
-                  <i class="fa fa-square fa-stack-2x"></i>
-                  <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </td>
-          </tr>`;
+                <th>001</th>
+                <td>
+                  <div class="media-left">
+                    <figure class="image is-64x64">
+                      <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                    </figure>
+                  </div>
+                </td>
+                <td>${ user.Nombre } ${ user.Apellido }</td>
+                <td>${ user.Area } IT</td>
+                <td>${ user.Rol}</td>
+                <td>${ user.Estado }</td>
+                <td>
+                  <a class="button">
+                    <span class="icon is-small">
+                      <i class="fa fa-ellipsis-v "></i>
+                    </span>
+                  </a>
+                </td>
+              </tr>`;
                 $('tbody.users').append(template);
             }
 

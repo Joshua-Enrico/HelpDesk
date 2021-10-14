@@ -17,3 +17,4 @@ def get_users():
         new_dic.append(user.to_dict())
     print(new_dic)
     return jsonify(new_dic)
+
