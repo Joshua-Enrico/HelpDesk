@@ -25,11 +25,9 @@ from datetime import datetime
 def load_user(User_id):
     return Users.query.get(int(User_id))
 
-@app.route('/')
-def index():
-    return render_template('index.html')
 
-@app.route('/login', methods=['GET', 'POST'])
+
+@app.route('/', methods=['GET', 'POST'])
 def login():
     return login_validations()
 
@@ -107,9 +105,9 @@ def confirmed(token, user_id):
     return  confirmed_func(token, user_id)
 
 
-@app.route('/recover_acount/<token>/<user_id>/<password>', methods=['GET', 'POST'] )
-def recover_account(token, user_id, password):
-    return recover_account_func(token, user_id, password)
+@app.route('/recover_acount/<token>/<Email>/<password>', methods=['GET', 'POST'] )
+def recover_account(token, Email, password):
+    return recover_account_func(token, Email, password)
 
 
 if __name__ == '__main__':

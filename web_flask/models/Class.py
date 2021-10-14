@@ -61,9 +61,8 @@ class CreateID(FlaskForm):
     admin = StringField('Tipo De Usuario', validators=[InputRequired(), Length(min=3, max=3)])
 
 class recover(FlaskForm):
-    email = StringField('Correo', validators=[InputRequired(), Email(message='Correo Invalido'), Length(max=50)])
-    user_id = StringField('ID de usuario', validators=[InputRequired(), Length(min=3, max=3)])
-    new_password = PasswordField('Contraseña', validators=[InputRequired(), Length(min=6, max=80)])
+    email = StringField('', validators=[InputRequired(), Email(message='Correo Invalido'), Length(max=50)])
+    new_password = PasswordField('', validators=[InputRequired(), Length(min=6, max=80)])
 
 
 

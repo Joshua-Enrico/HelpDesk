@@ -1,50 +1,67 @@
-{% extends "bootstrap/base.html" %}
+{% extends "base/basic_template_login.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}
-Recuperacion de Cuenta
+{% block cssimport %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
 {% endblock %}
 
-{% block styles %}
-{{super()}}
-<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+{% block title %}Login{% endblock %}
+
+{% block header %}
+<div class="hero">
+  <p class="panel-heading ">
+    Login
+  </p>
+</div>
 {% endblock %}
 
-{% block content %}
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Help Desk</a>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li ><a href="{{ url_for('index') }}">Inicio</a></li>
-        <li ><a href="{{ url_for('login') }}">Ingresar</a></li>
-        <li><a href="{{ url_for('signup') }}">Registro</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
-</nav>
-<br><br>
+{% block main %}
+<section class="hero is-primary is-fullheight">
+  <div class="hero-body">
+
 <div class="container">
+  <div class="columns is-centered">
+    <div class="column is-4">
+      <!-- Form -->
+      <form action="/recover" method="POST" class="box">
+        <div class="field">
+          <label class="label"> Usuario </label>
+          <div class="control has-icons-left">
+            {{ form.hidden_tag() }}
+            {{ wtf.form_field(form.email) }}
+            <p>{{ wrong_email }}</p>
+            <span class="icon is-small is-left">
+              <i class="fa fa-user"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Contraseña</label>
+          <div class="control has-icons-left">
+            {{ wtf.form_field(form.new_password) }}
+            <span class="icon is-small is-left">
+              <i class="fa fa-lock"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">
+          </label>
+        </div>
+        <!-- Boton -->
+        <div class="field">
+          <button class="button is-success" type="submit">Enviar Link De Confirmacion</button>
+          <p>{{ complete }}</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+  </div>
+</section>
+  
+{% endblock %}
 
-  <form class="form-signin" method="POST" action="/recover">
-    <h2 class="form-signin-heading">Recuperar Cuenta</h2>
-    {{ form.hidden_tag() }}
-    {{ wtf.form_field(form.email) }}
-    <p>{{ wrong_email }}</p>
-    {{ wtf.form_field(form.user_id) }}
-    <p>{{ wrong_id }}</p>
-    {{ wtf.form_field(form.new_password) }}
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Actualizar Contraseña</button>
-    <p>{{ complete }}</p>
-  </form>
+{% block jsimport %}
 
-</div> <!-- /container -->
 {% endblock %}

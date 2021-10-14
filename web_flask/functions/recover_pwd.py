@@ -7,15 +7,14 @@ from flask_wtf import FlaskForm
 def recover_validations():
     form = recover()
     if form.validate_on_submit():
+        print(form.email.data)
         user = Users.query.filter_by(Email=form.email.data).first()
         if (user == None):
             return render_template('recover_account.html', form=form, wrong_email='El Correo No Existe')
-        if (user.User_id == None or user.User_id != form.user_id.data):
-            return render_template('recover_account.html', form=form, wrong_id='El ID de usuario no existe, o no concuerda con el suyo')
         hashed_paswrd = generate_password_hash(form.new_password.data, method='sha256')
         token = s.dumps(form.email.data, salt='recover')
 
-        link = url_for('recover_account', token=token, user_id=form.user_id.data , password=hashed_paswrd,  _external=True)
+        link = url_for('recover_account', token=token, Email=form.email.data , password=hashed_paswrd,  _external=True)
         message = '\nTu link de confirmacion es:  {}'.format(link) 
         print(message)
         server = smtplib.SMTP("smtp.gmail.com", 587)
@@ -27,4 +26,4 @@ def recover_validations():
         return render_template('recover_account.html', form=form, complete='Ya casi listo, Solo necesita confirmar su correo')
 
 
-    return render_template('recover_account.html', form=form)
+    return render_template('recover_account.html', form=form) 

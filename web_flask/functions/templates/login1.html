@@ -1,4 +1,4 @@
-{% extends "base/basic_template.html" %}
+{% extends "base/basic_template_login.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block cssimport %}
@@ -23,17 +23,11 @@
   <div class="columns is-centered">
     <div class="column is-4">
       <!-- Form -->
-      <form action="/login" method="POST" class="box">
+      <form action="/" method="POST" class="box">
         <div class="field">
           <label class="label"> Usuario </label>
           <div class="control has-icons-left">
             {{ form.hidden_tag() }}
-            <input
-              type="field"
-              class="input"
-              placeholder="ex:rperez"
-              wtf.form_field(form.username)
-            />
             {{ wtf.form_field(form.username) }}
             <span class="icon is-small is-left">
               <i class="fa fa-user"></i>
@@ -43,12 +37,6 @@
         <div class="field">
           <label class="label">Contraseña</label>
           <div class="control has-icons-left">
-            <input
-              type="password"
-              class="input"
-              placeholder="no la olvides"
-              wtf.form_field(form.password)
-            />
             {{ wtf.form_field(form.password) }}
             <span class="icon is-small is-left">
               <i class="fa fa-lock"></i>
