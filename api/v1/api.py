@@ -27,7 +27,7 @@ def not_found(error):
 if __name__ == "__main__":
     """ Main Function """
    #create table
-    db.create_all()
+#    db.create_all()
     db.init_app(app)
     port = 5001
     app.run(host='0.0.0.0', port=port, threaded=True, debug=True)
