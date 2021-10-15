@@ -1,4 +1,5 @@
 {% extends "base/basic_template.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block cssimport %}
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
@@ -24,8 +25,15 @@
         <form action="" class="box">
           <label class="label"> Titulo </label>
           <input class="input" type="text" placeholder="¿Qué Problema tiene?">
+          <!--  form.subject(class_="input", placeholder="¿Qué Problema tiene?"")  -->
           <label class="label"> Tipo </label>
-          <input class="input" type="text" placeholder="¿Hardware/Software?">
+          <div class="select">
+            <select>
+              <option>Hardware</option>
+              <option>Software</option>
+            </select>
+          </div>
+          <!--  form.problemType(class_="input", placeholder="Usuario")  -->
           <label class="label"> Lugar </label>
           <input class="input" type="text" placeholder="¿Area de la compañia?">
           <label class="label"> Descripcion </label>
