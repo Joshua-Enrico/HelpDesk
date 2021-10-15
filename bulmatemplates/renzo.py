@@ -16,9 +16,14 @@ def login():
     return render_template('login.html')
 
 
+@app.route("/ticket_admin")
+def ticket_admin():
+    return render_template('ticket_admin.html')
+
+
 @app.route("/ticket")
-def ticket():
-    return render_template('ticket.html')
+def ticket_user():
+    return render_template('ticket_user.html')
 
 
 @app.route("/registra_usuario")
