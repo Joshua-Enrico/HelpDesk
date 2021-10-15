@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ api aplication """
 from .endpoints import app_views
-from web_flask.models.Class import db
+from web_flask.models import db
 from os import environ
 from flask import Flask, render_template, make_response, jsonify
 from flask_cors import CORS

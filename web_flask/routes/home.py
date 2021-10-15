@@ -6,7 +6,7 @@ from ..functions.login import login_validations
 
 @login_manager.user_loader
 def load_user(User_id):
-    return Users.query.get(int(User_id))
+    return Users.query.get(str(User_id))
 
 
 @app.route('/', methods=['GET', 'POST'])

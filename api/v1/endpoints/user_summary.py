@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """ objects that handle all default RestFul API actions for Users """
 import sys
-from web_flask.models.Class import Users, Tickets, User_Tickets_Summary
-from api_v1.v1.endpoints import app_views
+from web_flask.models.user import Users
+from web_flask.models.tickets import Tickets
+from web_flask.models.user_tickets_summary import User_Tickets_Summary
+from api.v1.endpoints import app_views
 from flask import abort, jsonify, make_response, request
 import json
 

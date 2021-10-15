@@ -20,6 +20,7 @@ def admin():
             db.session.add(obj)
             db.session.commit()
 
+
         if (summary == None):
             User_Summary =  User_Tickets_Summary(All_tickets=1, Pendings=1, Assigned=0, Solved=0, User_id=current_user.id)
             db.session.add(User_Summary)

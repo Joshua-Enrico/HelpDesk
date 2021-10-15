@@ -22,8 +22,9 @@ def dashboard():
         all_summary = Tickets_Summary.query.first()
         if (all_summary == None):
             obj = Tickets_Summary(All_tickets=0, Pendings=0, Solved=0, Assigned=0)
-            db.session.commit()
             db.session.add(obj)
+            db.session.commit()
+
 
         if (summary == None):
             User_Summary =  User_Tickets_Summary(All_tickets=1, Pendings=1, Assigned=0, Solved=0, User_id=current_user.id)
