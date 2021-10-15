@@ -89,12 +89,8 @@
                     <div class="field">
                       <label class="label is-size-7 has-text-primary-light">Estado</label>
                       <p class="control">
-                        <span class="select">
-                          <select>
-                            <option>Asignado</option>
-                            <option>No Asignado</option>
-                            <option>Completado</option>
-                          </select>
+                        <span class="select open_modal">
+                          <input class="input" type="text" value="Completado" readonly>
                         </span>
                       </p>
                     </div>
@@ -104,13 +100,7 @@
                     <div class="field">
                       <label class="label is-size-7 has-text-primary-light">Prioridad</label>
                       <p class="control">
-                        <span class="select">
-                          <select>
-                            <option>Normal</option>
-                            <option>Baja</option>
-                            <option>Alta</option>
-                          </select>
-                        </span>
+                        <input class="input" type="text" value="Alta" readonly>
                       </p>
                     </div>
                   </div>
@@ -184,18 +174,29 @@
 
   </div>
 </section>
-
-
-
-<div class="box">
-
-  
-
-  
+<!-- Modal -->
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title is-size-6">Seguro que quiere reabrir el ticket?</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <p class="card-header-title">
+        Titulo del problema: Se incendio mi computadora y necesito sacar la informacion de mi disco duro de manera urgente por favor, besos.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, temporibus.
+      </p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Si</button>
+      <button class="button is-danger">No</button>
+    </footer>
+  </div>
 </div>
 
 {% endblock %}
 
 {% block jsimport %}
-<!-- <script src="{{ url_for('static', filename='js/modal.js') }}"></script> -->
+<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
 {% endblock %}
