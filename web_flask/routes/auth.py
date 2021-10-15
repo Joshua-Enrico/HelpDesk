@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from ..models import app
 from ..functions.signup import signup_validations
-from flask import redirect
+from flask import redirect, url_for
 from flask_login import login_required
 from flask_login import logout_user
 

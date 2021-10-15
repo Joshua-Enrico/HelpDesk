@@ -1,4 +1,6 @@
-const thisWindow = document.querySelector('#this_window');
+// Para que el script funcione  primero añade la 
+// clase "open_modal" al elemento que quiere que se seleccione
+const thisWindow = document.querySelector('.open_modal');
 const modalBg = document.querySelector('.modal-background')
 const closeBtn = document.querySelector('.delete')
 const modal = document.querySelector('.modal')

@@ -1,21 +1,11 @@
 $(document).ready(function () {
   $('#create_user').submit(function(e) {
     e.preventDefault();
-    var form = [];
-    form.push(document.getElementById('Username').value);
-    form.push(document.getElementById('Email').value);
-    form.push(document.getElementById('Nombre').value);
-    form.push(document.getElementById('Apellido').value);
-    form.push(document.getElementById('Password').value);
-    form.push(document.getElementById('Confirmed_Password').value);
-    form.push(document.getElementById('Area').value);
-    form.push(document.getElementById('Rol').value);
-    form.push(document.getElementById('Desde').value);
-    form.push(document.getElementById('Hasta').value);
     var form = {'Username': (document.getElementById('Username').value),
                 'Email':(document.getElementById('Email').value),
                 'Apellido':(document.getElementById('Apellido').value),
                 'Password':(document.getElementById('Password').value),
+                'Nombre':(document.getElementById('Nombre').value),
                 'Confirmed_Password':(document.getElementById('Confirmed_Password').value),
                 'Area':(document.getElementById('Area').value),
                 'Rol':(document.getElementById('Rol').value),
@@ -28,7 +18,15 @@ $(document).ready(function () {
       url: 'http://localhost:5001/api/endpoints/users',
       contentType: 'application/json; charset=utf-8',
       success: data => {
-        console.log(data);
+        result = data;
+        console.log(result);
+        $('#User_Exists').html(result.User_Exists);
+        $('#Email_Exist').html(result.Email_Exist);
+        $('#Not_equal').html(result.Not_equal);
+        $('#rol_validation').html(result.Rol_validation);
+        $('#Area_validation').html(result.Area_validation);
+        $('#wrong_date').html(result.Wrong_date);
+        $('#user_created').html(result.complete);
       }
     });
 });
