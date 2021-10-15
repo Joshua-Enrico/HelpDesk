@@ -16,6 +16,16 @@ def get_users():
     objs = Users.query.all()
     for user in objs:
         new_dic.append(user.to_dict())
-    print(new_dic)
     return jsonify(new_dic)
+
+
+@app_views.route('/users/', methods=['POST'], strict_slashes=False)
+def create_user():
+    if not request.get_json():
+        abort(400, description="Not a JSON")
+    form = request.get_json()
+    print(form)
+    print (form['Email'])
+
+    return jsonify("fine")
 

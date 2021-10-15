@@ -4,7 +4,6 @@ $(document).ready(function () {
         url: 'http://localhost:5001/api/endpoints/users',
         contentType: 'application/json',
         success: data => {
-            console.log(data);
             for (const user of data) {
                 const template = `<tr>
             <td>

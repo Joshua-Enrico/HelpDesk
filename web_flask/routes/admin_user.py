@@ -6,7 +6,7 @@ from flask import render_template
 import datetime
 import uuid
 
-@app.route("/administracion_usuario")
+@app.route("/administracion_usuario", methods=['GET', 'POST'])
 @login_required
 def User_Administration():
     form = CreateUser()

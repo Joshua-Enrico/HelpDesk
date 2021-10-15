@@ -1,16 +1,42 @@
 $(document).ready(function () {
-  var data = $("#create_user :input").serializeArray();
-  console.log(data);
-  $('#create_user').submit(function() {
-    var data = $("#create_user :input").serializeArray();
-    console.log(data);
+  $('#create_user').submit(function(e) {
+    e.preventDefault();
+    var form = [];
+    form.push(document.getElementById('Username').value);
+    form.push(document.getElementById('Email').value);
+    form.push(document.getElementById('Nombre').value);
+    form.push(document.getElementById('Apellido').value);
+    form.push(document.getElementById('Password').value);
+    form.push(document.getElementById('Confirmed_Password').value);
+    form.push(document.getElementById('Area').value);
+    form.push(document.getElementById('Rol').value);
+    form.push(document.getElementById('Desde').value);
+    form.push(document.getElementById('Hasta').value);
+    var form = {'Username': (document.getElementById('Username').value),
+                'Email':(document.getElementById('Email').value),
+                'Apellido':(document.getElementById('Apellido').value),
+                'Password':(document.getElementById('Password').value),
+                'Confirmed_Password':(document.getElementById('Confirmed_Password').value),
+                'Area':(document.getElementById('Area').value),
+                'Rol':(document.getElementById('Rol').value),
+                'Desde':(document.getElementById('Desde').value),
+                'Hasta':(document.getElementById('Hasta').value)}
+    console.log(form)
+    $.ajax({
+      type: 'POST',
+      data: JSON.stringify(form),
+      url: 'http://localhost:5001/api/endpoints/users',
+      contentType: 'application/json; charset=utf-8',
+      success: data => {
+        console.log(data);
+      }
+    });
 });
     $.ajax({
         type: 'GET',
         url: 'http://localhost:5001/api/endpoints/users',
         contentType: 'application/json',
         success: data => {
-            console.log(data);
             for (const user of data) {
                 const template = `<tr>
                 <th>001</th>

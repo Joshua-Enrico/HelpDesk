@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const User_id = parseInt($(this).find('.page-header').data("id"));
+    const User_id = ($(this).find('.page-header').data("id"));
     console.log(User_id);
     $.ajax({
         type: 'GET',
