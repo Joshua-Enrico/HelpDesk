@@ -8,13 +8,10 @@ from flask import abort, jsonify, make_response, request
 import json
 
 
-
-
 @app_views.route('/tickets', methods=['GET'], strict_slashes=False)
 def get_Tickets():
     new_dic = []
     objs = Tickets.query.all()
     for Ticket in objs:
         new_dic.append(Ticket.to_dict())
-    print(new_dic)
     return jsonify(new_dic)
