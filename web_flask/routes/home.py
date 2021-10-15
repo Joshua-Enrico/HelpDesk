@@ -12,3 +12,7 @@ def load_user(User_id):
 @app.route('/', methods=['GET', 'POST'])
 def login():
     return login_validations()
+
+@app.route('/login', methods=['GET', 'POST'])
+def login_redirect():
+    return login_validations()
