@@ -52,7 +52,7 @@ def User_Administration():
             Wrong_date='Las Fechas no son validas'
         if (flag != 0):
             return render_template(
-            'administracion_usuario.html',
+            'administrador/administracion_usuario.html',
             form=form,
             Wrong_date=Wrong_date,
             Not_equal=Not_equal,
@@ -78,6 +78,6 @@ def User_Administration():
         db.session.add(Access_Time)
         db.session.commit()
         print(new_user.id)
-        return render_template('administracion_usuario.html', form=form, complete='Usuario Creado Correctamente')
+        return render_template('administrador/administracion_usuario.html', form=form, complete='Usuario Creado Correctamente')
 
-    return render_template('administracion_usuario.html', form=form)
+    return render_template('administrador/administracion_usuario.html', form=form)

@@ -47,4 +47,4 @@ def dashboard():
             all_summary.UpdateTime = datetime.now()
             db.session.commit()
 
-    return render_template('dashboard.html', ticket=ticket, name=current_user.Nombre, id=current_user.id)
+    return render_template('Usuario/dashboard_usuario.html', ticket=ticket, name=current_user.Nombre, id=current_user.id)

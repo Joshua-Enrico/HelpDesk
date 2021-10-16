@@ -1,0 +1,360 @@
+{% extends "base/basic_template.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block cssimport %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hidde_button.css') }}">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='user_tickets.css')}}">
+<script type="text/javascript" src="../../static/scripts/user_summary.js"></script>
+<script type="text/javascript" src="../../static/scripts/tickets.js"></script>
+{% endblock %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block header %}
+<div class="hero">
+  <p class="panel-heading ">
+    Dashboard
+  </p>
+</div>
+{% endblock %}
+
+{% block main %}
+
+
+
+
+<nav class="navbar is-fixed-top box-shadow-y">
+  <div class="navbar-brand">
+    <a
+      role="button"
+      class="navbar-burger toggler"
+      aria-label="menu"
+      aria-expanded="false"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+
+    <a href="#" class="navbar-item has-text-weight-bold has-text-black">
+      Admin Dashboard
+    </a>
+    <a
+      role="button"
+      class="navbar-burger nav-toggler"
+      aria-label="menu"
+      aria-expanded="false"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu has-background-white">
+    <div class="navbar-start">
+      <a href="#" class="navbar-item">
+        <i class="fas fa-home icon"></i> Home
+      </a>
+      <a href="#" class="navbar-item">
+        About
+      </a>
+      <a href="#" class="navbar-item">
+        Features
+      </a>
+      <a href="#" class="navbar-item">Pricing</a>
+    </div>
+    <div class="navbar-end">
+      <a href="#" class="navbar-item">
+        Notifications
+      </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a href="#" class="navbar-link">
+          Admin
+        </a>
+        <div class="navbar-dropdown is-right">
+          <a href="#" class="navbar-item">
+            Profile
+          </a>
+          <a href="#" class="navbar-item">Settings</a>
+          <hr class="navbar-divider" />
+          <a href="#" class="navbar-item">Log Out</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+<section class="hero is-primary">
+  <div class="hero-body">
+    
+    <div class="box">
+        <!-- Filtros -->
+        <div class="field is-grouped">
+          <p class="control is-expanded">
+            <input class="input" type="text" placeholder="Buscar usuario">
+          </p>
+          <p class="control">
+            <a class="button is-info">
+              Buscar
+            </a>
+          </p>
+
+          
+        </div>
+        <div class="field is-grouped">
+          <p class="control">
+            <div class="tags are-medium">
+              <span class="tag is-white">Tipos de usuario</span>
+            </div>
+            <div class="select">
+              <select>
+                <option>Todos</option>
+                <option>Activos</option>
+                <option>Inactivos</option>
+              </select>
+            </div>
+          </p>
+        </div>
+        <div class="field is-grouped">
+          <p class="control">
+            <div class="select">
+              <select>
+                <option>Acciones</option>
+                <option>Habilitar usuario</option>
+                <option>Deshabilitar usuario</option>
+              </select>
+            </div>
+          </p>
+          <p class="control">
+            <a class="button is-info">
+              Aplicar
+            </a>
+          </p>
+        </div>
+        <!-- Filtros Fin -->
+    </div>
+  </div>
+</section>
+<section class="hero tables-info">
+  <!-- Tabs horizontales -->
+  <div class="tabs is-boxed">
+    <ul>
+      <li class="is-active" data-target="todos">
+        <a>Todos</a>
+      </li>
+      <li data-target="no-asignados">
+        <a>No asignados</a>
+      </li>
+      <li data-target="asignados">
+        <a>Asignados</a>
+      </li>
+      <li data-target="completados">
+        <a>Completados</a>
+      </li>
+    </ul>
+  </div>
+  <!-- Tabs horizontales fin -->
+  <!-- Este contenido es un ejemplo de la funcionalidad del file js/tabs.js
+  En este caso todo el contenido es cargado a la web pero ocultado excepto
+  por el contenido con el tag "is-active"  -->
+  <div class="px-2" id="tab-content">
+    <div id="todos">
+      <h3 class="is-size-5 title">Todos</h3>
+      <p>
+        1
+      </p>
+    </div>
+    
+    <div  id="no-asignados" class="is-hidden">
+      <h3 class="is-size-5 title">No Asignados</h3>
+      <p>
+         2
+      </p>
+    </div>
+
+    <div  id="asignados" class="is-hidden">
+      <h3 class="is-size-5 title">Asignados</h3>
+      <p>
+         3
+      </p>
+    </div>
+
+    <div  id="completados" class="is-hidden">
+      <h3 class="is-size-5 title">Completados</h3>
+      <p>
+         4
+      </p>
+    </div>
+  </div>
+  <!-- Fin Ejemplo -->
+  <div class="box">
+    <nav class="panel">
+    
+      
+      <!-- Tabla -->
+      <div class="table-container">
+        <table class="table is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Estado</th>
+              <th>Titulo</th>
+              <th>Personal Asignado</th>
+              <th>Area</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>ID</th>
+              <th>Estado</th>
+              <th>Titulo</th>
+              <th>Personal Asignado</th>
+              <th>Area</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+          </tfoot>
+        
+          <tbody>
+            <tr>
+              <th>001</th>
+              <th>
+                <button class="button is-info">Asignado</button>
+              </th>
+              <td>No hay internet</td>
+              <td>Bulma ABC</td>
+              <td>IT</td>
+              <td>12-10-2021</td>
+              <td>
+                <a class="button">
+                  <span class="icon is-small">
+                    <i class="fa fa-ellipsis-v "></i>
+                  </span>
+                </a>
+              </td>
+            </tr>
+        
+            <tr>
+              <th>002</th>
+              <th>
+                <button class="button is-success">Completado</button>
+              </th>
+              <td>Impresora malograda</td>
+              <td>Vegeta ABC</td>
+              <td>IT</td>
+              <td>12-10-2021</td>
+              <td>
+                <a class="button">
+                  <span class="icon is-small">
+                    <i class="fa fa-ellipsis-v "></i>
+                  </span>
+                </a>
+              </td>
+            </tr>
+      
+            <tr>
+              <th>003</th>
+              <th>
+                <button class="button is-danger">No Asignado</button>
+              </th>
+              <td>Se acabo la comida</td>
+              <td> </td>
+              <td>Finanzas</td>
+              <td>12-10-2021</td>
+              <td>
+                <a class="button">
+                  <span class="icon is-small">
+                    <i class="fa fa-ellipsis-v "></i>
+                  </span>
+                </a>
+              </td>
+            </tr>
+            
+            <tr>
+              <th>004</th>
+              <th>
+                <button class="button is-info">Asignado</button>
+              </th>
+              <td>Configuracion de permisos de usuario</td>
+              <td>Yamcha ABC</td>
+              <td>Ventas</td>
+              <td>11-10-2021</td>
+              <td>
+                <a class="button">
+                  <span class="icon is-small">
+                    <i class="fa fa-ellipsis-v "></i>
+                  </span>
+                </a>
+              </td>
+            </tr>
+      
+          </tbody>
+        </table>
+        <!-- Pagination -->
+        <div class="pagination is-rounded" role="navigation" aria-label="pagination">
+          <a class="pagination-previous">Previous</a>
+          <a class="pagination-next">Next page</a>
+          <ul class="pagination-list">
+            <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
+            <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
+            <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+          </ul>
+        </div>
+        <!-- Pagination Fin-->
+      </div>
+      <!-- Tabla Fin-->
+      
+    </nav>
+
+  </div>
+
+
+</section>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <h1 class="page-header" data-id='{{ id }}'>Welcome, {{ name }} {{ id }}</h1>
+  <form class="form-signin" method="POST" action="/dashboard">
+    <h2 class="form-signin-heading">Crear Ticket</h2>
+    {{ ticket.hidden_tag() }}
+    {{ wtf.form_field(ticket.subject) }}
+    {{ wtf.form_field(ticket.problemType) }}
+    {{ wtf.form_field(ticket.company_area) }}
+    {{ wtf.form_field(ticket.description) }}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Crear Ticket</button>
+  </form>
+</div>
+<div class="container bootdey">
+  <div class="row bootstrap snippets bootdey">
+    <div class="col-md-4">
+      <div class="box box-widget widget-user-2">
+        <div class="widget-user-header bg-yellow">
+          <h3 class="widget-user-username">Tus tickets</h3>
+        </div>
+        <div class="box-footer no-padding">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block jsimport %}
+<script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+{% endblock %}

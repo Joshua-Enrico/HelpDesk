@@ -1,12 +1,10 @@
 $(document).ready(function () {
     const User_id = ($(this).find('.page-header').data("id"));
-    console.log(User_id);
     $.ajax({
         type: 'GET',
         url: 'http://localhost:5001/api/endpoints/user_summary/' + User_id,
         contentType: 'application/json',
         success: data => {
-            console.log(data);
             for (const summary of data) {
                 const template = `<ul class="nav nav-stacked">
                 <li><a href="#">Todos <span class="pull-right badge bg-blue">${ summary.All_tickets }</span></a></li>
