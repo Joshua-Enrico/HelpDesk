@@ -2,6 +2,7 @@
 
 {% block cssimport %}
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/imagegrid.css') }}">
 {% endblock %}
 
 {% block title %}Ticket #000{% endblock %}
@@ -120,21 +121,42 @@
             </div>
             <div class="content">
               <p><strong>Descipción</strong></p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque aliquid ipsum voluptatibus nesciunt nemo sed cumque obcaecati,
-              voluptate quidem expedita quia. Ratione nemo recusandae provident vel. Mollitia delectus nulla nobis!  
-
-              <div class="level">
-                <div class="level-item has-text-centered">
-                  <div>
-                    <figure class="image is-128x128">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque aliquid ipsum voluptatibus nesciunt nemo sed cumque obcaecati,
+                voluptate quidem expedita quia. Ratione nemo recusandae provident vel. Mollitia delectus nulla nobis!  
+              </p>
+              <!-- Imagenes -->
+              <div class="columns">
+                <div class="column is-3">
+                  <div class="panel">
+                    <p class="is-marginless">
                       <img src="https://bulma.io/images/placeholders/256x256.png">
-                    </figure>
-                    <figure class="image is-128x128">
+                    </p>
+                  </div>
+                </div>
+                <div class="column is-3">
+                  <div class="panel">
+                    <p class="is-marginless">
+                      <img src="https://bulma.io/images/placeholders/600x480.png">
+                    </p>
+                  </div>
+                </div>
+                <div class="column is-3">
+                  <div class="panel">
+                    <p class="is-marginless">
+                      <img src="https://bulma.io/images/placeholders/480x600.png">
+                    </p>
+                  </div>
+                </div>
+                <div class="column is-3">
+                  <div class="panel">
+                    <p class="is-marginless">
                       <img src="https://bulma.io/images/placeholders/256x256.png">
-                    </figure>
+                    </p>
                   </div>
                 </div>
               </div>
+              <!-- Imagenes Fin -->
             </div>
           </div>
         </div>

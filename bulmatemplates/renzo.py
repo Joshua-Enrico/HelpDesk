@@ -10,6 +10,10 @@ app.url_map.strict_slashes = False
 def index():
     return render_template("index.html")
 
+@app.route("/create_user")
+def create_user():
+    return render_template('crear_usuario.html')
+
 
 @app.route("/login")
 def login():

@@ -1,0 +1,150 @@
+{% extends "base/basic_template.html" %}
+
+{% block cssimport %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hidde_button.css') }}">
+{% endblock %}
+
+{% block title %}Registrar Usuario{% endblock %}
+
+{% block header %}
+<div class="hero">
+  <p class="panel-heading ">
+    Crear Usuarios
+  </p>
+</div>
+{% endblock %}
+
+{% block main %}
+
+<section class="hero is-primary">
+  <div class="hero-body">
+    <!-- Form -->
+    <form class="box">
+
+      <div class="field">
+        <label class="label">Nombre Código</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="text" placeholder="codigo">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+          <!-- <span class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span> -->
+        </div>
+        <!-- <p class="help is-success">Disponible</p> -->
+      </div>
+      
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="email" placeholder="Email" value="hello@">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <!-- <span class="icon is-small is-right">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span> -->
+        </div>
+        <!-- <p class="help is-danger">This email is invalid</p> -->
+      </div>
+
+      <div class="field">
+        <label class="label">Nombre</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Nombre">
+        </div>
+      </div>
+      
+      <div class="field">
+        <label class="label">Apellido</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Nombre">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Clave</label>
+        <p class="control has-icons-left">
+          <input class="input" type="password" placeholder="Clave">
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="label">Repetir Clave</label>
+        <p class="control has-icons-left">
+          <input class="input" type="password" placeholder="Repetir Clave">
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+      
+      <div class="field">
+        <label class="label">Area del Nuevo Usuario</label>
+        <div class="control">
+          <div class="select">
+            <select>
+              <option>Seleccionar Area</option>
+              <option>Administracion</option>
+              <option>Finanzas</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Rol del Nuevo Usuario</label>
+        <div class="control">
+          <div class="select">
+            <select>
+              <option>Seleccionar Rol</option>
+              <option>Administrador</option>
+              <option>Agente Helpdesk</option>
+              <option>Usuario</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Fecha Inicio</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="dd/mm/aaaa">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Fecha Fin</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="dd/mm/aaaa">
+        </div>
+      </div>
+      
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link">Submit</button>
+        </div>
+        <div class="control">
+          <button class="button is-link is-light">Cancel</button>
+        </div>
+      </div>
+    </form>
+    <!-- Form Fin -->
+  </div>
+</section>
+
+
+
+
+
+{% endblock %}
+
+{% block jsimport %}
+<script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+<script src="{{ url_for('static', filename='js/panels.js') }}"></script>
+{% endblock %}
