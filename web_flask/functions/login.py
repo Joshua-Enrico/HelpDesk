@@ -23,6 +23,6 @@ def login_validations():
                 if (user.Rol == 'Administrador'):
                     return redirect(url_for('admin'))
                 else:
-                    return redirect(url_for('dashboard'))
+                    return redirect(url_for('dashboard_usuario'))
         return render_template('login.html', predict_content='Contraseña o usuario incorrecto', form=form)
     return render_template('login.html', form=form)
