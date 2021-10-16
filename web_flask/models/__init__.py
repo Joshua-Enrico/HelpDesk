@@ -13,6 +13,7 @@ Bootstrap(app)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = "testing"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Helpdesk:Helpdesk@localhost/HelpDesk'
+app.url_map.strict_slashes = False
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 db = SQLAlchemy(app)
