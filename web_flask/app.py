@@ -8,6 +8,7 @@ from .routes.dashboard import *
 from .routes.home import *
 from .routes.recover import *
 from .routes.registra_ticket import *
+from .routes.admin_user import *
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, threaded=True, debug=True)
