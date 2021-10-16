@@ -10,6 +10,4 @@ import uuid
 @login_required
 def User_Administration():
     form = CreateUser()
-
-
     return render_template('Administrador/administracion_usuario.html', form=form)
