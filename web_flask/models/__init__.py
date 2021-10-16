@@ -8,7 +8,7 @@ import pymysql
 import smtplib
 
 # time = "%Y-%m-%dT%H:%M:%S.%f"
-app = Flask(__name__, template_folder='../functions/templates', static_folder='../static')
+app = Flask(__name__, template_folder='../functions/templates', static_folder='../functions/static')
 Bootstrap(app)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = "testing"

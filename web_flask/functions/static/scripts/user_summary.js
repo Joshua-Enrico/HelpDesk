@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const User_id = ($(this).find('.page-header').data("id"));
+    const User_id = ($(this).find('.container').data("id"));
     $.ajax({
         type: 'GET',
         url: 'http://localhost:5001/api/endpoints/user_summary/' + User_id,

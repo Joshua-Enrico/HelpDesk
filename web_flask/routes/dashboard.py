@@ -10,9 +10,9 @@ from ..models.user_tickets_summary import User_Tickets_Summary
 from ..models.tickets_summary import Tickets_Summary
 from datetime import datetime
 
-@app.route('/dashboard', methods=['GET', 'POST'])
+@app.route('/dashboard_user', methods=['GET', 'POST'])
 @login_required
-def dashboard():
+def dashboard_usuario():
     ticket = TicketForm()
     if ticket.validate_on_submit():
         New_Ticket = Tickets(User_ID=current_user.id, Subject=ticket.subject.data, Problem_Type=ticket.problemType.data, Company_Area=ticket.company_area.data, Description=ticket.description.data)
