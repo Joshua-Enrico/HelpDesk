@@ -10,65 +10,203 @@
 {% block header %}
 <div class="hero">
   <p class="panel-heading ">
-    Usuarios
+    Registrar y manejar usuarios
   </p>
 </div>
 {% endblock %}
 
 {% block main %}
+
+
+<section class="section">
+  <div class="heading">
+    <h1 class="title">Section</h1>
+    <h2 class="subtitle">
+      A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+    </h2>
+  </div>
+  <div class="field">
+    <label class="label">Name</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="Text input">
+    </div>
+  </div>
+  
+  <div class="field">
+    <label class="label">Username</label>
+    <div class="control has-icons-left has-icons-right">
+      <input class="input is-success" type="text" placeholder="Text input" value="bulma">
+      <span class="icon is-small is-left">
+        <i class="fas fa-user"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-check"></i>
+      </span>
+    </div>
+    <p class="help is-success">This username is available</p>
+  </div>
+  
+  <div class="field">
+    <label class="label">Email</label>
+    <div class="control has-icons-left has-icons-right">
+      <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-exclamation-triangle"></i>
+      </span>
+    </div>
+    <p class="help is-danger">This email is invalid</p>
+  </div>
+  
+  <div class="field">
+    <label class="label">Subject</label>
+    <div class="control">
+      <div class="select">
+        <select>
+          <option>Select dropdown</option>
+          <option>With options</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  
+  <div class="field">
+    <label class="label">Message</label>
+    <div class="control">
+      <textarea class="textarea" placeholder="Textarea"></textarea>
+    </div>
+  </div>
+  
+  <div class="field">
+    <div class="control">
+      <label class="checkbox">
+        <input type="checkbox">
+        I agree to the <a href="#">terms and conditions</a>
+      </label>
+    </div>
+  </div>
+  
+  <div class="field">
+    <div class="control">
+      <label class="radio">
+        <input type="radio" name="question">
+        Yes
+      </label>
+      <label class="radio">
+        <input type="radio" name="question">
+        No
+      </label>
+    </div>
+  </div>
+  
+  <div class="field is-grouped">
+    <div class="control">
+      <button class="button is-link">Submit</button>
+    </div>
+    <div class="control">
+      <button class="button is-link is-light">Cancel</button>
+    </div>
+  </div>
+</section>
+
+
+
+
 <section class="hero is-primary">
   <div class="hero-body">
     
     <div class="box">
-        <!-- Filtros -->
-        <div class="field is-grouped">
-          <p class="control is-expanded">
-            <input class="input" type="text" placeholder="Buscar usuario">
-          </p>
-          <p class="control">
-            <a class="button is-info">
-              Buscar
-            </a>
-          </p>
-
-          
-        </div>
-        <div class="field is-grouped">
-          <p class="control">
-            <div class="tags are-medium">
-              <span class="tag is-white">Tipos de usuario</span>
-            </div>
-            <div class="select">
-              <select>
-                <option>Todos</option>
-                <option>Activos</option>
-                <option>Inactivos</option>
-              </select>
-            </div>
-          </p>
-        </div>
-        <div class="field is-grouped">
-          <p class="control">
-            <div class="select">
-              <select>
-                <option>Acciones</option>
-                <option>Habilitar usuario</option>
-                <option>Deshabilitar usuario</option>
-              </select>
-            </div>
-          </p>
-          <p class="control">
-            <a class="button is-info">
-              Aplicar
-            </a>
-          </p>
-        </div>
-        <!-- Filtros Fin -->
+      <!-- Filtros -->
+      <div class="field is-grouped">
+        <p class="control is-expanded">
+          <input class="input" type="text" placeholder="Buscar usuario">
+        </p>
+        <p class="control">
+          <a class="button is-info">
+            Buscar
+          </a>
+        </p>
+  
+      </div>
+      <div class="field is-grouped">
+        <p class="control">
+          <div class="tags are-medium">
+            <span class="tag is-white">Tipos de usuario</span>
+          </div>
+          <div class="select">
+            <select>
+              <option>Todos</option>
+              <option>Activos</option>
+              <option>Inactivos</option>
+            </select>
+          </div>
+        </p>
+      </div>
+      <div class="field is-grouped">
+        <p class="control">
+          <div class="select">
+            <select>
+              <option>Acciones</option>
+              <option>Habilitar usuario</option>
+              <option>Deshabilitar usuario</option>
+            </select>
+          </div>
+        </p>
+        <p class="control">
+          <a class="button is-info">
+            Aplicar
+          </a>
+        </p>
+      </div>
+      <!-- Filtros Fin -->
     </div>
   </div>
 </section>
 <section class="hero tables-info">
-  
+  <!-- Tabs horizontales -->
+  <div class="tabs is-boxed">
+    <ul>
+      <li class="is-active" data-target="todos">
+        <a>Todos</a>
+      </li>
+      <li data-target="activos">
+        <a>Activos</a>
+      </li>
+      <li data-target="deshabilitados">
+        <a>Deshabilitados</a>
+      </li>
+    </ul>
+  </div>
+  <!-- Tabs horizontales fin -->
+  <!-- Este contenido es un ejemplo de la funcionalidad del file js/tabs.js
+  En este caso todo el contenido es cargado a la web pero ocultado excepto
+  por el contenido con el tag "is-active"  -->
+  <div class="px-2" id="tab-content">
+    <div id="todos">
+      <h3 class="is-size-5 title">Todos</h3>
+      <p>
+        1
+      </p>
+    </div>
+    
+    <div  id="activos" class="is-hidden">
+      <h3 class="is-size-5 title">No Asignados</h3>
+      <p>
+         2
+      </p>
+    </div>
+
+    <div  id="deshabilitados" class="is-hidden">
+      <h3 class="is-size-5 title">Asignados</h3>
+      <p>
+         3
+      </p>
+    </div>
+
+  </div>
+  <!-- Fin Ejemplo -->
   <div class="box">
     <nav class="panel">
     
@@ -78,136 +216,146 @@
         <a>Inactivos</a>
       </p>
       <!-- Tabla -->
-      <div class="table-container">
-        <table class="table is-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Foto</th>
-              <th>Nombre</th>
-              <th>Area</th>
-              <th>Rol</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <th>ID</th>
-              <th>Foto</th>
-              <th>Nombre</th>
-              <th>Area</th>
-              <th>Rol</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-            </tr>
-          </tfoot>
-        
-          <tbody>
-            <tr>
-              <th>001</th>
-              <td>
-                <div class="media-left">
-                  <figure class="image is-64x64">
-                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                  </figure>
-                </div>
-              </td>
-              <td>Bulma ABC</td>
-              <td>IT</td>
-              <td>Administrador</td>
-              <td>Activo</td>
-              <td>
-                <a class="button">
-                  <span class="icon is-small">
-                    <i class="fa fa-ellipsis-v "></i>
-                  </span>
-                </a>
-              </td>
-            </tr>
-        
-            <tr>
-              <th>002</th>
-              <td>
-                <div class="media-left">
-                  <figure class="image is-64x64">
-                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                  </figure>
-                </div>
-              </td>
-              <td>Vegeta ABC</td>
-              <td>IT</td>
-              <td>HelpDesk</td>
-              <td>Activo</td>
-              <td>
-                <a class="button">
-                  <span class="icon is-small">
-                    <i class="fa fa-ellipsis-v "></i>
-                  </span>
-                </a>
-              </td>
-            </tr>
-      
-            <tr>
-              <th>003</th>
-              <td>
-                <div class="media-left">
-                  <figure class="image is-64x64">
-                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                  </figure>
-                </div>
-              </td>
-              <td>Goku ABC</td>
-              <td>Finanzas</td>
-              <td>Usuario</td>
-              <td>Activo</td>
-              <td>
-                <a class="button">
-                  <span class="icon is-small">
-                    <i class="fa fa-ellipsis-v "></i>
-                  </span>
-                </a>
-              </td>
-            </tr>
+      <div class="columns is-size-6">
+        <div class="column is-three-fifths is-offset-one-fifth">
+          <div class="table-container">
+            <table class="table is-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Foto</th>
+                  <th>Nombre</th>
+                  <th>Area</th>
+                  <th>Rol</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>ID</th>
+                  <th>Foto</th>
+                  <th>Nombre</th>
+                  <th>Area</th>
+                  <th>Rol</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </tfoot>
             
-            <tr>
-              <th>004</th>
-              <td>
-                <div class="media-left">
-                  <figure class="image is-64x64">
-                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                  </figure>
-                </div>
-              </td>
-              <td>Yamcha ABC</td>
-              <td>Ventas</td>
-              <td>Usuario</td>
-              <td>Inactivo</td>
-              <td>
-                <a class="button">
-                  <span class="icon is-small">
-                    <i class="fa fa-ellipsis-v "></i>
-                  </span>
-                </a>
-              </td>
-            </tr>
-      
-          </tbody>
-        </table>
+              <tbody>
+                <tr>
+                  <th>001</th>
+                  <td>
+                    <div class="media-left">
+                      <figure class="image is-64x64">
+                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                      </figure>
+                    </div>
+                  </td>
+                  <td>Bulma ABC</td>
+                  <td>IT</td>
+                  <td>Administrador</td>
+                  <td>Activo</td>
+                  <td>
+                    <a class="button">
+                      <span class="icon is-small">
+                        <i class="fa fa-ellipsis-v "></i>
+                      </span>
+                    </a>
+                  </td>
+                </tr>
+            
+                <tr>
+                  <th>002</th>
+                  <td>
+                    <div class="media-left">
+                      <figure class="image is-64x64">
+                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                      </figure>
+                    </div>
+                  </td>
+                  <td>Vegeta ABC</td>
+                  <td>IT</td>
+                  <td>HelpDesk</td>
+                  <td>Activo</td>
+                  <td>
+                    <a class="button">
+                      <span class="icon is-small">
+                        <i class="fa fa-ellipsis-v "></i>
+                      </span>
+                    </a>
+                  </td>
+                </tr>
+          
+                <tr>
+                  <th>003</th>
+                  <td>
+                    <div class="media-left">
+                      <figure class="image is-64x64">
+                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                      </figure>
+                    </div>
+                  </td>
+                  <td>Goku ABC</td>
+                  <td>Finanzas</td>
+                  <td>Usuario</td>
+                  <td>Activo</td>
+                  <td>
+                    <a class="button">
+                      <span class="icon is-small">
+                        <i class="fa fa-ellipsis-v "></i>
+                      </span>
+                    </a>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <th>004</th>
+                  <td>
+                    <div class="media-left">
+                      <figure class="image is-64x64">
+                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                      </figure>
+                    </div>
+                  </td>
+                  <td>Yamcha ABC</td>
+                  <td>Ventas</td>
+                  <td>Usuario</td>
+                  <td>Inactivo</td>
+                  <td>
+                    <a class="button">
+                      <span class="icon is-small">
+                        <i class="fa fa-ellipsis-v "></i>
+                      </span>
+                    </a>
+                  </td>
+                </tr>
+          
+              </tbody>
+            </table>
+            <!-- Pagination -->
+            <div class="pagination is-rounded" role="navigation" aria-label="pagination">
+              <a class="pagination-previous">Previous</a>
+              <a class="pagination-next">Next page</a>
+              <ul class="pagination-list">
+                <li><a class="pagination-link is-current" aria-label="Goto page 1" aria-current="page">1</a></li>
+                <li><span class="pagination-ellipsis">&hellip;</span></li>
+                <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
+                <li><a class="pagination-link" aria-label="Page 46">46</a></li>
+                <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+                <li><span class="pagination-ellipsis">&hellip;</span></li>
+                <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+              </ul>
+            </div>
+            <!-- Pagination End-->
+          </div>
+        </div>
       </div>
       <!-- Tabla Fin-->
       
       </div>
     </nav>
-
-    <div class="block">
-      <a class="button is-info" id="toggler" value="Toggler" onClick="action();">Info</a>
-      <div class="box" id="togglee" value="Togglee">
-        <a class="button is-info" id="b1">b1</a>
-        <a class="button is-info" id="b2">b2</a>
-      </div>
-    </div>
-    
 
   </div>
 
@@ -218,5 +366,6 @@
 {% endblock %}
 
 {% block jsimport %}
-<script src="{{ url_for('static', filename='js/hidde_button.js') }}"></script>
+<script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+<script src="{{ url_for('static', filename='js/panels.js') }}"></script>
 {% endblock %}
