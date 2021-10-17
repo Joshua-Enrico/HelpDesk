@@ -25,9 +25,6 @@
 
 {% block main %}
 
-
-
-
 <nav class="navbar is-fixed-top box-shadow-y">
   <div class="navbar-brand">
     <a
@@ -92,57 +89,54 @@
 
 
 
-
-
-
 <section class="hero is-primary">
   <div class="hero-body">
     
     <div class="box">
-        <!-- Filtros -->
-        <div class="field is-grouped">
-          <p class="control is-expanded">
-            <input class="input" type="text" placeholder="Buscar usuario">
-          </p>
-          <p class="control">
-            <a class="button is-info">
-              Buscar
-            </a>
-          </p>
+      <!-- Filtros -->
+      <div class="field is-grouped">
+        <p class="control is-expanded">
+          <input class="input" type="text" placeholder="Buscar usuario">
+        </p>
+        <p class="control">
+          <a class="button is-info">
+            Buscar
+          </a>
+        </p>
 
-          
-        </div>
-        <div class="field is-grouped">
-          <p class="control">
-            <div class="tags are-medium">
-              <span class="tag is-white">Tipos de usuario</span>
-            </div>
-            <div class="select">
-              <select>
-                <option>Todos</option>
-                <option>Activos</option>
-                <option>Inactivos</option>
-              </select>
-            </div>
-          </p>
-        </div>
-        <div class="field is-grouped">
-          <p class="control">
-            <div class="select">
-              <select>
-                <option>Acciones</option>
-                <option>Habilitar usuario</option>
-                <option>Deshabilitar usuario</option>
-              </select>
-            </div>
-          </p>
-          <p class="control">
-            <a class="button is-info">
-              Aplicar
-            </a>
-          </p>
-        </div>
-        <!-- Filtros Fin -->
+
+      </div>
+      <div class="field is-grouped">
+        <p class="control">
+          <div class="tags are-medium">
+            <span class="tag is-white">Tipos de usuario</span>
+          </div>
+          <div class="select">
+            <select>
+              <option>Todos</option>
+              <option>Activos</option>
+              <option>Inactivos</option>
+            </select>
+          </div>
+        </p>
+      </div>
+      <div class="field is-grouped">
+        <p class="control">
+          <div class="select">
+            <select>
+              <option>Acciones</option>
+              <option>Habilitar usuario</option>
+              <option>Deshabilitar usuario</option>
+            </select>
+          </div>
+        </p>
+        <p class="control">
+          <a class="button is-info">
+            Aplicar
+          </a>
+        </p>
+      </div>
+      <!-- Filtros Fin -->
     </div>
   </div>
 </section>
@@ -175,7 +169,7 @@
         1
       </p>
     </div>
-    
+
     <div  id="no-asignados" class="is-hidden">
       <h3 class="is-size-5 title">No Asignados</h3>
       <p>
@@ -200,8 +194,13 @@
   <!-- Fin Ejemplo -->
   <div class="box">
     <nav class="panel">
-    
-      
+      <p class="panel-tabs">
+        <a class="is-active">Todos</a>
+        <a>No asignados</a>
+        <a>Asignados</a>
+        <a>Completados</a>
+      </p>
+
       <!-- Tabla -->
       <div class="columns is-size-6">
         <div class="column is-three-fifths is-offset-one-fifth">
@@ -231,7 +230,7 @@
                   <th>Acciones</th>
                 </tr>
               </tfoot>
-            
+
               <tbody>
                 <tr>
                   <th><input type="checkbox"></th>
@@ -251,7 +250,7 @@
                     </a>
                   </td>
                 </tr>
-            
+
                 <tr>
                   <th><input type="checkbox"></th>
                   <th>002</th>
@@ -270,7 +269,7 @@
                     </a>
                   </td>
                 </tr>
-          
+
                 <tr>
                   <th><input type="checkbox"></th>
                   <th>003</th>
@@ -289,7 +288,7 @@
                     </a>
                   </td>
                 </tr>
-                
+
                 <tr>
                   <th><input type="checkbox"></th>
                   <th>004</th>
@@ -308,7 +307,7 @@
                     </a>
                   </td>
                 </tr>
-          
+
               </tbody>
             </table>
             <!-- Pagination -->
@@ -330,7 +329,7 @@
         </div>
       </div>
       <!-- Tabla Fin-->
-      
+
     </nav>
 
   </div>
@@ -367,4 +366,5 @@
 
 {% block jsimport %}
 <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+<script src="{{ url_for('static', filename='js/panels.js') }}"></script>
 {% endblock %}
