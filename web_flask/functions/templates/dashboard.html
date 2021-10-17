@@ -200,124 +200,140 @@
   <!-- Fin Ejemplo -->
   <div class="box">
     <nav class="panel">
-    
+      <p class="panel-tabs">
+        <a class="is-active">Todos</a>
+        <a>No asignados</a>
+        <a>Asignados</a>
+        <a>Completados</a>
+      </p>
       
       <!-- Tabla -->
-      <div class="table-container">
-        <table class="table is-striped is-hoverable">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Estado</th>
-              <th>Titulo</th>
-              <th>Personal Asignado</th>
-              <th>Area</th>
-              <th>Fecha</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <th>ID</th>
-              <th>Estado</th>
-              <th>Titulo</th>
-              <th>Personal Asignado</th>
-              <th>Area</th>
-              <th>Fecha</th>
-              <th>Acciones</th>
-            </tr>
-          </tfoot>
-        
-          <tbody>
-            <tr>
-              <th>001</th>
-              <th>
-                <button class="button is-info">Asignado</button>
-              </th>
-              <td>No hay internet</td>
-              <td>Bulma ABC</td>
-              <td>IT</td>
-              <td>12-10-2021</td>
-              <td>
-                <a class="button">
-                  <span class="icon is-small">
-                    <i class="fa fa-ellipsis-v "></i>
-                  </span>
-                </a>
-              </td>
-            </tr>
-        
-            <tr>
-              <th>002</th>
-              <th>
-                <button class="button is-success">Completado</button>
-              </th>
-              <td>Impresora malograda</td>
-              <td>Vegeta ABC</td>
-              <td>IT</td>
-              <td>12-10-2021</td>
-              <td>
-                <a class="button">
-                  <span class="icon is-small">
-                    <i class="fa fa-ellipsis-v "></i>
-                  </span>
-                </a>
-              </td>
-            </tr>
-      
-            <tr>
-              <th>003</th>
-              <th>
-                <button class="button is-danger">No Asignado</button>
-              </th>
-              <td>Se acabo la comida</td>
-              <td> </td>
-              <td>Finanzas</td>
-              <td>12-10-2021</td>
-              <td>
-                <a class="button">
-                  <span class="icon is-small">
-                    <i class="fa fa-ellipsis-v "></i>
-                  </span>
-                </a>
-              </td>
-            </tr>
+      <div class="columns is-size-6">
+        <div class="column is-three-fifths is-offset-one-fifth">
+          <div class="table-container">
+            <table class="table is-striped is-hoverable">
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>ID</th>
+                  <th>Estado</th>
+                  <th>Titulo</th>
+                  <th>Personal Asignado</th>
+                  <th>Area</th>
+                  <th>Fecha</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>Select</th>
+                  <th>ID</th>
+                  <th>Estado</th>
+                  <th>Titulo</th>
+                  <th>Personal Asignado</th>
+                  <th>Area</th>
+                  <th>Fecha</th>
+                  <th>Acciones</th>
+                </tr>
+              </tfoot>
             
-            <tr>
-              <th>004</th>
-              <th>
-                <button class="button is-info">Asignado</button>
-              </th>
-              <td>Configuracion de permisos de usuario</td>
-              <td>Yamcha ABC</td>
-              <td>Ventas</td>
-              <td>11-10-2021</td>
-              <td>
-                <a class="button">
-                  <span class="icon is-small">
-                    <i class="fa fa-ellipsis-v "></i>
-                  </span>
-                </a>
-              </td>
-            </tr>
-      
-          </tbody>
-        </table>
-        <!-- Pagination -->
-        <div class="pagination is-rounded" role="navigation" aria-label="pagination">
-          <a class="pagination-previous">Previous</a>
-          <a class="pagination-next">Next page</a>
-          <ul class="pagination-list">
-            <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-            <li><span class="pagination-ellipsis">&hellip;</span></li>
-            <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-            <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-            <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-            <li><span class="pagination-ellipsis">&hellip;</span></li>
-            <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-          </ul>
+              <tbody>
+                <tr>
+                  <th><input type="checkbox"></th>
+                  <th>001</th>
+                  <th>
+                    <button class="button is-info">Asignado</button>
+                  </th>
+                  <td>No hay internet</td>
+                  <td>Bulma ABC</td>
+                  <td>IT</td>
+                  <td>12-10-2021</td>
+                  <td>
+                    <a class="button">
+                      <span class="icon is-small">
+                        <i class="fa fa-ellipsis-v "></i>
+                      </span>
+                    </a>
+                  </td>
+                </tr>
+            
+                <tr>
+                  <th><input type="checkbox"></th>
+                  <th>002</th>
+                  <th>
+                    <button class="button is-success">Completado</button>
+                  </th>
+                  <td>Impresora malograda</td>
+                  <td>Vegeta ABC</td>
+                  <td>IT</td>
+                  <td>12-10-2021</td>
+                  <td>
+                    <a class="button">
+                      <span class="icon is-small">
+                        <i class="fa fa-ellipsis-v "></i>
+                      </span>
+                    </a>
+                  </td>
+                </tr>
+          
+                <tr>
+                  <th><input type="checkbox"></th>
+                  <th>003</th>
+                  <th>
+                    <button class="button is-danger">No Asignado</button>
+                  </th>
+                  <td>Se acabo la comida</td>
+                  <td> </td>
+                  <td>Finanzas</td>
+                  <td>12-10-2021</td>
+                  <td>
+                    <a class="button">
+                      <span class="icon is-small">
+                        <i class="fa fa-ellipsis-v "></i>
+                      </span>
+                    </a>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <th><input type="checkbox"></th>
+                  <th>004</th>
+                  <th>
+                    <button class="button is-info">Asignado</button>
+                  </th>
+                  <td>Configuracion de permisos de usuario</td>
+                  <td>Yamcha ABC</td>
+                  <td>Ventas</td>
+                  <td>11-10-2021</td>
+                  <td>
+                    <a class="button">
+                      <span class="icon is-small">
+                        <i class="fa fa-ellipsis-v "></i>
+                      </span>
+                    </a>
+                  </td>
+                </tr>
+          
+              </tbody>
+              
+            </table>
+            <!-- Pagination -->
+            <div class="pagination is-rounded" role="navigation" aria-label="pagination">
+              <a class="pagination-previous">Previous</a>
+              <a class="pagination-next">Next page</a>
+              <ul class="pagination-list">
+                <li><a class="pagination-link is-current" aria-label="Goto page 1" aria-current="page">1</a></li>
+                <li><span class="pagination-ellipsis">&hellip;</span></li>
+                <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
+                <li><a class="pagination-link" aria-label="Page 46">46</a></li>
+                <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+                <li><span class="pagination-ellipsis">&hellip;</span></li>
+                <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+              </ul>
+            </div>
+            <!-- Pagination End-->
+          </div>
         </div>
-        <!-- Pagination Fin-->
       </div>
       <!-- Tabla Fin-->
       
