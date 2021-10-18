@@ -29,9 +29,10 @@
               Titulo del problema: Se incendio mi computadora y necesito sacar la informacion de mi disco duro de manera urgente por favor, besos.
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, temporibus.
             </p>
-            <button class="card-header-icon" aria-label="more options">
+            <button class="card-header-icon btn-hide" aria-label="more options">
               <span class="icon">
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                <i class="fas fa-angle-up" aria-hidden="true"></i>
+                <i class="fas fa-angle-down is-hidden" aria-hidden="true"></i>
               </span>
             </button>
           </header>
@@ -220,4 +221,5 @@
 
 {% block jsimport %}
 <!-- <script src="{{ url_for('static', filename='js/modal.js') }}"></script> -->
+<script src="{{ url_for('static', filename='js/hidde_button.js') }}"></script>
 {% endblock %}
