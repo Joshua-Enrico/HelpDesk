@@ -18,7 +18,7 @@
 {% block header %}
 <div class="hero">
   <p class="panel-heading ">
-    Dashboard
+    Dashboard Agente HelpDesk
   </p>
 </div>
 {% endblock %}
@@ -87,111 +87,154 @@
 </nav>
 
 
-
-
-<section class="hero is-primary">
+<section class="hero is-link">
   <div class="hero-body">
-    
-    <div class="box">
-      <!-- Filtros -->
-      <div class="field is-grouped">
-        <p class="control is-expanded">
-          <input class="input" type="text" placeholder="Buscar usuario">
-        </p>
-        <p class="control">
-          <a class="button is-info">
-            Buscar
-          </a>
-        </p>
-
-
-      </div>
-      <div class="field is-grouped">
-        <p class="control">
-          <div class="tags are-medium">
-            <span class="tag is-white">Tipos de usuario</span>
-          </div>
-          <div class="select">
-            <select>
-              <option>Todos</option>
-              <option>Activos</option>
-              <option>Inactivos</option>
-            </select>
-          </div>
-        </p>
-      </div>
-      <div class="field is-grouped">
-        <p class="control">
-          <div class="select">
-            <select>
-              <option>Acciones</option>
-              <option>Habilitar usuario</option>
-              <option>Deshabilitar usuario</option>
-            </select>
-          </div>
-        </p>
-        <p class="control">
-          <a class="button is-info">
-            Aplicar
-          </a>
-        </p>
-      </div>
-      <!-- Filtros Fin -->
+    <!-- Tabs horizontales -->
+    <div class="tabs is-boxed has-text-black-bis is-size-5 ">
+      <ul>
+        <li class="is-active" data-target="search">
+          <a>Busqueda</a>
+        </li>
+        <li data-target="edit">
+          <a>Edicion de tarea</a>
+        </li>
+      </ul>
     </div>
+    <!-- Tabs horizontales fin -->
+
+    <!-- Este contenido es un ejemplo de la funcionalidad del file js/tabs.js
+    En este caso todo el contenido es cargado a la web pero ocultado excepto
+    por el contenido con el tag "is-active"  -->
+    <div class="px-2" id="tab-content">
+      <div id="search">
+        <div class="box">
+          <!-- Filtros -->
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input class="input" type="text" placeholder="Buscar usuario">
+            </div>
+            <div class="control">
+              <a class="button is-info">
+                Buscar
+              </a>
+            </div>
+          </div>
+          <!-- Dropbox de Busqueda -->
+          <div class="columns">
+            <div class="column">
+              <div class="field">
+                <label class="label">Estados</label>
+                <div class="control">
+                  <div class="select">
+                    <select>
+                      <option>Todos</option>
+                      <option>Asignados</option>
+                      <option>No Asignados</option>
+                      <option>Completados</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <label class="label">Area la tarea</label>
+                <div class="control">
+                  <div class="select">
+                    <select>
+                      <option>Todos</option>
+                      <option>Administracion</option>
+                      <option>Marketing</option>
+                      <option>Finanzas</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+          <!-- Dropbox de Busqueda Fin -->
+          
+    
+          <!-- Filtros Fin -->
+        </div>
+      </div>
+      
+      <div  id="edit" class="is-hidden">
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label class="label">Estado de la tarea</label>
+              <div class="control">
+                <div class="select">
+                  <select>
+                    <option>Acciones</option>
+                    <option>Habilitar usuario</option>
+                    <option>Deshabilitar usuario</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="control">
+              <a class="button is-info">
+                Aplicar
+              </a>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="field">
+              <label class="label">Personal Asignado</label>
+              <div class="control">
+                <div class="select">
+                  <select>
+                    <option>Administrador</option>
+                    <option>Agente Helpdesk</option>
+                    <option>Usuario</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="control">
+              <a class="button is-info">
+                Aplicar
+              </a>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">Area de la tarea</label>
+              <div class="control">
+                <div class="select">
+                  <select>
+                    <option>Administracion</option>
+                    <option>Marketing</option>
+                    <option>Finanzas</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="control">
+              <a class="button is-info">
+                Aplicar
+              </a>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+
+
+    </div>
+    <!-- Fin Ejemplo -->
+  
+    
   </div>
 </section>
+
 <section class="hero tables-info">
-  <!-- Tabs horizontales -->
-  <div class="tabs is-boxed">
-    <ul>
-      <li class="is-active" data-target="todos">
-        <a>Todos</a>
-      </li>
-      <li data-target="no-asignados">
-        <a>No asignados</a>
-      </li>
-      <li data-target="asignados">
-        <a>Asignados</a>
-      </li>
-      <li data-target="completados">
-        <a>Completados</a>
-      </li>
-    </ul>
-  </div>
-  <!-- Tabs horizontales fin -->
-  <!-- Este contenido es un ejemplo de la funcionalidad del file js/tabs.js
-  En este caso todo el contenido es cargado a la web pero ocultado excepto
-  por el contenido con el tag "is-active"  -->
-  <div class="px-2" id="tab-content">
-    <div id="todos">
-      <h3 class="is-size-5 title">Todos</h3>
-      <p>
-        1
-      </p>
-    </div>
 
-    <div  id="no-asignados" class="is-hidden">
-      <h3 class="is-size-5 title">No Asignados</h3>
-      <p>
-         2
-      </p>
-    </div>
-
-    <div  id="asignados" class="is-hidden">
-      <h3 class="is-size-5 title">Asignados</h3>
-      <p>
-         3
-      </p>
-    </div>
-
-    <div  id="completados" class="is-hidden">
-      <h3 class="is-size-5 title">Completados</h3>
-      <p>
-         4
-      </p>
-    </div>
-  </div>
-  <!-- Fin Ejemplo -->
   <div class="box">
     <nav class="panel">
       <p class="panel-tabs">
