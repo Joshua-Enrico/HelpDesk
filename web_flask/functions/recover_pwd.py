@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm
+from werkzeug.security import generate_password_hash
+
 
 def recover_validations():
     form = recover()
