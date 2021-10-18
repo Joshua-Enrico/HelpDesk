@@ -21,7 +21,8 @@ def get_Tickets():
         d = Ticket.to_dict()
         d['Agent'] = '{} {}'.format(User.Nombre, User.Apellido)
         new_dic.append(d)
-    
+    print("aqui")
+    print(len(new_dic))
     return jsonify(new_dic)
 
 @app_views.route('/admin/tickets', methods=['POST'], strict_slashes=False)

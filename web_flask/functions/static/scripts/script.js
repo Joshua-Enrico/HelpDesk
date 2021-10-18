@@ -1,16 +1,16 @@
 $(document).ready(function () {
-  $('#create_user').submit(function(e) {
+  $('.box').submit(function(e) {
     e.preventDefault();
-    var form = {'Username': (document.getElementById('Username').value),
-                'Email':(document.getElementById('Email').value),
-                'Apellido':(document.getElementById('Apellido').value),
-                'Password':(document.getElementById('Password').value),
-                'Nombre':(document.getElementById('Nombre').value),
-                'Confirmed_Password':(document.getElementById('Confirmed_Password').value),
-                'Area':(document.getElementById('Area').value),
-                'Rol':(document.getElementById('Rol').value),
-                'Desde':(document.getElementById('Desde').value),
-                'Hasta':(document.getElementById('Hasta').value)}
+    var form = {'Username': $("input[name=id-name]").val(),
+                'Email': $("input[name=user-email]").val(),
+                'Nombre': $("input[name=nombre]").val(),
+                'Apellido': $("input[name=apellido]").val(),
+                'Password': $("input[name=pswrd]").val(),
+                'Confirmed_Password': $("input[name=confirm-paswrd]").val(),
+                'Area': $("select[name=Area]").val(),
+                'Rol': $("select[name=ROL]").val(),
+                'Desde': $("input[name=From]").val(),
+                'Hasta': $("input[name=To]").val()}
     console.log(form)
     $.ajax({
       type: 'POST',
@@ -35,30 +35,8 @@ $(document).ready(function () {
         url: 'http://localhost:5001/api/endpoints/users',
         contentType: 'application/json',
         success: data => {
-            for (const user of data) {
-                const template = `<tr>
-                <th>001</th>
-                <td>
-                  <div class="media-left">
-                    <figure class="image is-64x64">
-                      <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                    </figure>
-                  </div>
-                </td>
-                <td>${ user.Nombre } ${ user.Apellido }</td>
-                <td>${ user.Area } IT</td>
-                <td>${ user.Rol}</td>
-                <td>${ user.Estado }</td>
-                <td>
-                  <a class="button">
-                    <span class="icon is-small">
-                      <i class="fa fa-ellipsis-v "></i>
-                    </span>
-                  </a>
-                </td>
-              </tr>`;
-                $('tbody.users').append(template);
-            }
+          result = data;
+          console.log(result);
 
         }
     });
