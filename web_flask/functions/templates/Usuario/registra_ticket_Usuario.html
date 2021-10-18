@@ -3,6 +3,9 @@
 
 {% block cssimport %}
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="../../../static/scripts/create_ticket_admin.js"></script>
 {% endblock %}
 
 {% block title %}Registra un ticket{% endblock %}
@@ -18,32 +21,35 @@
 {% block main %}
 
 <section class="hero is-primary">
-  <div class="hero-body">
+  <p></p>
+  <div class="hero-body" data-id='{{ user_id }}'>
     <div class="columns is-centered">
       <div class="column is-8">
         <!-- Form -->
-        <form action="" class="box">
-          <label class="label"> Titulo </label>
-          <input class="input" type="text" placeholder="¿Qué Problema tiene?">
+        <form action=""  id='create_ticket' class="box form_ticket">
+          <label class="label"> Titulo</label>
+          <input class="input" id='subject' type="text" placeholder="¿Qué Problema tiene?">
           <!--  form.subject(class_="input", placeholder="¿Qué Problema tiene?"")  -->
           <label class="label"> Tipo </label>
           <div class="select">
-            <select>
+            <select id='problemType'>
+              <option>Seleccionar</option>
               <option>Hardware</option>
               <option>Software</option>
             </select>
           </div>
-          <label class="label"> Lugar </label>
+          <label class="label"> Area </label>
           <!-- <input class="input" type="text" placeholder="¿Area de la compañia?"> -->
           <div class="select">
-            <select>
+            <select id='company_area'>
+              <option>Seleccionar</option>
               <option>Recursos Humanos</option>
               <option>Marketing</option>
               <option>Gerencia</option>
             </select>
           </div>
           <label class="label"> Descripcion </label>
-          <textarea class="textarea" placeholder="Describa su problema"></textarea>
+          <textarea class="textarea" id='description' placeholder="Describa su problema"></textarea>
 
           <!-- Botones -->
           <div class="file has-name is-boxed mt-4 mb-4" >
@@ -66,8 +72,9 @@
                 Foto del problema
               </span>
             </label>
-            <button class="button is-large is-link m-auto">Enviar</button>
+            <button class="button is-large is-link m-auto">Crear Ticket</button>
           </div>
+          <p id='complete'>{{ complete }}</p>
         </form>
           
       </div>

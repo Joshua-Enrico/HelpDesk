@@ -12,7 +12,7 @@ def ticket_register():
 @app.route("/registra_ticket_usr")
 @login_required
 def ticket_register_usuario():
-    return render_template('Usuario/registra_ticket_Usuario.html')
+    return render_template('Usuario/registra_ticket_Usuario.html', user_id=current_user.id)
 
 @app.route("/registra_ticket_Amdin")
 @login_required
