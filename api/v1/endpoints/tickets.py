@@ -22,7 +22,9 @@ def get_Tickets():
         agent = Users.query.filter(Users.id == tk.Agent_ID).first()
         d['Agent'] = None
         if agent is not None:
-            d['Agent'] = agent.to_dict()
+            ad = agent.to_dict()
+            d['Agent'] = '{} {}'.format(ad.get('Nombre'), ad.get('Apellido'))
+            
         tickets_list.append(d)
     return jsonify(tickets_list)
 

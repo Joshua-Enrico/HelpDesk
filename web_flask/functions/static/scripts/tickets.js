@@ -2,9 +2,10 @@ const API_URL_BASE = 'http://localhost:5001/api/endpoints'
 const url = `${API_URL_BASE}/admin/tickets`
 
 const status_class = {
-	Asignado: {msg: 'Asignado', cls: 'is-info'},
-	Completado: {msg: 'Completado', cls: 'is-success'},
-	null: {msg: 'No Asignado', cls: 'is-danger'}
+	null: {msg: 'No Asignado', cls: 'is-danger'},
+	0: {msg: 'No Asignado', cls: 'is-danger'},
+	1: {msg: 'Asignado', cls: 'is-info'},
+	2: {msg: 'Completado', cls: 'is-success'}
 }
 
 $(document).ready(() => {
@@ -16,11 +17,12 @@ $(document).ready(() => {
 			$('.table-container .table tbody').append(`
 				<tr>
 					<th>${'$n'.replace('$n', ind + 1).padStart(4, '0')}</th>
+					<td>${el.id}</td>
 					<th>
 						<button class="button ${status.cls}">${status.msg}</button>
 					</th>
 					<td>${el.Subject}</td>
-					<td>${el.Agent}</td>
+					<td>${el.Agent || '---'}</td>
 					<td>${el.Company_Area}</td>
 					<td>${(new Date(el.DateTime)).toISOString().split('T')[0].split('-').reverse().join('-')}</td>
 					<td>
