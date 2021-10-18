@@ -15,15 +15,17 @@ import json
 
 @app_views.route('/admin/tickets', methods=['GET'], strict_slashes=False)
 def get_Tickets():
-    new_dic = []
-    objs = db.session.query(Tickets, Users).all()
-    for Ticket, User in objs:
-        d = Ticket.to_dict()
-        d['Agent'] = '{} {}'.format(User.Nombre, User.Apellido)
-        new_dic.append(d)
-    print("aqui")
-    print(len(new_dic))
-    return jsonify(new_dic)
+    tickets_list = []
+    objs = Tickets.query.all()
+    for tk in objs:
+        d = tk.to_dict()
+        agent = Users.query.filter(Users.id == tk.Agent_ID).first()
+        d['Agent'] = None
+        if agent is not None:
+            d['Agent'] = agent.to_dict()
+        tickets_list.append(d)
+    return jsonify(tickets_list)
+
 
 @app_views.route('/admin/tickets', methods=['POST'], strict_slashes=False)
 def Create_Tickets():
