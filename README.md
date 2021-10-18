@@ -22,4 +22,4 @@ Para ejecutar la aplicacion desde el directorio web_dynamic
 - FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000
 
 Para ejecutar api, desde root
-- python3 -m api_v1.v1.api
+- python3 -m api.v1.api

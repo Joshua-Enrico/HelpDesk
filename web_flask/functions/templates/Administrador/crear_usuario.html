@@ -1,0 +1,156 @@
+{% extends "base/basic_template_Administrador.html" %}
+
+{% block cssimport %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hidde_button.css') }}">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="../../static/scripts/script.js"></script>
+{% endblock %}
+
+{% block title %}Registrar Usuario{% endblock %}
+
+{% block header %}
+<div class="hero">
+  <p class="panel-heading ">
+    Crear Usuarios
+  </p>
+</div>
+{% endblock %}
+
+{% block main %}
+
+<section class="hero is-primary">
+  <div class="hero-body">
+    <!-- Form -->
+    <form class="box">
+
+      <div class="field">
+        <label class="label">Username para el usuario</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" name='id-name' type="text" placeholder="codigo" required>
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+          <!-- <span class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span> -->
+        </div>
+        <p class="help is-danger" name='user_exists'></p>
+      </div>
+      
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" name='user-email' type="email" placeholder="Email" value="hello@" required>
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <!-- <span class="icon is-small is-right">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span> -->
+        </div>
+        <p class="help is-danger" name='Email_Exist'></p>
+      </div>
+
+      <div class="field">
+        <label class="label">Nombre</label>
+        <div class="control">
+          <input class="input" name='nombre' type="text" placeholder="Nombre" required>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Apellido</label>
+        <div class="control">
+          <input class="input" name='apellido'  type="text" placeholder="Nombre" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Clave</label>
+        <p class="control has-icons-left">
+          <input class="input" name='pswrd' type="password" placeholder="Clave" required>
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="label">Repetir Clave</label>
+        <p class="control has-icons-left">
+          <input class="input" name='confirm-paswrd' type="password" placeholder="Repetir Clave" required>
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+        <p class="help is-danger" name='Not_equal'></p>
+      </div>
+      
+      <div class="field">
+        <label class="label">Area del Nuevo Usuario</label>
+        <div class="control">
+          <div class="select">
+            <select name='Area' required>
+              <option value="">Seleccionar Area</option>
+              <option>Administracion</option>
+              <option>Finanzas</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Rol del Nuevo Usuario</label>
+        <div class="control">
+          <div class="select">
+            <select name='ROL' required>
+              <option value="">Seleccionar Rol</option>
+              <option>Administrador</option>
+              <option>Agente Helpdesk</option>
+              <option>Usuario</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Fecha Inicio</label>
+        <div class="control">
+          <input class="input" type="date" id="date-start" name="date-start" min="1940-01-01" max="2050-12-31" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Fecha Fin</label>
+        <div class="control">
+          <input class="input" type="date" id="date-end" name="date-end" min="1940-01-01" max="2050-12-31" required>
+        </div>
+        <h2 name='wrong_date'></h2>
+        <p class="help is-danger" name='wrong_date'></p>
+      </div>
+      
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link">Submit</button>
+        </div>
+        <div class="control">
+          <button class="button is-link is-light">Cancel</button>
+        </div>
+      </div>
+      <p class="help is-success" name='complete'></p>
+    </form>
+    <!-- Form Fin -->
+  </div>
+</section>
+
+
+
+
+
+{% endblock %}
+
+{% block jsimport %}
+<script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+<script src="{{ url_for('static', filename='js/panels.js') }}"></script>
+{% endblock %}

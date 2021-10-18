@@ -1,16 +1,16 @@
 $(document).ready(function () {
-  $('#create_user').submit(function(e) {
+  $('.box').submit(function(e) {
     e.preventDefault();
-    var form = {'Username': (document.getElementById('Username').value),
-                'Email':(document.getElementById('Email').value),
-                'Apellido':(document.getElementById('Apellido').value),
-                'Password':(document.getElementById('Password').value),
-                'Nombre':(document.getElementById('Nombre').value),
-                'Confirmed_Password':(document.getElementById('Confirmed_Password').value),
-                'Area':(document.getElementById('Area').value),
-                'Rol':(document.getElementById('Rol').value),
-                'Desde':(document.getElementById('Desde').value),
-                'Hasta':(document.getElementById('Hasta').value)}
+    var form = {'Username': $("input[name=id-name]").val(),
+                'Email': $("input[name=user-email]").val(),
+                'Nombre': $("input[name=nombre]").val(),
+                'Apellido': $("input[name=apellido]").val(),
+                'Password': $("input[name=pswrd]").val(),
+                'Confirmed_Password': $("input[name=confirm-paswrd]").val(),
+                'Area': $("select[name=Area]").val(),
+                'Rol': $("select[name=ROL]").val(),
+                'Desde': $("input[name=date-start]").val(),
+                'Hasta': $("input[name=date-end]").val()}
     console.log(form)
     $.ajax({
       type: 'POST',
@@ -20,46 +20,39 @@ $(document).ready(function () {
       success: data => {
         result = data;
         console.log(result);
-        $('#User_Exists').html(result.User_Exists);
-        $('#Email_Exist').html(result.Email_Exist);
-        $('#Not_equal').html(result.Not_equal);
-        $('#rol_validation').html(result.Rol_validation);
-        $('#Area_validation').html(result.Area_validation);
-        $('#wrong_date').html(result.Wrong_date);
-        $('#user_created').html(result.complete);
+        $("p[name=user_exists]").text(result.User_Exists);
+        if(result.User_Exists !=''){
+          $("input[name=id-name]").addClass("is-danger");
+        } else{
+          $("input[name=id-name]").removeClass("is-danger");
+        }
+        $("p[name=Email_Exist]").text(result.Email_Exist);
+        if(result.Email_Exist !=''){
+          $("input[name=user-email]").addClass('is-danger')
+        } else {
+          $("input[name=user-email]").removeClass('is-danger')
+        }
+        $("p[name=Not_equal]").text(result.Not_equal);
+        if(result.Not_equal !=''){
+          $("input[name=pswrd]").addClass('is-danger')
+          $("input[name=confirm-paswrd]").addClass('is-danger')
+        } else {
+          $("input[name=pswrd]").removeClass('is-danger')
+          $("input[name=confirm-paswrd]").removeClass('is-danger')
+        }
+
+        $("p[name=wrong_date]").text(result.Wrong_date);
+        if(result.Wrong_date !='') {
+          $("input[name=date-start]").addClass('is-danger')
+          $("input[name=date-end]").addClass('is-danger')
+        } else {
+          $("input[name=date-start]").removeClass('is-danger')
+          $("input[name=date-end]").removeClass('is-danger')
+        }
+
+        $("p[name=complete]").text(result.complete);
       }
     });
 });
-    $.ajax({
-        type: 'GET',
-        url: 'http://localhost:5001/api/endpoints/users',
-        contentType: 'application/json',
-        success: data => {
-            for (const user of data) {
-                const template = `<tr>
-                <th>001</th>
-                <td>
-                  <div class="media-left">
-                    <figure class="image is-64x64">
-                      <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                    </figure>
-                  </div>
-                </td>
-                <td>${ user.Nombre } ${ user.Apellido }</td>
-                <td>${ user.Area } IT</td>
-                <td>${ user.Rol}</td>
-                <td>${ user.Estado }</td>
-                <td>
-                  <a class="button">
-                    <span class="icon is-small">
-                      <i class="fa fa-ellipsis-v "></i>
-                    </span>
-                  </a>
-                </td>
-              </tr>`;
-                $('tbody.users').append(template);
-            }
 
-        }
-    });
 });

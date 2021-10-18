@@ -162,13 +162,14 @@
         <div class="columns">
           <div class="column">
             <div class="field">
-              <label class="label">Estado de la tarea</label>
+              <label class="label has-text-white">Cambiar Estado de la tarea</label>
               <div class="control">
                 <div class="select">
                   <select>
                     <option>Acciones</option>
-                    <option>Habilitar usuario</option>
-                    <option>Deshabilitar usuario</option>
+                    <option>Asignado</option>
+                    <option>No Asignado</option>
+                    <option>Completado</option>
                   </select>
                 </div>
               </div>
@@ -182,13 +183,13 @@
 
           <div class="column">
             <div class="field">
-              <label class="label">Personal Asignado</label>
+              <label class="label has-text-white">Personal Asignado</label>
               <div class="control">
                 <div class="select">
                   <select>
-                    <option>Administrador</option>
-                    <option>Agente Helpdesk</option>
-                    <option>Usuario</option>
+                    <option>Nombre A</option>
+                    <option>Nombre B</option>
+                    <option>Nombre C</option>
                   </select>
                 </div>
               </div>
@@ -201,7 +202,7 @@
           </div>
           <div class="column">
             <div class="field">
-              <label class="label">Area de la tarea</label>
+              <label class="label has-text-white">Area de la tarea</label>
               <div class="control">
                 <div class="select">
                   <select>
@@ -261,35 +262,141 @@
               </thead>
               <tfoot>
                 <tr>
-                  <th>Selecciona</th>
-                  <th>ID</th>
-                  <th>Estado</th>
-                  <th>Titulo</th>
-                  <th>Personal Asignado</th>
-                  <th>Area</th>
-                  <th>Fecha</th>
-                  <th>Acciones</th>
+                  <th>
+                    <button class="card-header-icon is-static" aria-label="more options">
+                      <span class="icon">
+                        <strong>Selecciona</strong>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <strong>ID</strong>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Estado</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Titulo</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Personal Asignado</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Area</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Fecha</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  <th><button class="card-header-icon is-static" aria-label="more options">
+                    <span class="icon">
+                      <strong>Accion</strong>
+                    </span>
+                  </button></th>
                 </tr>
               </tfoot>
 
               <tbody>
                 <tr>
-                  <th><input type="checkbox"></th>
-                  <th>001</th>
                   <th>
-                    <button class="button is-info">Asignado</button>
-                  </th>
-                  <td>No hay internet</td>
-                  <td>Bulma ABC</td>
-                  <td>IT</td>
-                  <td>12-10-2021</td>
-                  <td>
-                    <a class="button">
-                      <span class="icon is-small">
-                        <i class="fa fa-ellipsis-v "></i>
+                    <button class="card-header-icon is-static" aria-label="more options">
+                      <span class="icon">
+                        <strong>Selecciona</strong>
                       </span>
-                    </a>
-                  </td>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <strong>ID</strong>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Estado</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Titulo</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Personal Asignado</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Area</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Fecha</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  <th><button class="card-header-icon is-static" aria-label="more options">
+                    <span class="icon">
+                      <strong>Accion</strong>
+                    </span>
+                  </button></th>
                 </tr>
 
                 <tr>
