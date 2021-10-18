@@ -17,6 +17,6 @@ class Tickets(UserMixin, db.Model, BaseModel):
     Service_Score = db.Column(db.Integer)
     Review = db.relationship('Reviews', backref='Tickets', lazy=True, cascade="all, delete, delete-orphan")
     """ Here is better use code status, have a list of it """
-    Status = db.Column(db.Integer)
+    Status = db.Column(db.Integer, default=0, nullable=False)
     DateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
     UpdateTime = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
