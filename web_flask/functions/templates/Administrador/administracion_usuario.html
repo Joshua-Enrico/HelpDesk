@@ -341,28 +341,6 @@
     </nav>
 
   </div>
-  <form class="form-signin" id='create_user'>
-    <h2 class="form-signin-heading">Crear Nuevo Usuario</h2>
-    {{ form.hidden_tag() }}
-    {{ wtf.form_field(form.Username) }}
-    <p id='User_Exists'>{{ User_Exists }}</p>
-    {{ wtf.form_field(form.Email)}}
-    <p id='Email_Exist'>{{ Email_Exist }}</p>
-    {{ wtf.form_field(form.Nombre) }}
-    {{ wtf.form_field(form.Apellido) }}
-    {{ wtf.form_field(form.Password) }}
-    {{ wtf.form_field(form.Confirmed_Password) }}
-    <p id='Not_equal'>{{ Not_equal }}</p>
-    {{ wtf.form_field(form.Area) }}
-    <p id='Area_validation'>{{ Area_validation }}</p>
-    {{ wtf.form_field(form.Rol) }}
-    <p id='rol_validation'>{{ Rol_validation }}</p>
-    {{ wtf.form_field(form.Desde) }}
-    {{ wtf.form_field(form.Hasta) }}
-    <p id='wrong_date'>{{ Wrong_date }}</p>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Crear Usuario</button>
-    <p id='user_created'>{{ complete }}</p>
-  </form>
 
 
 </section>
