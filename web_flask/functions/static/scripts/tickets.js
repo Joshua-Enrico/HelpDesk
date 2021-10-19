@@ -1,6 +1,6 @@
 const API_URL_BASE = 'http://localhost:5001/api/endpoints'
-const url = `${API_URL_BASE}/admin/tickets/`
-let page = 1
+const url = `${API_URL_BASE}/admin/tickets`
+let statusFilter = null
 
 const status_class = {
 	null: {msg: 'No Asignado', cls: 'is-danger'},
@@ -11,8 +11,8 @@ const status_class = {
 
 
 function renderPagination(pag) {
-    const prevUrl = url + pag.prev_num
-    const nextUrl = url + pag.next_num
+    const prevUrl = `${url}/${pag.prev_num}`
+    const nextUrl = `${url}/${pag.next_num}`
     const clickPrev = `onclick="getTickets('${prevUrl}')"`
     const clickNext = `onclick="getTickets('${nextUrl}')"`
     const paginationDOM = $('.pagination.is-rounded')
@@ -21,7 +21,7 @@ function renderPagination(pag) {
     for (let i = 1; i <= pag.pages; i++)
         pagLinks += `<li>
                         <a class="pagination-link ${(i == pag.page)? 'is-current': ''}"
-                           onclick="getTickets('${url + i}')"
+                           onclick="getTickets('${url}/${i}')"
                            aria-label="Page ${i}">
                             ${i}
                         </a>
@@ -81,11 +81,38 @@ function renderTickets(tickets, page, per_page) {
 
 
 function getTickets(ticketsUrl) {
+    if (statusFilter !== null)
+        ticketsUrl += `?status=${statusFilter}`
     $.get(ticketsUrl, (res) => {
         renderTickets(res.items, res.page, res.per_page)
         renderPagination(res)
 	})
 }
 
-$(document).ready(() => getTickets(url + 1))
+
+function handlePanelTabClick(e, statusFilter) {
+    const tabs = $('.panel-tabs').children()
+    tabs.removeClass('is-active')
+    $(e.target).addClass('is-active')
+    query = (statusFilter === null)? '': `?status=${statusFilter}`
+    getTickets(`${url}/1${query}`)
+}
+
+function renderPanelTabs() {
+    const panelTabs = $('.panel-tabs')
+    
+    const html= `
+        <a class="is-active" onclick="handlePanelTabClick(event, null)">Todos</a>
+        <a onclick="handlePanelTabClick(event, 0)">No asignados</a>
+        <a onclick="handlePanelTabClick(event, 1)">Asignados</a>
+        <a onclick="handlePanelTabClick(event, 2)">Completados</a>
+      `
+
+    panelTabs.html(html)
+}
+
+$(document).ready(() => {
+    renderPanelTabs()
+    getTickets(`${url}/1`)
+})
 

@@ -27,12 +27,14 @@ def jsonify_pagination(pagination):
 
 @app_views.route('/admin/tickets/<int:page>', methods=['GET'], strict_slashes=False)
 def get_Tickets(page=1):
-    tickets_list = []
     per_page = 10
-    pagination = db.session.query(Tickets.id, Tickets.Status, Tickets.Subject, Tickets.Company_Area, Tickets.DateTime,
-                               (Users.Nombre + ' ' + Users.Apellido).label('Agent'))\
-                        .join(Users, Users.id == Tickets.Agent_ID, isouter=True)\
-                        .paginate(page, per_page, error_out=False)
+    status_filter = request.args.get('status', None)
+    pagination = db.session\
+                   .query(Tickets.id, Tickets.Status, Tickets.Subject, Tickets.Company_Area, Tickets.DateTime,
+                          (Users.Nombre + ' ' + Users.Apellido).label('Agent'))\
+                   .join(Users, Users.id == Tickets.Agent_ID, isouter=True)\
+                   .filter(True if status_filter is None else Tickets.Status == status_filter)\
+                   .paginate(page, per_page, error_out=False)
     return jsonify_pagination(pagination)
 
 
