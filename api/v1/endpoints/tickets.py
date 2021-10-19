@@ -10,23 +10,30 @@ from web_flask.models.user import Users
 from api.v1.endpoints import app_views
 from flask import abort, jsonify, make_response, request
 from datetime import datetime
+from sqlalchemy import func
 import json
 
 
-@app_views.route('/admin/tickets', methods=['GET'], strict_slashes=False)
-def get_Tickets():
+def jsonify_pagination(pagination):
+    keys = ['has_next', 'has_prev',
+            'next_num', 'page', 'pages', 'per_page',
+            'prev_num', 'total']
+    d = {}
+    d['items'] = [r._asdict() for r in pagination.items]
+    for k in keys:
+        d[k] = pagination.__getattribute__(k)
+    return jsonify(d)
+
+
+@app_views.route('/admin/tickets/<int:page>', methods=['GET'], strict_slashes=False)
+def get_Tickets(page=1):
     tickets_list = []
-    objs = Tickets.query.all()
-    for tk in objs:
-        d = tk.to_dict()
-        agent = Users.query.filter(Users.id == tk.Agent_ID).first()
-        d['Agent'] = None
-        if agent is not None:
-            ad = agent.to_dict()
-            d['Agent'] = '{} {}'.format(ad.get('Nombre'), ad.get('Apellido'))
-            
-        tickets_list.append(d)
-    return jsonify(tickets_list)
+    per_page = 10
+    pagination = db.session.query(Tickets.id, Tickets.Status, Tickets.Subject, Tickets.Company_Area, Tickets.DateTime,
+                               (Users.Nombre + ' ' + Users.Apellido).label('Agent'))\
+                        .join(Users, Users.id == Tickets.Agent_ID, isouter=True)\
+                        .paginate(page, per_page, error_out=False)
+    return jsonify_pagination(pagination)
 
 
 @app_views.route('/admin/tickets', methods=['POST'], strict_slashes=False)
