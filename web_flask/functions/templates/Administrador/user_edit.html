@@ -68,6 +68,7 @@
                             <div class="form-group">
                               <label name='Nombre_Usuario'>Nombre</label>
                               <input class="form-control" type="text" name="name" placeholder="{{ User_data.Nombre }}" value="">
+                              <p class="invalid-feedback" name='Wrong_name'></p>
                             </div>
                           </div>
                           <div class="col">
@@ -94,6 +95,7 @@
                               <div class="form-group">
                                 <label>Hasta</label>
                                 <input class="form-control" type="text" name="end-date" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="{{ Time_Access.To}}">
+                                <p class="invalid-feedback" name='Wrong_to'></p>
                               </div>
                             </div>
                           </div>

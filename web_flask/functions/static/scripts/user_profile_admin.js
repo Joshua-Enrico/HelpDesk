@@ -26,7 +26,18 @@ $(document).ready(function () {
             success: data => {
                 result = data;
                 console.log(result);
-                //$('#complete').html(result.complete);
+                $("p[name=Wrong_name]").text(result.Wrong_name);
+                if(result.Wrong_name != ''){
+                    $("input[name=name]").addClass("is-invalid");
+                } else{
+                    $("input[name=name]").removeClass("is-invalid");
+                }
+                $("p[name=Wrong_to]").text(result.Wrong_To);
+                if(result.Wrong_To != ''){
+                    $("input[name=end-date]").addClass("is-invalid");
+                } else{
+                    $("input[name=end-date]").removeClass("is-invalid");
+                }
             }
         });
     });
