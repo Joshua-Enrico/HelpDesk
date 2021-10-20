@@ -74,7 +74,7 @@ $(document).ready(function () {
                 </div>
                 <div class="dropdown-menu" id="dropdown-menu" role="menu">
                   <div class="dropdown-content">
-                    <a href="http://localhost:5000/user_edit/${ user.id}" class="dropdown-item">
+                    <a href="/user_edit/${user.id}" class="dropdown-item">
                       Editar Usuario
                     </a>
                     <a href="#" class="dropdown-item is-hoverable">
