@@ -1,6 +1,7 @@
 {% extends "base/basic_template_Administrador.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 {% block cssimport %}
+<head>
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/hidde_button.css') }}">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -13,6 +14,7 @@
 <script src="https://unpkg.com/gridjs-jquery/dist/gridjs.production.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" />
 <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+</head>
 {% endblock %}
 
 {% block title %}Registrar Usuario{% endblock %}
@@ -228,176 +230,28 @@
               </tfoot>
 
               <tbody class='User-info'>
-                <tr>
-                  <th><input type="checkbox"></th>
-                  <th>001</th>
-                  <td>
-                    <div class="media-left">
-                      <figure class="image is-64x64">
-                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                      </figure>
-                    </div>
-                  </td>
-                  <td>Bulma ABC</td>
-                  <td>IT</td>
-                  <td>Administrador</td>
-                  <td>Activo</td>
-                  <td>
-                    <a class="button">
-                      <span class="icon is-small">
-                        <i class="fa fa-ellipsis-v "></i>
-                      </span>
-                    </a>
-                  </td>
-                </tr>
-                <th><input type="checkbox"></th>
-                <th>001</th>
-                <td>
-                  <div class="media-left">
-                    <figure class="image is-64x64">
-                      <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                    </figure>
-                  </div>
-                </td>
-                <td>Bulma ABC</td>
-                <td>IT</td>
-                <td>Administrador</td>
-                <td>Activo</td>
-                <td>
-                  <a class="button">
-                    <span class="icon is-small">
-                      <i class="fa fa-ellipsis-v "></i>
-                    </span>
-                  </a>
-                </td>
-                </tr>
-                <th><input type="checkbox"></th>
-                <th>001</th>
-                <td>
-                  <div class="media-left">
-                    <figure class="image is-64x64">
-                      <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                    </figure>
-                  </div>
-                </td>
-                <td>Bulma ABC</td>
-                <td>IT</td>
-                <td>Administrador</td>
-                <td>Activo</td>
-                <td>
-                  <a class="button">
-                    <span class="icon is-small">
-                      <i class="fa fa-ellipsis-v "></i>
-                    </span>
-                  </a>
-                </td>
-                </tr>
-                <th><input type="checkbox"></th>
-                <th>001</th>
-                <td>
-                  <div class="media-left">
-                    <figure class="image is-64x64">
-                      <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                    </figure>
-                  </div>
-                </td>
-                <td>Bulma ABC</td>
-                <td>IT</td>
-                <td>Administrador</td>
-                <td>Activo</td>
-                <td>
-                  <a class="button">
-                    <span class="icon is-small">
-                      <i class="fa fa-ellipsis-v "></i>
-                    </span>
-                  </a>
-                </td>
-                </tr>
-                <th><input type="checkbox"></th>
-                <th>001</th>
-                <td>
-                  <div class="media-left">
-                    <figure class="image is-64x64">
-                      <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                    </figure>
-                  </div>
-                </td>
-                <td>Bulma ABC</td>
-                <td>IT</td>
-                <td>Administrador</td>
-                <td>Activo</td>
-                <td>
-                  <a class="button">
-                    <span class="icon is-small">
-                      <i class="fa fa-ellipsis-v "></i>
-                    </span>
-                  </a>
-                </td>
-                </tr>
-                <th><input type="checkbox"></th>
-                <th>001</th>
-                <td>
-                  <div class="media-left">
-                    <figure class="image is-64x64">
-                      <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                    </figure>
-                  </div>
-                </td>
-                <td>Bulma ABC</td>
-                <td>IT</td>
-                <td>Administrador</td>
-                <td>Activo</td>
-                <td>
-                  <a class="button">
-                    <span class="icon is-small">
-                      <i class="fa fa-ellipsis-v "></i>
-                    </span>
-                  </a>
-                </td>
-                </tr>
-                <th><input type="checkbox"></th>
-                <th>001</th>
-                <td>
-                  <div class="media-left">
-                    <figure class="image is-64x64">
-                      <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                    </figure>
-                  </div>
-                </td>
-                <td>Bulma ABC</td>
-                <td>IT</td>
-                <td>Administrador</td>
-                <td>Activo</td>
-                <td>
-                  <a class="button">
-                    <span class="icon is-small">
-                      <i class="fa fa-ellipsis-v "></i>
-                    </span>
-                  </a>
-                </td>
-                </tr>
-                <th><input type="checkbox"></th>
-                <th>001</th>
-                <td>
-                  <div class="media-left">
-                    <figure class="image is-64x64">
-                      <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                    </figure>
-                  </div>
-                </td>
-                <td>Bulma ABC</td>
-                <td>IT</td>
-                <td>Administrador</td>
-                <td>Activo</td>
-                <td>
-                  <a class="button">
-                    <span class="icon is-small">
-                      <i class="fa fa-ellipsis-v "></i>
-                    </span>
-                  </a>
-                </td>
-                </tr>
 
+                <th><input type="checkbox"></th>
+                <th>001</th>
+                <td>
+                  <div class="media-left">
+                    <figure class="image is-64x64">
+                      <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                    </figure>
+                  </div>
+                </td>
+                <td>Bulma ABC</td>
+                <td>IT</td>
+                <td>Administrador</td>
+                <td>Activo</td>
+                <td>
+                  <a class="button">
+                    <span class="icon is-small">
+                      <i class="fa fa-ellipsis-v "></i>
+                    </span>
+                  </a>
+                </td>
+                </tr>
 
                 <tr>
                   <th><input type="checkbox"></th>
@@ -494,8 +348,36 @@
     </nav>
 
   </div>
-
-
+<div class="dropdown is-hoverable">
+  <div class="dropdown-trigger">
+    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+      <span>Dropdown button</span>
+      <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+    <div class="dropdown-content">
+      <a href="#" class="dropdown-item">
+        Dropdown item
+      </a>
+      <a class="dropdown-item">
+        Other dropdown item
+      </a>
+      <a href="#" class="dropdown-item is-hoverable">
+        Active dropdown item
+      </a>
+      <a href="#" class="dropdown-item">
+        Other dropdown item
+      </a>
+      <hr class="dropdown-divider">
+      <a href="#" class="dropdown-item">
+        With a divider
+      </a>
+    </div>
+  </div>
+</div>
 </section>
 
 
@@ -504,13 +386,6 @@
 {% block jsimport %}
 <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
 <script src="{{ url_for('static', filename='js/panels.js') }}"></script>
-<script type="module">
-  import {
-    Grid,
-    html
-  } from "https://unpkg.com/gridjs/dist/gridjs.production.es.min.js";
-
-</script>
 
 
 {% endblock %}

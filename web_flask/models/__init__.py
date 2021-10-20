@@ -16,4 +16,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Helpdesk:Helpdesk@local
 app.url_map.strict_slashes = False
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
-db = SQLAlchemy(app)
+db = SQLAlchemy(app, session_options={"autoflush": False})

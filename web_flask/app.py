@@ -10,6 +10,7 @@ from .routes.recover import *
 from .routes.registra_ticket import *
 from .routes.admin_user import *
 from .routes.create_user_admin import *
+from .routes.profile import *
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, threaded=True, debug=True)

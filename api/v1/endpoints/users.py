@@ -61,7 +61,7 @@ def create_user():
             print(type(date_time_obj))
             if (date_time_obj < now):
                 flag = 1
-                Wrong_date='Las Fechas tienes que ser mayor a la actual'
+                Wrong_date='Las Fechas tienen que ser mayor a la actual'
             Desde = datetime.strptime(form['Desde'], '%Y-%m-%d').date()
             Hasta = datetime.strptime(form['Hasta'], '%Y-%m-%d').date()
             if(Desde > Hasta):

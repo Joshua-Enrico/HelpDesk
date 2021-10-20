@@ -41,7 +41,7 @@ $(document).ready(function () {
             'Nombre y Apellido',
             'Area', 'Rol',
             'Estado',
-        { name: 'Acciones', formatter: (cell) => gridjs.html("<a class='button'><span class='icon is-small'><i class='fa fa-ellipsis-v'></i></span></a>")}],
+        { name: 'Acciones'}],
         search: true,
         pagination: {
             limit: 10
@@ -61,7 +61,32 @@ $(document).ready(function () {
         server: {
             url: 'http://localhost:5001/api/endpoints/users',
             then: data => data.map(user =>
-                [gridjs.html(`<input data-id=${ user.id } type="checkbox"></input>`), user.Nombre + ' ' + user.Apellido, user.Area, user.Rol, user.Estado,'']
+                [gridjs.html(`<input data-id=${ user.id } type="checkbox"></input>`), user.Nombre + ' ' + user.Apellido, user.Area, user.Rol, user.Estado,
+                
+                gridjs.html(`<div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                  <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                    <span>🔘</span>
+                    <span class="icon is-small">
+                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                  <div class="dropdown-content">
+                    <a href="http://localhost:5000/user_edit/${ user.id}" class="dropdown-item">
+                      Editar Usuario
+                    </a>
+                    <a href="#" class="dropdown-item is-hoverable">
+                      Chat con El usuario
+                    </a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item">
+                      Desactivar Usuario
+                    </a>
+                  </div>
+                </div>
+              </div>`)]
             )
         },
         className: {

@@ -6,7 +6,7 @@ from datetime import datetime
 import uuid
 
 """ Data Base """
-class Time_Access(UserMixin, db.Model):
+class Time_Access(UserMixin, db.Model, BaseModel):
     id = db.Column(db.String(60), primary_key=True, default=uuid.uuid4)
     User_id = db.Column(db.String(60), db.ForeignKey('users.id'))
     From = db.Column(db.DateTime, nullable=False)
