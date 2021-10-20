@@ -14,7 +14,7 @@ import uuid
 
 @app_views.route('/users_profile/', methods=['PUT'], strict_slashes=False)
 def user_profile_admin():
-    flag = ''
+    flag = 0
     Email_Exist = ''
     Not_equal = ''
     Wrong_date = ''
@@ -49,7 +49,9 @@ def user_profile_admin():
                 User_Exists=User_Exists,
                 Wrong_From=Wrong_From,
                 Wrong_To=Wrong_To,
-                Wrong_name= Wrong_name)
+                Wrong_name= Wrong_name,
+                wrong_last=wrong_last,
+                flag=flag)
 
         if(form['To'] != ''):
             new_to = datetime.strptime(form['To'], '%Y-%m-%d').date()
@@ -63,7 +65,9 @@ def user_profile_admin():
                 User_Exists=User_Exists,
                 Wrong_From=Wrong_From,
                 Wrong_To=Wrong_To,
-                Wrong_name= Wrong_name)
+                Wrong_name= Wrong_name,
+                wrong_last=wrong_last,
+                flag=flag)
 
             if(new_from != ''):
                 if(new_from > new_to):
@@ -76,7 +80,9 @@ def user_profile_admin():
                     User_Exists=User_Exists,
                     Wrong_From=Wrong_From,
                     Wrong_To=Wrong_To,
-                    Wrong_name= Wrong_name)
+                    Wrong_name= Wrong_name,
+                    wrong_last=wrong_last,
+                    flag=flag)
 
                 if(new_from == new_to):
                     flag = 1
@@ -88,19 +94,15 @@ def user_profile_admin():
                     User_Exists=User_Exists,
                     Wrong_From=Wrong_From,
                     Wrong_To=Wrong_To,
-                    Wrong_name= Wrong_name)
+                    Wrong_name= Wrong_name,
+                    wrong_last=wrong_last,
+                    flag=flag)
 
         if(new_from != ''):
-            print(User_time_acces.From)
             User_time_acces.From = form['From']
-            print(User_time_acces.From)
-            db.session.commit()
 
         if(new_to != ''):
-            print(User_time_acces.To)
             User_time_acces.To = form['To']
-            print(User_time_acces.To)
-            db.session.commit()
 
         if(form['Username'] != ''):
             validate = Users.query.filter_by(Username=form['Username']).first()
@@ -118,12 +120,12 @@ def user_profile_admin():
                 User_Exists=User_Exists,
                 Wrong_From=Wrong_From,
                 Wrong_To=Wrong_To,
-                Wrong_name= Wrong_name)
+                Wrong_name= Wrong_name,
+                wrong_last=wrong_last,
+                flag=flag)
 
             else:
-                print(Update_user.Username)
                 Update_user.Username = form['Username']
-                print(Update_user.Username)
 
         if(form['Email'] != ''):
             validate = Users.query.filter_by(Email=form['Email']).first()
@@ -141,10 +143,13 @@ def user_profile_admin():
                 User_Exists=User_Exists,
                 Wrong_From=Wrong_From,
                 Wrong_To=Wrong_To,
-                Wrong_name= Wrong_name)
+                Wrong_name= Wrong_name,
+                wrong_last=wrong_last,
+                flag=flag)
 
         if(form['Password'] != ''):
             if(form['Confirm_Pasword'] == ''):
+                flag = 1
                 Not_equal = 'Confirme la nueva contraseña'
                 return jsonify(
                 Wrong_date=Wrong_date,
@@ -153,9 +158,12 @@ def user_profile_admin():
                 User_Exists=User_Exists,
                 Wrong_From=Wrong_From,
                 Wrong_To=Wrong_To,
-                Wrong_name= Wrong_name)
+                Wrong_name= Wrong_name,
+                wrong_last=wrong_last,
+                flag=flag)
 
             if(form['Confirm_Pasword'] != form['Password']):
+                flag = 1
                 Not_equal = 'Las contraseñas no coinciden'
                 return jsonify(
                 Wrong_date=Wrong_date,
@@ -164,10 +172,13 @@ def user_profile_admin():
                 User_Exists=User_Exists,
                 Wrong_From=Wrong_From,
                 Wrong_To=Wrong_To,
-                Wrong_name= Wrong_name)
+                Wrong_name= Wrong_name,
+                wrong_last=wrong_last,
+                flag=flag)
 
             hashed_paswrd = generate_password_hash(form['Password'], method='sha256')
             if check_password_hash(Update_user.Password, form['Password']):
+                flag = 1
                 Not_equal = 'Ya estas usando esta contraseña'
                 return jsonify(
                 Wrong_date=Wrong_date,
@@ -176,13 +187,16 @@ def user_profile_admin():
                 User_Exists=User_Exists,
                 Wrong_From=Wrong_From,
                 Wrong_To=Wrong_To,
-                Wrong_name= Wrong_name)
+                Wrong_name= Wrong_name,
+                wrong_last=wrong_last,
+                flag=flag)
 
             else:
                 Update_user.Password = hashed_paswrd
 
         if(form['Nombre'] != ''):
             if(Update_user.Nombre == form['Nombre']):
+                flag = 1
                 Wrong_name = 'Ya estas usando este Nombre'
                 return jsonify(
                 Wrong_date=Wrong_date,
@@ -192,14 +206,14 @@ def user_profile_admin():
                 Wrong_From=Wrong_From,
                 Wrong_To=Wrong_To,
                 Wrong_name= Wrong_name,
-                wrong_last=wrong_last)
+                wrong_last=wrong_last,
+                flag=flag)
             else:
-                print(Update_user.Nombre)
                 Update_user.Nombre = form['Nombre']
-                print(Update_user.Nombre)
 
         if(form['Apellido'] != ''):
             if(Update_user.Apellido == form['Apellido']):
+                flag = 1
                 wrong_last = 'Ya estas usando este o estos Apellidos'
                 return jsonify(
                 Wrong_date=Wrong_date,
@@ -209,13 +223,11 @@ def user_profile_admin():
                 Wrong_From=Wrong_From,
                 Wrong_To=Wrong_To,
                 Wrong_name= Wrong_name,
-                wrong_last=wrong_last)
+                wrong_last=wrong_last,
+                flag=flag)
             else:
-                print(Update_user.Apellido)
                 Update_user.Apellido = form['Apellido']
-                print(Update_user.Apellido)
-
-    else:
+        db.session.commit()
         return jsonify(
         Wrong_date=Wrong_date,
         Not_equal=Not_equal,
@@ -224,7 +236,24 @@ def user_profile_admin():
         Wrong_From=Wrong_From,
         Wrong_To=Wrong_To,
         Wrong_name= Wrong_name,
-        wrong_last=wrong_last)
+        wrong_last=wrong_last,
+        flag=flag)
+    
+
+    else:
+        flag = 1
+        return jsonify(
+        Wrong_date=Wrong_date,
+        Not_equal=Not_equal,
+        Email_Exist=Email_Exist,
+        User_Exists=User_Exists,
+        Wrong_From=Wrong_From,
+        Wrong_To=Wrong_To,
+        Wrong_name= Wrong_name,
+        wrong_last=wrong_last,
+        flag=flag)
+
+    flag = 1
     return jsonify(
     Wrong_date=Wrong_date,
     Not_equal=Not_equal,
@@ -233,4 +262,5 @@ def user_profile_admin():
     Wrong_From=Wrong_From,
     Wrong_To=Wrong_To,
     Wrong_name= Wrong_name,
-    wrong_last=wrong_last)
+    wrong_last=wrong_last,
+    flag=flag)

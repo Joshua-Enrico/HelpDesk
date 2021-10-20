@@ -75,12 +75,14 @@
                             <div class="form-group">
                               <label name='Apellido_Usuario'>Apellido</label>
                               <input class="form-control" type="text" name="Apellido_Usuario" placeholder="{{ User_data.Apellido }}" value="">
+                              <p class="invalid-feedback" name='Wrong_last'></p>
                             </div>
                           </div>
                           <div class="col">
                             <div class="form-group">
                               <label name='usuario'>Nombre de usuario</label>
                               <input class="form-control" type="text" name="username" placeholder="{{ User_data.Username }}" value="">
+                              <p class="invalid-feedback" name='User_exists'></p>
                             </div>
                           </div>
                         </div>
@@ -89,6 +91,7 @@
                               <div class="form-group">
                                 <label>Acceso Desde</label>
                                 <input class="form-control" type="text" name="start-date" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="{{ Time_Access.From }}" >
+                                <p class="invalid-feedback" name='Wrong_From'></p>
                               </div>
                             </div>
                             <div class="col">
@@ -104,10 +107,10 @@
                             <div class="form-group">
                               <label>Correo</label>
                               <input class="form-control" name='correo' type="text" placeholder="{{ User_data.Email }}">
+                              <p class="help is-danger" name='Email_Exists'></p>
                             </div>
                           </div>
                         </div>
- 
                       </div>
                     </div>
                     <div class="row">
@@ -131,6 +134,7 @@
                             <div class="form-group">
                               <label>Confirmar<span class="d-none d-xl-inline">Contraseña</span></label>
                               <input class="form-control" name="confirm_pswrd" type="password" placeholder="••••••"></div>
+                              <p class="help is-danger" name='Not_equal'></p>
                           </div>
                         </div>
                       </div>

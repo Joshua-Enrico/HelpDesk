@@ -26,17 +26,57 @@ $(document).ready(function () {
             success: data => {
                 result = data;
                 console.log(result);
+                $("p[name=User_exists]").text(result.User_Exists);
+                if(result.User_Exists != ''){
+                    $("input[name=username]").addClass("is-invalid");
+                } else{
+                    $("input[name=username]").removeClass("is-invalid");
+                }
                 $("p[name=Wrong_name]").text(result.Wrong_name);
                 if(result.Wrong_name != ''){
                     $("input[name=name]").addClass("is-invalid");
                 } else{
                     $("input[name=name]").removeClass("is-invalid");
                 }
+                $("p[name=Wrong_last]").text(result.wrong_last);
+                if(result.wrong_last != ''){
+                    $("input[name=Apellido_Usuario]").addClass("is-invalid");
+                } else{
+                    $("input[name=Apellido_Usuario]").removeClass("is-invalid");
+                }
+                $("p[name=Wrong_From]").text(result.Wrong_From);
+                if(result.Wrong_From != ''){
+                    $("input[name=start-date]").addClass("is-invalid");
+                } else{
+                    $("input[name=start-date]").removeClass("is-invalid");
+                }
                 $("p[name=Wrong_to]").text(result.Wrong_To);
                 if(result.Wrong_To != ''){
                     $("input[name=end-date]").addClass("is-invalid");
                 } else{
                     $("input[name=end-date]").removeClass("is-invalid");
+                }
+                $("p[name=Wrong_to]").text(result.Wrong_date);
+                if(result.Wrong_date != '' && (result.Wrong_From === '' && result.Wrong_To === '')){
+                    $("input[name=start-date]").addClass("is-invalid");
+                    $("input[name=end-date]").addClass("is-invalid");
+                }
+                $("p[name=Email_Exists]").text(result.Email_Exist);
+                if(result.Email_Exist != ''){
+                    $("input[name=correo]").addClass("is-invalid");
+                } else{
+                    $("input[name=correo]").removeClass("is-invalid");
+                }
+                $("p[name=Not_equal]").text(result.Not_equal);
+                if(result.Not_equal != ''){
+                    $("input[name=new_pswrd]").addClass("is-invalid");
+                    $("input[name=confirm_pswrd]").addClass("is-invalid");
+                } else{
+                    $("input[name=new_pswrd]").removeClass("is-invalid");
+                    $("input[name=confirm_pswrd]").removeClass("is-invalid");
+                }
+                if(result.flag == 0){
+                    location.reload();
                 }
             }
         });
