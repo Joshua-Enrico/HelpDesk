@@ -1,0 +1,176 @@
+{% extends "base/basic_template.html" %}
+
+{% block cssimport %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/imagegrid.css') }}">
+{% endblock %}
+
+{% block title %}Ticket{% endblock %}
+
+{% block header %}
+<div class="hero">
+  <p class="panel-heading ">
+    <a class="button is-link">Ticket #000</a>
+  </p>
+
+</div>
+{% endblock %}
+
+{% block main %}
+
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="section">
+      <div class="columns is-centered">
+        <div class="card">
+          <header class="card-header">
+            <!-- Problema -->
+            <p class="card-header-title">
+              {{ ticket.Subject }}
+            </p>
+            <button class="card-header-icon btn-hide" aria-label="more options">
+              <span class="icon">
+                <i class="fas fa-angle-up" aria-hidden="true"></i>
+                <i class="fas fa-angle-down is-hidden" aria-hidden="true"></i>
+              </span>
+            </button>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <div class="columns is-size-7 ">
+                <div class="column">
+                  <div class="columns is-gapless">
+                    <!-- Reporte -->
+                    <div class="column">
+                      Reportado por:
+                    </div>
+                    <div class="column">
+                      <strong>{{ owner.Nombre }} {{ owner.Apellido }}</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="column ">
+                  <div class="columns is-gapless">
+                    <!-- Responsable -->
+                    <div class="column">
+                      Asignado a:
+                    </div>
+                    <div class="column">
+                      <strong>{{ agent.Nombre | default('---') }} {{ agent.Apellido }}</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="columns is-size-7">
+                <div class="column ">
+                  <div class="columns is-gapless">
+                    <div class="column">
+                      Creado el:
+                    </div>
+                    <div class="column">
+                      <strong>{{ ticket.DateTime }}</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="column ">
+                  <div class="columns is-gapless">
+                    <div class="column">
+                      Actualizado el:
+                    </div>
+                    <div class="column">
+                      <strong>{{ ticket.UpdateTime }}</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Dropboxes -->
+              <div class="box has-background-link">
+                <div class="columns">
+                  <div class="column">
+                    <div class="field">
+                      <label class="label is-size-7 has-text-primary-light">Estado</label>
+                      <p class="control">
+                        <span class="select">
+                          {{ {
+                              0:'No Asignado',
+                              1:'Asignado',
+                              2:'Completado'
+                             }[ticket.Status] | default('---')
+                          }}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <!-- Dropboxes Fin -->
+            </div>
+            <div class="content">
+              <p><strong>Descripción</strong></p>
+              <p>{{ ticket.Description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="box">
+        <article class="message is-info">
+          <div class="message-header">
+            <p>Nombre de la persona que hace el mensaje cliente o HelpDesk</p>
+          </div>
+          <div class="message-body">
+            Mensaje de la persona
+            Vestibulum, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+          </div>
+        </article>
+        <article class="message is-info">
+          <div class="message-header">
+            <p>Otro mensaje hecho por el cliente o el HelpDesk</p>
+          </div>
+          <div class="message-body">
+            Mensaje de la persona
+            Vestibulum, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+          </div>
+        </article>
+
+        <hr>
+        <div class="field">
+          <label class="label">Responder:</label>
+          <p class="control">
+            <textarea class="textarea" placeholder="Discusion del problema"></textarea>
+          </p>
+        </div>
+        <div class="field is-grouped">
+
+          <p class="control">
+            <button class="button is-primary">Aceptar</button>
+          </p>
+          <p class="control">
+            <button class="button is-link">Cancelar</button>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<div class="box">
+
+
+
+
+</div>
+
+{% endblock %}
+
+{% block jsimport %}
+<!-- <script src="{{ url_for('static', filename='js/modal.js') }}"></script> -->
+<script src="{{ url_for('static', filename='js/hidde_button.js') }}"></script>
+{% endblock %}

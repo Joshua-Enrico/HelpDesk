@@ -51,7 +51,7 @@ function renderPagination(pag) {
 
 function renderTickets(tickets, page, per_page) {
     const container = $('.table-container .table tbody')
-    
+
     const baseCount = (page - 1) * per_page
     container.html('')
 
@@ -72,6 +72,7 @@ function renderTickets(tickets, page, per_page) {
                     <a class="button">
                     <span class="icon is-small">
                     <i class="fa fa-ellipsis-v "></i>
+                    <a href="/admin/tickets/editar/${el.id}">ver</a>
                 </span>
                 </a>
                 </td>
@@ -100,7 +101,7 @@ function handlePanelTabClick(e, statusFilter) {
 
 function renderPanelTabs() {
     const panelTabs = $('.panel-tabs')
-    
+
     const html= `
         <a class="is-active" onclick="handlePanelTabClick(event, null)">Todos</a>
         <a onclick="handlePanelTabClick(event, 0)">No asignados</a>

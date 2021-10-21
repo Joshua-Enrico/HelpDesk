@@ -38,6 +38,31 @@ def get_Tickets(page=1):
     return jsonify_pagination(pagination)
 
 
+@app_views.route('/admin/tickets/<ticket_id>', methods=['GET', 'PUT'], strict_slashes=False)
+def get_update_ticket(ticket_id):
+    ticket = Tickets.query.get(ticket_id)
+
+    if ticket is None:
+        abort(404)
+
+    if request.method == 'GET':
+        return jsonify(ticket.to_dict())
+
+    if request.method == 'PUT':
+        valid_attrs = ['Subject', 'Problem_Type', 'Description']
+        new_values = request.get_json()
+        if not request.get_json():
+            abort(400, description="Not a JSON")
+
+        for attr, val in new_values.items():
+            if attr in valid_attrs:
+                setattr(ticket, attr, val)
+
+        db.session.commit()
+
+        return jsonify(complete='Ticket Actualizado')
+
+
 @app_views.route('/admin/tickets', methods=['POST'], strict_slashes=False)
 def Create_Tickets():
     if not request.get_json():
