@@ -1,11 +1,9 @@
 #!/usr/bin/python3
-from ..models import app
-from ..functions.recover_account import recover_account_func
-from ..functions.recover_pwd import recover_validations
-from ..models.user import Users
-from ..models.time_access import Time_Access
-from ..models.forms.create_user import CreateUser
-from ..models.forms.ticket import TicketForm
+from ...models import app
+from ...models.user import Users
+from ...models.time_access import Time_Access
+from ...models.forms.create_user import CreateUser
+from ...models.forms.ticket import TicketForm
 from flask import render_template
 from flask_login import login_required
 from flask_login import current_user

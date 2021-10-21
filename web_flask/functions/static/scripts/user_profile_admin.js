@@ -1,14 +1,27 @@
 $(document).ready(function () {
-
     const User_id = ($(this).find('.text-nowrap').data("id"));
+    $('#update_user').bootstrapValidator({
+        //... added validators including callback validation for date expiry etc..
+
+}).on('success.form.bv',function(e){
+e.preventDefault(); // <----- THIS IS NEEDED
+
+$('#submitButton').prop('disabled', true);
+$('#submitButton').attr("disabled", "disabled"); 
+});
 
 
 
-    $('#update_user').submit(function (e) {
-        e.preventDefault();
+    $('#update_user').submit(function (event) {
+        event.preventDefault(); 
+        event.stopImmediatePropagation();
+        var Nombre = $("input[name=name]").val()
+        var Apellido = $("input[name=Apellido_Usuario]").val();
+
+        $("input[name=name]").removeClass("is-invalid");
         var form = {
-            'Nombre': $("input[name=name]").val(),
-            'Apellido': $("input[name=Apellido_Usuario]").val(),
+            'Nombre': Nombre,
+            'Apellido': Apellido,
             'Username': $("input[name=username]").val(),
             'From': $("input[name=start-date]").val(),
             'To': $("input[name=end-date]").val(),
@@ -75,8 +88,8 @@ $(document).ready(function () {
                     $("input[name=new_pswrd]").removeClass("is-invalid");
                     $("input[name=confirm_pswrd]").removeClass("is-invalid");
                 }
-                if(result.flag == 0){
-                    location.reload();
+                if(result.flag == 2){
+                    location.reload()
                 }
             }
         });
