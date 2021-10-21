@@ -7,10 +7,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
   crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
-<link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
 <link rel="stylesheet" href="{{url_for('.static', filename='user_tickets.css')}}">
-<script type="text/javascript" src="../../static/scripts/user_summary.js"></script>
-<script type="text/javascript" src="../../static/scripts/tickets.js"></script>
+<script type="text/javascript" src="{{url_for('.static', filename='scripts/user_summary.js')}}"></script>
+<script type="text/javascript" src="{{url_for('.static', filename='scripts/tickets.js')}}"></script>
 {% endblock %}
 
 {% block title %}Dashboard{% endblock %}
@@ -18,7 +17,7 @@
 {% block header %}
 <div class="hero">
   <p class="panel-heading ">
-    Dashboard Agente HelpDesk
+    Dashboard Admin
   </p>
   <div class="panel-heading is-right">
     <a class="button is-rounded is-outlined is-link">Completados Hoy: 5</a>
@@ -29,7 +28,6 @@
 {% endblock %}
 
 {% block main %}
-
 
 
 
@@ -84,7 +82,7 @@
             </div>
             <div class="column">
               <div class="field">
-                <label class="label">Area la tarea</label>
+                <label class="label">Area de la tarea</label>
                 <div class="control">
                   <div class="select">
                     <select>
@@ -110,7 +108,7 @@
         <div class="columns">
           <div class="column">
             <div class="field">
-              <label class="label">Cambiar Estado de la tarea</label>
+              <label class="label has-text-white">Cambiar Estado de la tarea</label>
               <div class="control">
                 <div class="select">
                   <select>
@@ -131,7 +129,7 @@
 
           <div class="column">
             <div class="field">
-              <label class="label">Personal Asignado</label>
+              <label class="label has-text-white">Personal Asignado</label>
               <div class="control">
                 <div class="select">
                   <select>
@@ -150,7 +148,7 @@
           </div>
           <div class="column">
             <div class="field">
-              <label class="label">Area de la tarea</label>
+              <label class="label has-text-white">Area de la tarea</label>
               <div class="control">
                 <div class="select">
                   <select>
@@ -181,7 +179,7 @@
 </section>
 
 <section class="hero tables-info">
-
+  
   <div class="box">
     <nav class="panel">
       <p class="panel-tabs">
@@ -198,71 +196,14 @@
             <table class="table is-striped is-hoverable">
               <thead>
                 <tr>
-                  <th>
-                    <button class="card-header-icon is-static" aria-label="more options">
-                      <span class="icon">
-                        <strong>Selecciona</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <strong>ID</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <i class="fas fa-angle-up"></i>
-                        <strong>Estado</strong>
-                        <i class="fas fa-angle-down"></i>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <i class="fas fa-angle-up"></i>
-                        <strong>Titulo</strong>
-                        <i class="fas fa-angle-down"></i>
-                      </span>
-                    </button>
-                  </th>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <i class="fas fa-angle-up"></i>
-                        <strong>Personal Asignado</strong>
-                        <i class="fas fa-angle-down"></i>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <i class="fas fa-angle-up"></i>
-                        <strong>Area</strong>
-                        <i class="fas fa-angle-down"></i>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <i class="fas fa-angle-up"></i>
-                        <strong>Fecha</strong>
-                        <i class="fas fa-angle-down"></i>
-                      </span>
-                    </button>
-                  </th>
-                  <th><button class="card-header-icon is-static" aria-label="more options">
-                    <span class="icon">
-                      <strong>Accion</strong>
-                    </span>
-                  </button></th>
+                  <th>Selecciona</th>
+                  <th>ID</th>
+                  <th>Estado</th>
+                  <th>Titulo</th>
+                  <th>Personal Asignado</th>
+                  <th>Area</th>
+                  <th>Fecha</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tfoot>
@@ -337,22 +278,71 @@
 
               <tbody>
                 <tr>
-                  <th><input type="checkbox"></th>
-                  <th>001</th>
                   <th>
-                    <button class="button is-info">Asignado</button>
-                  </th>
-                  <td>No hay internet</td>
-                  <td>Bulma ABC</td>
-                  <td>IT</td>
-                  <td>12-10-2021</td>
-                  <td>
-                    <a class="button">
-                      <span class="icon is-small">
-                        <i class="fa fa-ellipsis-v "></i>
+                    <button class="card-header-icon is-static" aria-label="more options">
+                      <span class="icon">
+                        <strong>Selecciona</strong>
                       </span>
-                    </a>
-                  </td>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <strong>ID</strong>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Estado</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Titulo</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Personal Asignado</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Area</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="card-header-icon" aria-label="more options">
+                      <span class="icon">
+                        <i class="fas fa-angle-up"></i>
+                        <strong>Fecha</strong>
+                        <i class="fas fa-angle-down"></i>
+                      </span>
+                    </button>
+                  </th>
+                  <th><button class="card-header-icon is-static" aria-label="more options">
+                    <span class="icon">
+                      <strong>Accion</strong>
+                    </span>
+                  </button></th>
                 </tr>
 
                 <tr>
@@ -441,19 +431,8 @@
 
 </section>
 
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  <h1 class="page-header" data-id='{{ id }}'>Welcome, {{ name }} {{ id }}</h1>
-  <form class="form-signin" method="POST" action="/dashboard">
-    <h2 class="form-signin-heading">Crear Ticket</h2>
-    {{ ticket.hidden_tag() }}
-    {{ wtf.form_field(ticket.subject) }}
-    {{ wtf.form_field(ticket.problemType) }}
-    {{ wtf.form_field(ticket.company_area) }}
-    {{ wtf.form_field(ticket.description) }}
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Crear Ticket</button>
-  </form>
-</div>
-<div class="container bootdey">
+
+<div class="container bootdey" data-id='{{ id }}'>
   <div class="row bootstrap snippets bootdey">
     <div class="col-md-4">
       <div class="box box-widget widget-user-2">
