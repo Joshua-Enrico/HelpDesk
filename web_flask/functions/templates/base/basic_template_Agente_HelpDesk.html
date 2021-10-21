@@ -40,16 +40,27 @@
         Administra Usuarios
       </a>
     </div>
+    
     <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary" href="{{ url_for('logout')}}">
-            Salir
+      <div class="navbar-item has-dropdown" id="dropD">
+        <a class="navbar-link">
+          Opciones
+        </a>
+    
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            Ver Perfil
           </a>
-          
+          <hr class="navbar-divider">
+          <button class="button is-danger is-rounded mgb-large">
+            <a class="button is-danger" href="{{ url_for('logout')}}">
+              Salir
+            </a>
+          </button>
         </div>
       </div>
     </div>
+
   </div>
   <!-- navbar Fin -->
 
