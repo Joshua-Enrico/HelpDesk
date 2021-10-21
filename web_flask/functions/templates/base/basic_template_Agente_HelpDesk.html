@@ -27,17 +27,17 @@
   <!-- navbar -->
   <div class="navbar-menu" id="navMenu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/">
-        Inicio
-      </a>
-      <a class="navbar-item" href="/dashboard">
+      <a class="navbar-item" href="{{ url_for('HelpDesk_Dashboard')}}">
         Dashboard
       </a>
-      <a class="navbar-item" href="/registra_ticket">
+      <a class="navbar-item" href="{{ url_for('ticket_register_HeslpDesk')}}">
         Crea un ticket
       </a>
-      <a class="navbar-item" href="/administracion_usuario">
+      <a class="navbar-item" href="{{ url_for('HelpDesk_User_list')}}">
         Administra Usuarios
+      </a>
+      <a class="navbar-item" href="{{ url_for('create_user_HelpDesk')}}">
+        Crear Usuario
       </a>
     </div>
     <div class="navbar-end">

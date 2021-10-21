@@ -22,6 +22,8 @@ def login_validations():
                 login_user(user, remember=form.remember.data)
                 if (user.Rol == 'Administrador'):
                     return redirect(url_for('admin'))
+                elif(user.Rol == 'Agente Helpdesk'):
+                    return redirect(url_for('HelpDesk_Dashboard'))
                 else:
                     return redirect(url_for('dashboard_usuario'))
         return render_template('login.html', predict_content='Contraseña o usuario incorrecto', form=form)
