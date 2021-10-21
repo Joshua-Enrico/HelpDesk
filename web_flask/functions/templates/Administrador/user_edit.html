@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/hidde_button.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/user_profile.css') }}">
 <script type="text/javascript" src="{{url_for('.static', filename='scripts/user_profile_admin.js')}}"></script>
-<script type="text/javascript" src="../../static/scripts/script.js"></script>
+
 
 {% endblock %}
 
@@ -144,7 +144,8 @@
                               <div class="form-group">
                                 <label>Correo</label>
                                 <input type='email' class="form-control" name='correo' type="text"
-                                  placeholder="{{ User_data.Email }}">
+                                  placeholder="{{ User_data.Email }}"
+                                  maxlength="50">
                                 <p class="help is-danger" name='Email_Exists'></p>
                               </div>
                             </div>

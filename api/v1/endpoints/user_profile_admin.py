@@ -99,9 +99,11 @@ def user_profile_admin():
                     flag=flag)
 
         if(new_from != ''):
+            flag = 2
             User_time_acces.From = form['From']
 
         if(new_to != ''):
+            flag = 2
             User_time_acces.To = form['To']
 
         if(form['Username'] != ''):
@@ -125,6 +127,7 @@ def user_profile_admin():
                 flag=flag)
 
             else:
+                flag = 2
                 Update_user.Username = form['Username']
 
         if(form['Email'] != ''):
@@ -146,6 +149,9 @@ def user_profile_admin():
                 Wrong_name= Wrong_name,
                 wrong_last=wrong_last,
                 flag=flag)
+            else:
+                flag = 2
+                Update_user.Email = form['Email']
 
         if(form['Password'] != ''):
             if(form['Confirm_Pasword'] == ''):
@@ -192,6 +198,7 @@ def user_profile_admin():
                 flag=flag)
 
             else:
+                flag = 2
                 Update_user.Password = hashed_paswrd
 
         if(form['Nombre'] != ''):
@@ -209,6 +216,7 @@ def user_profile_admin():
                 wrong_last=wrong_last,
                 flag=flag)
             else:
+                flag = 2
                 Update_user.Nombre = form['Nombre']
 
         if(form['Apellido'] != ''):
@@ -226,7 +234,9 @@ def user_profile_admin():
                 wrong_last=wrong_last,
                 flag=flag)
             else:
+                flag = 2
                 Update_user.Apellido = form['Apellido']
+
         db.session.commit()
         return jsonify(
         Wrong_date=Wrong_date,
