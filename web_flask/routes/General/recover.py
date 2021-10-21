@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-from ..models import app
-from ..functions.recover_account import recover_account_func
-from ..functions.recover_pwd import recover_validations
+from ...models import app
+from .Functions.recover_account import recover_account_func
+from .Functions.recover_pwd import recover_validations
 
 
 @app.route('/recover', methods=['GET', 'POST'])

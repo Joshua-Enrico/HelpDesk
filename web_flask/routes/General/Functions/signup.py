@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from flask import render_template, url_for
-from ..models.forms.register import RegisterForm
+from ....models.forms.register import RegisterForm
 from werkzeug.security import generate_password_hash
 
 

@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 from ..models import app
-from ..functions.recover_account import recover_account_func
-from ..functions.recover_pwd import recover_validations
 from ..models.user import Users
 from ..models.time_access import Time_Access
 from flask import render_template
