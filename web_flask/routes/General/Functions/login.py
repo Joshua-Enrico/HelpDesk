@@ -26,5 +26,5 @@ def login_validations():
                     return redirect(url_for('HelpDesk_Dashboard'))
                 else:
                     return redirect(url_for('dashboard_usuario'))
-        return render_template('login.html', predict_content='Contraseña o usuario incorrecto', form=form)
-    return render_template('login.html', form=form)
+        return render_template('General/login.html', predict_content='Contraseña o usuario incorrecto', form=form)
+    return render_template('General/login.html', form=form)

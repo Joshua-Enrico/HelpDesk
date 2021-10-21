@@ -3,7 +3,7 @@ from wtforms import StringField
 from wtforms import PasswordField
 from wtforms.validators import InputRequired
 from wtforms.validators import Email
-from wtforms.validators import Email
+from wtforms.validators import Length
 
 class recover(FlaskForm):
     email = StringField('', validators=[InputRequired(), Email(message='Correo Invalido'), Length(max=50)])
