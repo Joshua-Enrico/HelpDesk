@@ -1,11 +1,11 @@
-{% extends "base/basic_template_Administrador.html" %}
+{% extends "base/basic_template_Usuario.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block cssimport %}
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
   crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../../static/scripts/create_ticket_admin.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='scripts/create_ticket_admin.js') }}"></script>
 {% endblock %}
 
 {% block title %}Registra un ticket{% endblock %}
@@ -17,6 +17,7 @@
   </p>
 </div>
 {% endblock %}
+
 {% block main %}
 
 <section class="hero is-primary">
@@ -71,7 +72,7 @@
                 Foto del problema
               </span>
             </label>
-            <button class="button is-large is-link m-auto open_modal">Crear Ticket</button>
+            <button class="button is-large is-link m-auto">Crear Ticket</button>
           </div>
           <p id='complete'>{{ complete }}</p>
         </form>
@@ -80,6 +81,7 @@
     </div>
 
   </div>
+  <button class="button is-large is-link m-auto" id="this_window">Ejemplo de Ventana Modal</button>
 </section>
 
 <!-- Ejemplo de ventana Modal -->
@@ -92,10 +94,11 @@
     </header>
     <section class="modal-card-body">
       <!-- Content ... -->
-      Usuario Creado con exito
+      Contenido
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success">Ticket Enviado Satisfactoriamente</button>
+      <button class="button is-success">Save changes</button>
+      <button class="button">Cancel</button>
     </footer>
   </div>
 </div>
