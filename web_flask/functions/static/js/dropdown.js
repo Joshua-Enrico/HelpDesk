@@ -1,0 +1,1 @@
+$('DIV#dropD').click(() => $('DIV#dropD').toggleClass('is-active'));
