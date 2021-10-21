@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from flask_wtf import FlaskForm
 
 def confirmed_func(token, user_id):
