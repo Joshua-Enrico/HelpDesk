@@ -41,12 +41,22 @@
       </a>
     </div>
     <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary" href="{{ url_for('logout')}}">
-            Salir
+      <div class="navbar-item has-dropdown" id="dropD">
+        <a class="navbar-link">
+          Opciones
+        </a>
+    
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            Ver Perfil
           </a>
-          
+          <hr class="navbar-divider">
+          <div class="buttons">
+            <a class="button is-danger" href="{{ url_for('logout')}}">
+              Salir
+            </a>
+            
+          </div>
         </div>
       </div>
     </div>
