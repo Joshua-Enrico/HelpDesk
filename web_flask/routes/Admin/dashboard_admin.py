@@ -1,8 +1,6 @@
 #!/usr/bin/python3
-from ..models import app
-from ..models.tickets import Tickets
-from ..models.user import Users
-from ..models.forms.ticket import TicketForm
+from ...models import app
+from ...models.forms.ticket import TicketForm
 from flask_login import login_required
 from flask import render_template
 from flask_login import current_user
