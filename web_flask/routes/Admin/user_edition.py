@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-from ..models import app
-from ..models.user import Users
-from ..models.time_access import Time_Access
+from ...models import app
+from ...models.user import Users
+from ...models.time_access import Time_Access
 from flask import render_template
 
 
