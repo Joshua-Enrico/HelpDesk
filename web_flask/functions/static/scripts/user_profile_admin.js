@@ -1,13 +1,17 @@
 $(document).ready(function () {
-
+    $('#update_user').bootstrapValidator();
     const User_id = ($(this).find('.text-nowrap').data("id"));
 
 
 
     $('#update_user').submit(function (e) {
         e.preventDefault();
+        var Nombre = $("input[name=name]").val()
+
+
+        $("input[name=name]").removeClass("is-invalid");
         var form = {
-            'Nombre': $("input[name=name]").val(),
+            'Nombre': Nombre,
             'Apellido': $("input[name=Apellido_Usuario]").val(),
             'Username': $("input[name=username]").val(),
             'From': $("input[name=start-date]").val(),
