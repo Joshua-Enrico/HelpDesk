@@ -2,7 +2,8 @@ $(document).ready(function () {
     const User_id = ($(this).find('.container').data("id"));
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:5001/api/endpoints/user_summary/' + User_id,
+        url: 'http://localhost:5001/api/v1/user_summary/' + User_id,
+        headers: {'Authorization': 'Bearer ' + $('#token').val()},
         contentType: 'application/json',
         success: data => {
             for (const summary of data) {

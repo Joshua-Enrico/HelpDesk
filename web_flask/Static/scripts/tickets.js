@@ -1,4 +1,4 @@
-const API_URL_BASE = 'http://localhost:5001/api/endpoints'
+const API_URL_BASE = 'http://localhost:5001/api/v1'
 const url = `${API_URL_BASE}/admin/tickets`
 let statusFilter = null
 
@@ -84,10 +84,17 @@ function renderTickets(tickets, page, per_page) {
 function getTickets(ticketsUrl) {
     if (statusFilter !== null)
         ticketsUrl += `?status=${statusFilter}`
-    $.get(ticketsUrl, (res) => {
-        renderTickets(res.items, res.page, res.per_page)
-        renderPagination(res)
-	})
+
+    $.ajax({
+        type: 'GET',
+        url: ticketsUrl,
+        headers: {'Authorization': 'Bearer ' + $('#token').val()},
+        contentType: 'application/json',
+        success: res => {
+            renderTickets(res.items, res.page, res.per_page)
+            renderPagination(res)
+        }
+    });
 }
 
 
