@@ -1,26 +1,30 @@
 $(document).ready(function () {
     const User_id = ($(this).find('.hero-body').data("id"));
-    console.log(User_id)
-    console.log('hola')
+
     $('#create_ticket').submit(function (e) {
         e.preventDefault();
         var form = {
-            'subject': (document.getElementById('subject').value),
-            'User_id': User_id,
-            'problemType': (document.getElementById('problemType').value),
-            'company_area': (document.getElementById('company_area').value),
-            'description': (document.getElementById('description').value),
+            'Subject': document.getElementById('Subject').value,
+            'User_ID': document.getElementById('User_ID').value,
+            'ProblemType': document.getElementById('ProblemType').value,
+            'CompanyArea': document.getElementById('CompanyArea').value,
+            'Description': document.getElementById('Description').value,
         }
-        console.log(form)
+
         $.ajax({
             type: 'POST',
             data: JSON.stringify(form),
             url: 'http://localhost:5001/api/v1/admin/tickets',
+            headers: {'Authorization': 'Bearer ' + $('#token').val()},
             contentType: 'application/json; charset=utf-8',
             success: data => {
-                result = data;
-                console.log(result);
-                $('#complete').html(result.complete);
+                window.location = `/admin/tickets/ver/${data.id}`
+            },
+            error: err => {
+                resp = (err && err.responseJSON) || {}
+                Object.entries(resp).forEach(([key, val]) => {
+                    $(`#err-${key}`).html(val)
+                })
             }
         });
     });
