@@ -34,7 +34,7 @@ $('#submitButton').attr("disabled", "disabled");
         $.ajax({
             type: 'PUT',
             data: JSON.stringify(form),
-            url: 'http://localhost:5001/api/endpoints/users_profile',
+            url: 'http://localhost:5001/api/v1/users_profile',
             contentType: 'application/json; charset=utf-8',
             success: data => {
                 result = data;

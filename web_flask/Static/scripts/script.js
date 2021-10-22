@@ -15,7 +15,7 @@ $(document).ready(function () {
     $.ajax({
       type: 'POST',
       data: JSON.stringify(form),
-      url: 'http://localhost:5001/api/endpoints/users',
+      url: 'http://localhost:5001/api/v1/users',
       contentType: 'application/json; charset=utf-8',
       success: data => {
         result = data;

@@ -4,7 +4,8 @@ $(document).ready(function () {
     $.ajax({
         type: 'GET',
         data: JSON.stringify({}),
-        url: 'http://localhost:5001/api/endpoints/users',
+        url: 'http://localhost:5001/api/v1/users',
+        headers: {'Authorization': 'Bearer ' + $('#token').val()},
         contentType: 'application/json',
         success: data => {
             for (const user of data) {
@@ -59,10 +60,10 @@ $(document).ready(function () {
         sort: true,
         resizable: true,
         server: {
-            url: 'http://localhost:5001/api/endpoints/users',
+            url: 'http://localhost:5001/api/v1/users',
             then: data => data.map(user =>
                 [gridjs.html(`<input data-id=${ user.id } type="checkbox"></input>`), user.Nombre + ' ' + user.Apellido, user.Area, user.Rol, user.Estado,
-                
+
                 gridjs.html(`<div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
                   <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
