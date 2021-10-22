@@ -19,7 +19,8 @@ def admin():
 @app.route('/admin/tickets/editar/<ticket_id>', methods=['GET'])
 @login_required
 def editar_ticket(ticket_id):
+    token = session.get('token')
     ticket = Tickets.query.get(ticket_id)
     owner = Users.query.get(ticket.User_ID)
     agent = Users.query.get(ticket.Agent_ID)
-    return render_template('Administrador/ticket_admin_detalle.html', owner=owner, agent=agent, ticket=ticket)
+    return render_template('Administrador/ticket_detalle.html', owner=owner, agent=agent, ticket=ticket, token=token)
