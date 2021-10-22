@@ -9,9 +9,9 @@ from datetime import datetime, timezone
 
 
 
-@app.route('/user_edit/<User_id>/', methods=['GET'] )
+@app.route('/admin_profile/<User_id>/', methods=['GET'] )
 @login_required
-def user_edit_admin(User_id):
+def profile_admin(User_id):
     new_dic = []
     User_data = Users.query.filter_by(id=User_id).first()
     User_time_acces = Time_Access.query.filter_by(User_id=User_id).first()
@@ -27,4 +27,4 @@ def user_edit_admin(User_id):
     User_data.UpdateTime = Modified_at.strftime("%d/%m/%Y")
     User_time_acces.Last_login = L_login.strftime("%d/%m/%Y a las %H:%M")
     User_time_acces.Last_activity = Last_activity.strftime("%d/%m/%Y a las %H:%M")
-    return render_template('Administrador/user_edit.html', User_id=User_id ,User_data=User_data, Time_Access=User_time_acces)
+    return render_template('Administrador/profile_admin.html', User_id=User_id ,User_data=User_data, Time_Access=User_time_acces)

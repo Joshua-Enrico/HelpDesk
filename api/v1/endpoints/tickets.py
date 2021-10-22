@@ -48,7 +48,6 @@ def Create_Tickets():
         New_Ticket = Tickets(User_ID=ticket['User_id'], Subject=ticket['subject'], Problem_Type=ticket['problemType'], Company_Area=ticket['company_area'], Description=ticket['description'])
         db.session.add(New_Ticket)
         db.session.commit()
-        print(ticket['User_id'])
         user_time_access = Time_Access.query.filter_by(User_id=ticket['User_id']).first()
         user_time_access.Last_activity = datetime.utcnow()
         summary = User_Tickets_Summary.query.filter_by(User_id=ticket['User_id']).first()

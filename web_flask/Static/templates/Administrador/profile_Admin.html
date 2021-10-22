@@ -1,0 +1,231 @@
+{% extends "base/basic_template_Administrador.html" %}
+
+{% block cssimport %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<!-- Latest compiled JavaScript -->
+<script type="application/json"
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript"
+  src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+
+
+<!-- Local "> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hidde_button.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user_profile.css') }}">
+<script type="text/javascript" src="{{url_for('.static', filename='scripts/user_profile_admin.js')}}"></script>
+
+
+{% endblock %}
+
+{% block title %}Registrar Usuario{% endblock %}
+
+{% block header %}
+<div class="hero">
+  <p class="panel-heading ">
+    Informacion de usuario
+  </p>
+</div>
+{% endblock %}
+
+{% block main %}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+  <div class="row flex-lg-nowrap">
+    <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
+
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="e-profile">
+                <div class="row">
+                  <div class="col-12 col-sm-auto mb-3">
+
+                  </div>
+                  <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                      <h4 data-id='{{ id }}' name='nombre' class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ User_data.Nombre }}
+                        {{ User_data.Apellido }}</h4>
+                      <p name='correo' class="mb-0">{{ User_data.Email }}</p>
+                      <div name='Last-Login' class="text-muted"><small>Ultimo ingreso el {{ Time_Access.Last_login }} horas</small></div>
+                      <div name='Last-Activity' class="text-muted"><small>Ultima Actividad el {{ Time_Access.Last_activity }} horas</small></div>
+                    </div>
+                    <div class="text-center text-sm-right">
+                      <span name='user_rol' class="badge badge-secondary">Rol: {{ User_data.Rol }}</span>
+                      <span name='user_Area' class="badge badge-secondary">Area: {{ User_data.Area }}</span>
+                      <div name='from' class="text-muted"><small>Modificado El  {{ User_data.UpdateTime }}</small></div>
+                      <div name='from' class="text-muted"><small>Creado El  {{ User_data.DateTime }}</small></div>
+                    </div>
+
+                  </div>
+                </div>
+                <ul class="nav nav-tabs">
+                  <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                </ul>
+                <div class="tab-content pt-3">
+                  <div class="tab-pane active">
+                    <form class="form" id='update_user' data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                    data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                    data-bv-feedbackicons-validating="glyphicon glyphicon-refresh"
+                    data-bv-submitbuttons='button[type="submit"]'
+                    data-bv-live="enabled">
+
+                      <div class="row">
+                        <div class="col">
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label class="col-sm-3 control-label" name='Nombre_Usuario'>Nombre</label>
+                                <input class="form-control" type="text" name="name"
+                                  pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$" 
+                                  placeholder="{{ User_data.Nombre }}"
+                                  maxlength="30" minlength="4"
+                                  data-bv-stringlength-message="Minimo 4 caracteres"
+                                  data-bv-regexp-message="Ingrese Caracteres validos "
+                                  value=""/>
+                                <p class="invalid-feedback" name='Wrong_name'></p>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label name='Apellido_Usuario'>Apellido</label>
+                                <input class="form-control" type="text" name="Apellido_Usuario"
+                                  placeholder="{{ User_data.Apellido }}" value=""
+                                  pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$"
+                                  maxlength="30" minlength="4"
+                                  data-bv-stringlength-message="Minimo 4 caracteres"
+                                  data-bv-regexp-message="Ingrese Caracteres validos ">
+
+                                <p class="invalid-feedback" name='Wrong_last'></p>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label name='usuario'>Username</label>
+                                <input class="form-control" type="text" name="username"
+                                  placeholder="{{ User_data.Username }}" value=""
+                                  pattern="^(?=.{4,20}$)(?:[a-zA-Z\d]+(?:(?:\.|-|_)[a-zA-Z\d])*)+$"
+                                  maxlength="30" minlength="4"
+                                  data-bv-stringlength-message="Minimo 4 caracteres"
+                                  data-bv-regexp-message="Ingrese Caracteres validos ">
+
+                                <p class="invalid-feedback" name='User_exists'></p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Acceso Desde</label>
+                                <input class="form-control" type="text" name="start-date" onfocus="(this.type='date')"
+                                  onblur="(this.type='text')" placeholder="{{ Time_Access.From }}">
+                                <p class="invalid-feedback" name='Wrong_From'></p>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Hasta</label>
+                                <input class="form-control" type="text" name="end-date" onfocus="(this.type='date')"
+                                  onblur="(this.type='text')" placeholder="{{ Time_Access.To}}">
+                                <p class="invalid-feedback" name='Wrong_to'></p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Correo</label>
+                                <input type='email' class="form-control" name='correo' type="text"
+                                  placeholder="{{ User_data.Email }}"
+                                  maxlength="50">
+                                <p class="help is-danger" name='Email_Exists'></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="mb-2"><b>Cambiar Contraseña</b></div>
+                          <div class="row">
+                            <div class="col">
+
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Nueva Contraseña</label>
+                                <input class="form-control" name="new_pswrd" id="password" title="password"
+                                  type="password" placeholder="••••••">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Confirmar<span class="d-none d-xl-inline">Contraseña</span></label>
+                                <input class="form-control" name="confirm_pswrd" data-v-equal="#password"
+                                  type="password" placeholder="••••••">
+                              </div>
+                              <p class="help is-danger" name='Not_equal'></p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-5 offset-sm-1 mb-3">
+                          <div class="mb-2"><b>Notificaciones</b></div>
+                          <div class="row">
+                            <div class="col">
+                              <label>Recibir Estatus de tus tickets</label>
+                              <div class="custom-controls-stacked px-2">
+                                <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" id="notifications-blog"
+                                    checked="">
+                                  <label class="custom-control-label" for="notifications-blog">Activar
+                                    Notificaiones</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col d-flex justify-content-end">
+                          <button id='update' class="btn btn-primary" type="submit">Actualizar Usuario</button>
+                        </div>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-3 mb-3">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  {% endblock %}
+  <script src="https://cdn.jsdelivr.net/npm/@emretulek/jbvalidator"></script>
+  {% block jsimport %}
+
+  {% endblock %}

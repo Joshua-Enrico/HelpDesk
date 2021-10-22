@@ -8,4 +8,4 @@ from flask_login import current_user
 @login_required
 def ticket_register_Administrador():
 
-    return render_template('Administrador/registra_ticket_Administrador.html', user_id=current_user.id)
+    return render_template('Administrador/registra_ticket_Administrador.html', User_id=current_user.id)
