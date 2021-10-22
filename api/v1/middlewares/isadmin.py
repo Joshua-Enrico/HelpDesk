@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from functools import wraps
 from flask import request, g
+from werkzeug.wrappers import Response
 
 
 def isadmin(fn):
