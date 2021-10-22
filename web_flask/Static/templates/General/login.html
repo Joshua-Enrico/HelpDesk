@@ -3,7 +3,7 @@
 
 {% block cssimport %}
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
-<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> -->
 {% endblock %}
 
 {% block title %}Login{% endblock %}
@@ -17,16 +17,16 @@
 {% endblock %}
 
 {% block main %}
-<!-- <section class="hero is-primary is-fullheight">
-  <div class="hero-body"> -->
+<section class="hero is-primary is-fullheight">
+  <div class="hero-body">
 
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-4">
           <!-- Form -->
-          <form action="/" method="POST" class="box">
+          <form action="/" method="POST" class="box box-trans">
             <div class="field">
-              <label class="label"> Usuario </label>
+              <label class="label has-text-white"> Usuario </label>
               <div class="control has-icons-left">
                 {{ form.hidden_tag() }}
                 <!-- {{ wtf.form_field(form.username) }} -->
@@ -37,7 +37,7 @@
               </div>
             </div>
             <div class="field">
-              <label class="label">Contraseña</label>
+              <label class="label has-text-white">Contraseña</label>
               <div class="control has-icons-left">
                 <!-- {{ wtf.form_field(form.password) }} -->
                 {{ form.password(class_="input", placeholder="Clave") }}
@@ -47,7 +47,7 @@
               </div>
             </div>
             <div class="field">
-              <label class="label">
+              <label class="label has-text-white">
                 {{ wtf.form_field(form.remember) }}
                 <!-- {{ form.remember(type="checkbox", class_="checkbox") }} -->
                 <!-- Recuerdame -->
@@ -55,16 +55,16 @@
             </div>
             <!-- Boton -->
             <div class="field">
-              <button class="button is-success" type="submit">Ingresar</button>
+              <button class="button is-success has-text-white" type="submit">Ingresar</button>
               <p>{{ predict_content }} <a href="{{ url_for('recover_pwd') }}">Recuperar Cuenta</a></p>
             </div>
           </form>
         </div>
       </div>
     </div>
-  <!-- </div>
-</section> -->
-
+  </div>
+</section>
+<!-- 
 <script src="{{ url_for('.static', filename='js/three.min.js') }}"></script>
 <script src="{{ url_for('.static', filename='js/postprocessing.min.js') }}"></script>
 
@@ -110,7 +110,7 @@
         transparent: true
       });
 
-      for(let p=0; p<10; p++) {
+      for(let p=0; p<3; p++) {
         let cloud = new THREE.Mesh(cloudGeo, cloudMaterial);
         cloud.position.set(
           Math.random()*800 -400,
@@ -171,7 +171,7 @@
   }
   init();
 </script>
-  
+   -->
 {% endblock %}
 
 {% block jsimport %}
