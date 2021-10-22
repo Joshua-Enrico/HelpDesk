@@ -19,9 +19,8 @@ def jsonify_pagination(pag_obj):
 def generate_token(data):
     """ Generates a jwt token """
     try:
-        payload = { 'user': data }
         return jwt.encode(
-            payload,
+            data,
             enc64(getenv('JWT_KEY').encode('utf-8')),
             algorithm='HS256'
         )
