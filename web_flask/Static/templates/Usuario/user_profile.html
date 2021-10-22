@@ -57,16 +57,10 @@
                       <h4 data-id='{{ id }}' name='nombre' class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ User_data.Nombre }}
                         {{ User_data.Apellido }}</h4>
                       <p name='correo' class="mb-0">{{ User_data.Email }}</p>
-                      <div name='Last-Login' class="text-muted"><small>Ultimo ingreso el {{ Time_Access.Last_login }} horas</small></div>
-                      <div name='Last-Activity' class="text-muted"><small>Ultima Actividad el {{ Time_Access.Last_activity }} horas</small></div>
                     </div>
                     <div class="text-center text-sm-right">
-                      <span name='user_rol' class="badge badge-secondary">Rol: {{ User_data.Rol }}</span>
                       <span name='user_Area' class="badge badge-secondary">Area: {{ User_data.Area }}</span>
-                      <div name='from' class="text-muted"><small>Modificado El  {{ User_data.UpdateTime }}</small></div>
-                      <div name='from' class="text-muted"><small>Creado El  {{ User_data.DateTime }}</small></div>
                     </div>
-
                   </div>
                 </div>
                 <ul class="nav nav-tabs">
@@ -117,7 +111,8 @@
                                   pattern="^(?=.{4,20}$)(?:[a-zA-Z\d]+(?:(?:\.|-|_)[a-zA-Z\d])*)+$"
                                   maxlength="30" minlength="4"
                                   data-bv-stringlength-message="Minimo 4 caracteres"
-                                  data-bv-regexp-message="Ingrese Caracteres validos ">
+                                  data-bv-regexp-message="Ingrese Caracteres validos "\
+                                  disabled>
 
                                 <p class="invalid-feedback" name='User_exists'></p>
                               </div>
@@ -128,7 +123,8 @@
                               <div class="form-group">
                                 <label>Acceso Desde</label>
                                 <input class="form-control" type="text" name="start-date" onfocus="(this.type='date')"
-                                  onblur="(this.type='text')" placeholder="{{ Time_Access.From }}">
+                                onblur="(this.type='text')" placeholder="{{ Time_Access.From }}"
+                                disabled>
                                 <p class="invalid-feedback" name='Wrong_From'></p>
                               </div>
                             </div>
@@ -136,7 +132,8 @@
                               <div class="form-group">
                                 <label>Hasta</label>
                                 <input class="form-control" type="text" name="end-date" onfocus="(this.type='date')"
-                                  onblur="(this.type='text')" placeholder="{{ Time_Access.To}}">
+                                onblur="(this.type='text')" placeholder="{{ Time_Access.To}}"
+                                disabled>
                                 <p class="invalid-feedback" name='Wrong_to'></p>
                               </div>
                             </div>
@@ -147,7 +144,8 @@
                                 <label>Correo</label>
                                 <input type='email' class="form-control" name='correo' type="text"
                                   placeholder="{{ User_data.Email }}"
-                                  maxlength="50">
+                                  maxlength="50"
+                                  disabled>
                                 <p class="help is-danger" name='Email_Exists'></p>
                               </div>
                             </div>

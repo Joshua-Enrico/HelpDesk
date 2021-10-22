@@ -97,7 +97,7 @@ def create_user():
             Area=form['Area'],
             Estado='Activo')
 
-        Access_Time = Time_Access(id=str(uuid.uuid4()), User_id=new_user.id, From=form['Desde'], To=form['Hasta'])
+        Access_Time = Time_Access(id=str(uuid.uuid4()), User_id=new_user.id, From=form['Desde'], To=form['Hasta'], Last_activity=datetime.utcnow(), Last_login=datetime.utcnow())
         db.session.add(new_user)
         db.session.add(Access_Time)
         db.session.commit()

@@ -9,4 +9,4 @@ from flask_login import current_user
 @app.route("/registra_ticket_usr")
 @login_required
 def ticket_register_usuario():
-    return render_template('Usuario/registra_ticket_Usuario.html', user_id=current_user.id)
+    return render_template('Usuario/registra_ticket_Usuario.html', User_id=current_user.id)

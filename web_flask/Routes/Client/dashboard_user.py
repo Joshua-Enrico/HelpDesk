@@ -10,4 +10,4 @@ from flask_login import current_user
 def dashboard_usuario():
     ticket = TicketForm()
 
-    return render_template('Usuario/dashboard_usuario.html', ticket=ticket, name=current_user.Nombre, id=current_user.id)
+    return render_template('Usuario/dashboard_usuario.html', ticket=ticket, name=current_user.Nombre, User_id=current_user.id)

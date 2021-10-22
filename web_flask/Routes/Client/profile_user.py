@@ -27,4 +27,4 @@ def profile_user(User_id):
     User_data.UpdateTime = Modified_at.strftime("%d/%m/%Y")
     User_time_acces.Last_login = L_login.strftime("%d/%m/%Y a las %H:%M")
     User_time_acces.Last_activity = Last_activity.strftime("%d/%m/%Y a las %H:%M")
-    return render_template('Usuario/user_profile.html', id=User_id ,User_data=User_data, Time_Access=User_time_acces)
+    return render_template('Usuario/user_profile.html', User_id=User_id ,User_data=User_data, Time_Access=User_time_acces)
