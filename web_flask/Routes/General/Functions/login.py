@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from flask import render_template, redirect, url_for
 from werkzeug.security import check_password_hash
+from ....models import db
 from ....models.forms.login import LoginForm
 from ....models.user import Users
 from ....models.time_access import Time_Access
@@ -30,8 +31,8 @@ def login_validations():
     if form.validate_on_submit():
         user = Users.query.filter_by(Username=form.username.data).first()
         if user:
-            check_acces = Time_Access.query.filter_by(User_id=user.id).first()
             now = datetime.now()
+            check_acces = Time_Access.query.filter_by(User_id=user.id).first()
             if(user.Rol != 'Administrador'):
                 if(now >= check_acces.To):
                     return render_template('login.html', predict_content='Acceso Al Sistema Denegado, contacte a un administrador', form=form)
@@ -39,6 +40,8 @@ def login_validations():
                 login_user(user, remember=form.remember.data)
                 token = generate_token(user.to_dict())
                 session['token'] = token.decode()
+                check_acces.Last_login = datetime.utcnow()
+                db.session.commit()
                 if (user.Rol == 'Administrador'):
                     return redirect(url_for('admin'))
                 elif(user.Rol == 'Agente Helpdesk'):

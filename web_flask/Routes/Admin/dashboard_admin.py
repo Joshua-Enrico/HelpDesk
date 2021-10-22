@@ -13,7 +13,7 @@ from ...models.tickets import Tickets
 def admin():
     ticket = TicketForm()
     token = session.get('token')
-    return render_template('Administrador/dashboard_Admin.html', ticket=ticket, name=current_user.Nombre, id=current_user.id, token=token)
+    return render_template('Administrador/dashboard_Admin.html', ticket=ticket, name=current_user.Nombre, User_id=current_user.id, token=token)
 
 
 @app.route('/admin/tickets/editar/<ticket_id>', methods=['GET'])

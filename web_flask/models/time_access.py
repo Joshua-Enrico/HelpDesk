@@ -11,5 +11,7 @@ class Time_Access(UserMixin, db.Model, BaseModel):
     User_id = db.Column(db.String(60), db.ForeignKey('users.id'))
     From = db.Column(db.DateTime, nullable=False)
     To = db.Column(db.DateTime, nullable=False)
+    Last_activity = db.Column(db.DateTime, nullable=False)
+    Last_login = db.Column(db.DateTime, nullable=False)
     DateTime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     UpdateTime = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)

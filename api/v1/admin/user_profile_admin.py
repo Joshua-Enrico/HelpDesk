@@ -239,7 +239,7 @@ def user_profile_admin():
             else:
                 flag = 2
                 Update_user.Apellido = form['Apellido']
-
+        Update_user.UpdateTime = datetime.utcnow()
         db.session.commit()
         return jsonify(
         Wrong_date=Wrong_date,
