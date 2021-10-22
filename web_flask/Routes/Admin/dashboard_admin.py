@@ -16,7 +16,7 @@ def admin():
     return render_template('Administrador/dashboard_Admin.html', ticket=ticket, name=current_user.Nombre, User_id=current_user.id, token=token)
 
 
-@app.route('/admin/tickets/editar/<ticket_id>', methods=['GET'])
+@app.route('/admin/tickets/ver/<ticket_id>', methods=['GET'])
 @login_required
 def editar_ticket(ticket_id):
     token = session.get('token')
