@@ -3,12 +3,14 @@ from ...models import app
 from ...models.user import Users
 from ...models.time_access import Time_Access
 from flask import render_template
+from flask_login import login_required
 
 
 
 
 
 @app.route('/user_edit/<User_id>/', methods=['GET'] )
+@login_required
 def user_edit_admin(User_id):
     new_dic = []
     User_data = Users.query.filter_by(id=User_id).first()
