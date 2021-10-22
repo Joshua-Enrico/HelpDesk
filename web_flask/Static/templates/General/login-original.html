@@ -1,0 +1,71 @@
+{% extends "base/basic_template_login.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block cssimport %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block header %}
+<div class="hero">
+  <p class="panel-heading ">
+    Login
+  </p>
+</div>
+{% endblock %}
+
+{% block main %}
+<section class="hero is-primary is-fullheight">
+  <div class="hero-body">
+
+<div class="container">
+  <div class="columns is-centered">
+    <div class="column is-4">
+      <!-- Form -->
+      <form action="/" method="POST" class="box">
+        <div class="field">
+          <label class="label"> Usuario </label>
+          <div class="control has-icons-left">
+            {{ form.hidden_tag() }}
+            <!-- {{ wtf.form_field(form.username) }} -->
+            {{ form.username(class_="input", placeholder="Usuario") }}
+            <span class="icon is-small is-left">
+              <i class="fa fa-user"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Contraseña</label>
+          <div class="control has-icons-left">
+            <!-- {{ wtf.form_field(form.password) }} -->
+            {{ form.password(class_="input", placeholder="Clave") }}
+            <span class="icon is-small is-left">
+              <i class="fa fa-lock"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">
+            {{ wtf.form_field(form.remember) }}
+            <!-- {{ form.remember(type="checkbox", class_="checkbox") }} -->
+            <!-- Recuerdame -->
+          </label>
+        </div>
+        <!-- Boton -->
+        <div class="field">
+          <button class="button is-success" type="submit">Ingresar</button>
+          <p>{{ predict_content }} <a href="{{ url_for('recover_pwd') }}">Recuperar Cuenta</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+  </div>
+</section>
+  
+{% endblock %}
+
+{% block jsimport %}
+
+{% endblock %}
