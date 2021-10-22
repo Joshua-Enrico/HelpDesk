@@ -69,12 +69,23 @@ function renderTickets(tickets, page, per_page) {
                 <td>${el.Company_Area}</td>
                 <td>${(new Date(el.DateTime)).toISOString().split('T')[0].split('-').reverse().join('-')}</td>
                 <td>
-                    <a class="button">
-                    <span class="icon is-small">
-                    <i class="fa fa-ellipsis-v "></i>
-                    <a href="/admin/tickets/editar/${el.id}">ver</a>
-                </span>
-                </a>
+                    <div class="dropdown is-hoverable">
+                        <div class="dropdown-trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                            <span>🔘</span>
+                            <span class="icon is-small">
+                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                            <div class="dropdown-content">
+                                <a href="/admin/tickets/editar/${el.id}" class="dropdown-item">
+                                    Ver
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>`)
     })
