@@ -57,13 +57,14 @@
                       <h4 data-id='{{ id }}' name='nombre' class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ User_data.Nombre }}
                         {{ User_data.Apellido }}</h4>
                       <p name='correo' class="mb-0">{{ User_data.Email }}</p>
-                      <div name='Last-Activity' class="text-muted"><small>Ultimo ingreso hace 2 horas</small></div>
-                      <div name='Last-Activity' class="text-muted"><small>Ultima Actividad hace 2 horas</small></div>
+                      <div name='Last-Login' class="text-muted"><small>Ultimo ingreso el {{ Time_Access.Last_login }} horas</small></div>
+                      <div name='Last-Activity' class="text-muted"><small>Ultima Actividad el {{ Time_Access.Last_activity }} horas</small></div>
                     </div>
                     <div class="text-center text-sm-right">
                       <span name='user_rol' class="badge badge-secondary">Rol: {{ User_data.Rol }}</span>
                       <span name='user_Area' class="badge badge-secondary">Area: {{ User_data.Area }}</span>
-                      <div name='from' class="text-muted"><small>Creado El: {{ User_data.UpdateTime }}</small></div>
+                      <div name='from' class="text-muted"><small>Modificado El  {{ User_data.UpdateTime }}</small></div>
+                      <div name='from' class="text-muted"><small>Creado El  {{ User_data.DateTime }}</small></div>
                     </div>
 
                   </div>

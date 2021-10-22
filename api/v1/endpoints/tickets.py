@@ -5,6 +5,7 @@ from web_flask.models import db
 from web_flask.models.user import Users
 from web_flask.models.tickets import Tickets
 from web_flask.models.user_tickets_summary import User_Tickets_Summary
+from web_flask.models.time_access import Time_Access
 from web_flask.models.tickets_summary import Tickets_Summary
 from web_flask.models.user import Users
 from api.v1.endpoints import app_views
@@ -47,8 +48,9 @@ def Create_Tickets():
         New_Ticket = Tickets(User_ID=ticket['User_id'], Subject=ticket['subject'], Problem_Type=ticket['problemType'], Company_Area=ticket['company_area'], Description=ticket['description'])
         db.session.add(New_Ticket)
         db.session.commit()
-        user_time_access = Time_Access.query.filter_by(id=ticket['User_id']).first()
-        user_time_access.Las_Activity = datetime.utcnow()
+        print(ticket['User_id'])
+        user_time_access = Time_Access.query.filter_by(User_id=ticket['User_id']).first()
+        user_time_access.Last_activity = datetime.utcnow()
         summary = User_Tickets_Summary.query.filter_by(User_id=ticket['User_id']).first()
         all_summary = Tickets_Summary.query.first()
         if (all_summary == None):
