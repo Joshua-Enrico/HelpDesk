@@ -1,24 +1,26 @@
 #!/usr/bin/python3
 """ objects that handle all default RestFul API actions for Users """
 from api.utils import jsonify_pagination
-from api.v1.endpoints import app_views
+from api.v1 import app_views
 from datetime import datetime
 from flask import abort, jsonify, make_response, request
-from web_flask.models import db
 from web_flask.models.user import Users
 from web_flask.models.tickets import Tickets
+from web_flask.models.time_access import Time_Access
+from web_flask.models import db
 from web_flask.models.user_tickets_summary import User_Tickets_Summary
 from web_flask.models.tickets_summary import Tickets_Summary
 from web_flask.models.user import Users
 from sqlalchemy import func
 import json
 
-user_id = 'some id'
 
-
-@app_views.route('/user/tickets/<int:page>', methods=['GET'], strict_slashes=False)
-def get_user_tickets(page=1):
+@app_views.route('/user/tickets', methods=['GET'], strict_slashes=False)
+def user_tickets():
+    user = request.environ.get('user', {})
+    user_id = user.get('id', None)
     per_page = 10
+    page = int(request.args.get('page', 1))
     status_filter = request.args.get('status', None)
     pagination = db.session\
                    .query(Tickets.id, Tickets.Status, Tickets.Subject, Tickets.Company_Area, Tickets.DateTime,
@@ -31,89 +33,79 @@ def get_user_tickets(page=1):
 
 
 @app_views.route('/user/tickets/<ticket_id>', methods=['GET'], strict_slashes=False)
-def get_user_ticket(ticket_id):
+def user_ticket(ticket_id):
+    user = request.environ.get('user', {})
+    user_id = user.get('id', None)
     ticket = Tickets.query\
-                    .filter(Tickets.User_ID == user_id)\
-                    .get(ticket_id)
+                .filter(Tickets.User_ID == user_id)\
+                .filter(Tickets.id == ticket_id)\
+                .first()
     if ticket is None:
         abort(404)
 
     return jsonify(ticket.to_dict())
 
 
-@app_views.route('/admin/tickets/<ticket_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/user/tickets/<ticket_id>/solved', methods=['PUT'], strict_slashes=False)
 def update_user_ticket(ticket_id):
+    user = request.environ.get('user', {})
+    user_id = user.get('id', None)
     ticket = Tickets.query\
-                    .filter(Tickets.User_ID == user_id)\
-                    .get(ticket_id)
-
+                .filter(Tickets.User_ID == user_id)\
+                .filter(Tickets.id == ticket_id)\
+                .first()
     if ticket is None:
         abort(404)
 
-    valid_attrs = ['Subject', 'Problem_Type', 'Description']
-    new_values = request.get_json()
-    if not request.get_json():
+    data = request.get_json()
+    if not data:
         abort(400, description="Not a JSON")
 
-    for attr, val in new_values.items():
-        if attr in valid_attrs:
-            setattr(ticket, attr, val)
+    required = [('Service_Score', 'calificación del servicio')]
 
+    errors = {}
+    for attr in required:
+        if not data.get(attr[0]):
+            errors[attr[0]] = 'El campo "{}" es requerido'.format(attr[1])
+    if errors != {}:
+        return jsonify(errors), 400
+
+    allowed = ['Service_Score']
+    [setattr(ticket, k, v) for k, v in data.items() if hasattr(ticket, k) and k in allowed]
+    ticket.Status = 2
     db.session.commit()
 
-    return jsonify(complete='Ticket Actualizado')
+    return jsonify({'id': ticket_id}), 200
 
 
-@app_views.route('/admin/tickets', methods=['POST'], strict_slashes=False)
+@app_views.route('/user/tickets', methods=['POST'], strict_slashes=False)
 def create_user_ticket():
     ticket = request.get_json()
     if not ticket:
         abort(400, description="Not a JSON")
 
     required = [
-        ('subject', 'Título'),
-        ('User_id', 'Id de usuario'),
-        ('problemType', 'Tipo de problema'),
-        ('company_area', 'Area de la compañía'),
-        ('description', 'Descripción')
+        ('Subject', 'Título'),
+        ('Problem_Type', 'Tipo de problema'),
+        ('Company_Area', 'Area de la compañía'),
+        ('Description', 'Descripción')
     ]
+
+    errors = {}
     for attr in required:
         if not ticket.get(attr[0]):
-            return {'success': False, 'msg': 'El campo "{}" es requerido'.format(attr[1])}
+            errors[attr[0]] = 'El campo "{}" es requerido'.format(attr[1])
+    if errors != {}:
+        return jsonify(errors), 400
 
-    New_Ticket = Tickets(
-        User_ID=ticket['User_id'],
-        Subject=ticket['subject'],
-        Problem_Type=ticket['problemType'],
-        Company_Area=ticket['company_area'],
-        Description=ticket['description'])
-    db.session.add(New_Ticket)
+    user = request.environ.get('user', {})
+    user_id = user.get('id', None)
+    newticket = Tickets(User_ID=user_id,
+                         Subject=ticket['Subject'],
+                         Problem_Type=ticket['Problem_Type'],
+                         Company_Area=ticket['Company_Area'],
+                         Description=ticket['Description'])
+    db.session.add(newticket)
     db.session.commit()
-    summary = User_Tickets_Summary.query.filter_by(User_id=ticket['User_id']).first()
-    all_summary = Tickets_Summary.query.first()
-    if (all_summary == None):
-        obj = Tickets_Summary(All_tickets=0, Pendings=0, Solved=0, Assigned=0)
-        db.session.add(obj)
-        db.session.commit()
 
-    if (summary == None):
-        User_Summary =  User_Tickets_Summary(All_tickets=1, Pendings=1, Assigned=0, Solved=0, User_id=ticket['User_id'])
-        db.session.add(User_Summary)
-
-        """ updating all summary """
-        all_summary.All_tickets += 1
-        all_summary.Pendings += 1
-        all_summary.UpdateTime = datetime.now()
-        db.session.commit()
-    else:
-        """ updating user summary table """
-        summary.All_tickets +=  1
-        summary.Pendings +=  1
-        summary.UpdateTime = datetime.now()
-        """ updating all summary table """
-        all_summary.All_tickets += 1
-        all_summary.Pendings += 1
-        all_summary.UpdateTime = datetime.now()
-        db.session.commit()
-
-    return jsonify(complete='Ticket Creado')
+    return jsonify({'id': newticket.id}), 200
