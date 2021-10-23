@@ -11,8 +11,8 @@ const status_class = {
 
 
 function renderPagination(pag) {
-    const prevUrl = `${url}/${pag.prev_num}`
-    const nextUrl = `${url}/${pag.next_num}`
+    const prevUrl = `${url}?page=${pag.prev_num}`
+    const nextUrl = `${url}?page=${pag.next_num}`
     const clickPrev = `onclick="getTickets('${prevUrl}')"`
     const clickNext = `onclick="getTickets('${nextUrl}')"`
     const paginationDOM = $('.pagination.is-rounded')
@@ -21,7 +21,7 @@ function renderPagination(pag) {
     for (let i = 1; i <= pag.pages; i++)
         pagLinks += `<li>
                         <a class="pagination-link ${(i == pag.page)? 'is-current': ''}"
-                           onclick="getTickets('${url}/${i}')"
+                           onclick="getTickets('${url}?page=${i}')"
                            aria-label="Page ${i}">
                             ${i}
                         </a>
@@ -94,7 +94,7 @@ function renderTickets(tickets, page, per_page) {
 
 function getTickets(ticketsUrl) {
     if (statusFilter !== null)
-        ticketsUrl += `?status=${statusFilter}`
+        ticketsUrl += `&status=${statusFilter}`
 
     $.ajax({
         type: 'GET',
@@ -113,9 +113,11 @@ function handlePanelTabClick(e, statusFilter) {
     const tabs = $('.panel-tabs').children()
     tabs.removeClass('is-active')
     $(e.target).addClass('is-active')
-    query = (statusFilter === null)? '': `?status=${statusFilter}`
-    getTickets(`${url}/1${query}`)
+    let query = '?page=1'
+    query = (statusFilter === null)? '': `&status=${statusFilter}`
+    getTickets(`${url}${query}`)
 }
+
 
 function renderPanelTabs() {
     const panelTabs = $('.panel-tabs')
@@ -132,6 +134,6 @@ function renderPanelTabs() {
 
 $(document).ready(() => {
     renderPanelTabs()
-    getTickets(`${url}/1`)
+    getTickets(`${url}?page=1`)
 })
 
