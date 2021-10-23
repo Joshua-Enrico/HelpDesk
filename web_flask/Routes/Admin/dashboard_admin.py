@@ -18,12 +18,13 @@ def admin():
     return render_template('Administrador/dashboard_Admin.html', ticket=ticket, name=current_user.Nombre, User_id=current_user.id, token=token)
 
 
-@app.route('/admin/tickets/editar/<ticket_id>', methods=['GET'])
+@app.route('/admin/tickets/ver/<ticket_id>', methods=['GET'])
 @login_required
 def editar_ticket(ticket_id):
     if (current_user.Rol != 'Administrador'):
         return redirect(url_for(admins_acces_val(current_user.Rol)))
+    token = session.get('token')
     ticket = Tickets.query.get(ticket_id)
     owner = Users.query.get(ticket.User_ID)
     agent = Users.query.get(ticket.Agent_ID)
-    return render_template('Administrador/ticket_admin_detalle.html', owner=owner, agent=agent, ticket=ticket)
+    return render_template('Administrador/ticket_detalle.html', owner=owner, agent=agent, ticket=ticket, token=token)

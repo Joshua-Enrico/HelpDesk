@@ -23,12 +23,13 @@
   <div class="columns is-centered">
     <div class="column is-4">
       <!-- Form -->
-      <form action="/recover" method="POST" class="box">
+      <form action="/recover" method="POST" class="box box-trans">
         <div class="field">
-          <label class="label"> Usuario </label>
-          <div class="control has-icons-left">
+          <label class="label has-text-white"> Usuario </label>
+          <div class="control has-icons-left ">
             {{ form.hidden_tag() }}
-            {{ wtf.form_field(form.email) }}
+            <!-- {{ wtf.form_field(form.email) }} -->
+            {{ form.email(class_="email", placeholder="mail@") }}
             <p>{{ wrong_email }}</p>
             <span class="icon is-small is-left">
               <i class="fa fa-user"></i>
@@ -36,9 +37,10 @@
           </div>
         </div>
         <div class="field">
-          <label class="label">Contraseña</label>
+          <label class="label has-text-white">Contraseña</label>
           <div class="control has-icons-left">
-            {{ wtf.form_field(form.new_password) }}
+            <!-- {{ wtf.form_field(form.new_password) }} -->
+            {{ form.new_password(class_="input", placeholder="Nueva clave") }}
             <span class="icon is-small is-left">
               <i class="fa fa-lock"></i>
             </span>
@@ -50,7 +52,7 @@
         </div>
         <!-- Boton -->
         <div class="field">
-          <button class="button is-success" type="submit">Enviar Link De Confirmacion</button>
+          <button class="button is-link" type="submit">Enviar Link De Confirmacion</button>
           <p>{{ complete }}</p>
         </div>
       </form>
