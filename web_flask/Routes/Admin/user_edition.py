@@ -4,7 +4,7 @@ from ...models.user import Users
 from ...models.time_access import Time_Access
 from .Functions.access_validation import admins_acces_val
 from flask import render_template, redirect, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 from datetime import datetime, timezone
 
 
