@@ -2,6 +2,7 @@
 from flask import render_template, redirect, url_for
 from werkzeug.security import check_password_hash
 from ....models import db
+from ....models import app
 from ....models.forms.login import LoginForm
 from ....models.user import Users
 from ....models.time_access import Time_Access

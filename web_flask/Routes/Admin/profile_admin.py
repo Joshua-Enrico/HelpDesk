@@ -2,8 +2,9 @@
 from ...models import app
 from ...models.user import Users
 from ...models.time_access import Time_Access
-from flask import render_template
-from flask_login import login_required
+from .Functions.access_validation import admins_acces_val
+from flask import render_template, redirect, url_for
+from flask_login import login_required, current_user
 from datetime import datetime, timezone
 
 
@@ -12,6 +13,9 @@ from datetime import datetime, timezone
 @app.route('/admin_profile/<User_id>/', methods=['GET'] )
 @login_required
 def profile_admin(User_id):
+    if (current_user.Rol != 'Administrador'):
+        return redirect(url_for(admins_acces_val(current_user.Rol)))
+
     new_dic = []
     User_data = Users.query.filter_by(id=User_id).first()
     User_time_acces = Time_Access.query.filter_by(User_id=User_id).first()
@@ -27,4 +31,4 @@ def profile_admin(User_id):
     User_data.UpdateTime = Modified_at.strftime("%d/%m/%Y")
     User_time_acces.Last_login = L_login.strftime("%d/%m/%Y a las %H:%M")
     User_time_acces.Last_activity = Last_activity.strftime("%d/%m/%Y a las %H:%M")
-    return render_template('Administrador/profile_admin.html', User_id=User_id ,User_data=User_data, Time_Access=User_time_acces)
+    return render_template('Administrador/profile_Admin.html', User_id=User_id ,User_data=User_data, Time_Access=User_time_acces)

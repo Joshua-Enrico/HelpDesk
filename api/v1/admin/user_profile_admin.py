@@ -15,7 +15,6 @@ from ..middlewares.isadmin import isadmin
 
 
 @app_views.route('/users_profile/', methods=['PUT'], strict_slashes=False)
-@isadmin
 def user_profile_admin():
     flag = 0
     Email_Exist = ''

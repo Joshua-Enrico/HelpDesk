@@ -2,16 +2,18 @@
 from ...models import app
 from ...models.user import Users
 from ...models.time_access import Time_Access
-from flask import render_template
-from flask_login import login_required
+from flask import render_template, redirect, url_for
+from .Functions.access_validation import client_acces_val
+from flask_login import login_required ,current_user
 from datetime import datetime, timezone
-
 
 
 
 @app.route('/user_profile/<User_id>/', methods=['GET'] )
 @login_required
 def profile_user(User_id):
+    if (current_user.Rol != 'Usuario'):
+        return redirect(url_for(client_acces_val(current_user.Rol)))
     new_dic = []
     User_data = Users.query.filter_by(id=User_id).first()
     User_time_acces = Time_Access.query.filter_by(User_id=User_id).first()
