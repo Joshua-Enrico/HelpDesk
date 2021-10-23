@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LandingPage</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+</head>
+<body>
+  <nav class="navbar is-link is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href=""></a>  
+        <a id="navbar-burger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="menubar">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div id="menubar" class="navbar-menu">
+        <div class="navbar-end">
+            <a class="navbar-item" href="#a" data-target="a">Section A</a>
+            <a class="navbar-item" href="#b" data-target="b">Section B</a>
+            <a class="navbar-item" href="#c" data-target="c">Section C</a>
+        </div>
+    </div>
+  </nav>
+  <section id="a" class="section">
+      <div class="notification is-success" style="height:30em">Section A</div>
+  </section>
+  <section id="b" class="section">
+      <div class="notification is-warning" style="height:10em">Section B</div>
+  </section>
+  <section id="c" class="section">
+      <div class="notification is-danger" style="height:50em">Section C</div>
+  </section>
+  <script src="{{ url_for('.static', filename='js/landingjs/burger.js') }}"></script>
+  <script src="{{ url_for('.static', filename='js/landingjs/scrollspy.js') }}"></script>
+  <script src="{{ url_for('.static', filename='js/landingjs/smoothscroll.js') }}"></script>
+</body>
+</html>
