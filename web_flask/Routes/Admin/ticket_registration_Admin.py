@@ -8,7 +8,7 @@ from flask import render_template, session
 from ...models.user import Users
 
 
-@app.route("/registra_ticket_Amdin")
+@app.route("/registra_ticket_Admin")
 @login_required
 def ticket_register_Administrador():
     if (current_user.Rol != 'Administrador'):
