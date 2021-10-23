@@ -15,10 +15,11 @@ from sqlalchemy import func
 import json
 from ..middlewares.isadmin import isadmin
 
-@app_views.route('/admin/tickets/<int:page>', methods=['GET'], strict_slashes=False)
+@app_views.route('/admin/tickets', methods=['GET'], strict_slashes=False)
 @isadmin
 def get_all_tickets(page=1):
     per_page = 10
+    page = int(request.args.get('page', 1))
     status_filter = request.args.get('status', None)
     pagination = db.session\
                    .query(Tickets.id, Tickets.Status, Tickets.Subject, Tickets.Company_Area, Tickets.DateTime,
@@ -41,24 +42,36 @@ def get_ticket(ticket_id):
 
 @app_views.route('/admin/tickets/<ticket_id>', methods=['PUT'], strict_slashes=False)
 @isadmin
-def update_ticket(ticket_id):
+def admin_update_ticket(ticket_id):
     ticket = Tickets.query.get(ticket_id)
-
     if ticket is None:
         abort(404)
 
-    valid_attrs = ['Subject', 'Problem_Type', 'Description']
-    new_values = request.get_json()
-    if not request.get_json():
+    data = request.get_json()
+    if not data:
         abort(400, description="Not a JSON")
 
-    for attr, val in new_values.items():
-        if attr in valid_attrs:
-            setattr(ticket, attr, val)
+    required = [
+        ('Subject', 'Título'),
+        ('User_ID', 'Id de usuario'),
+        ('Problem_Type', 'Tipo de problema'),
+        ('Company_Area', 'Area de la compañía'),
+        ('Description', 'Descripción')
+    ]
 
+    errors = {}
+    for attr in required:
+        if not data.get(attr[0]):
+            errors[attr[0]] = 'El campo "{}" es requerido'.format(attr[1])
+    if errors != {}:
+        return jsonify(errors), 400
+
+    allowed = ['User_ID', 'Agent_ID', 'Subject', 'Description',
+               'Problem_Type', 'Company_Area', 'Status']
+    [setattr(ticket, k, v) for k, v in data.items() if hasattr(ticket, k) and k in allowed]
     db.session.commit()
 
-    return jsonify(complete='Ticket Actualizado')
+    return jsonify({'id': ticket_id}), 200
 
 
 @app_views.route('/admin/tickets', methods=['POST'], strict_slashes=False)
@@ -71,8 +84,8 @@ def create_tickets():
     required = [
         ('Subject', 'Título'),
         ('User_ID', 'Id de usuario'),
-        ('ProblemType', 'Tipo de problema'),
-        ('CompanyArea', 'Area de la compañía'),
+        ('Problem_Type', 'Tipo de problema'),
+        ('Company_Area', 'Area de la compañía'),
         ('Description', 'Descripción')
     ]
 
@@ -83,7 +96,7 @@ def create_tickets():
     if errors != {}:
         return jsonify(errors), 400
 
-    New_Ticket = Tickets(User_ID=ticket['User_ID'], Subject=ticket['Subject'], Problem_Type=ticket['ProblemType'], Company_Area=ticket['CompanyArea'], Description=ticket['Description'])
+    New_Ticket = Tickets(User_ID=ticket['User_ID'], Subject=ticket['Subject'], Problem_Type=ticket['Problem_Type'], Company_Area=ticket['Company_Area'], Description=ticket['Description'])
     db.session.add(New_Ticket)
     db.session.commit()
     user_time_access = Time_Access.query.filter_by(User_id=ticket['User_ID']).first()
