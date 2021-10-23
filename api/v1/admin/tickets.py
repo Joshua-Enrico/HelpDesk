@@ -42,7 +42,7 @@ def get_ticket(ticket_id):
 
 @app_views.route('/admin/tickets/<ticket_id>', methods=['PUT'], strict_slashes=False)
 @isadmin
-def admin_update_ticket(ticket_id):
+def update_ticket(ticket_id):
     ticket = Tickets.query.get(ticket_id)
     if ticket is None:
         abort(404)
