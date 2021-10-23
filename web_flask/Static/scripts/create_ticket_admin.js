@@ -6,8 +6,8 @@ $(document).ready(function () {
         var form = {
             'Subject': document.getElementById('Subject').value,
             'User_ID': document.getElementById('User_ID').value,
-            'ProblemType': document.getElementById('ProblemType').value,
-            'CompanyArea': document.getElementById('CompanyArea').value,
+            'Problem_Type': document.getElementById('ProblemType').value,
+            'Company_Area': document.getElementById('CompanyArea').value,
             'Description': document.getElementById('Description').value,
         }
 
