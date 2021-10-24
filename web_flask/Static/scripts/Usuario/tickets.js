@@ -105,7 +105,7 @@ function handlePanelTabClick(e, statusFilter) {
     tabs.removeClass('is-active')
     $(e.target).addClass('is-active')
     let query = '?page=1'
-    query = (statusFilter === null)? '': `&status=${statusFilter}`
+    query += (statusFilter === null)? '': `&status=${statusFilter}`
     getTickets(`${url}${query}`)
 }
 

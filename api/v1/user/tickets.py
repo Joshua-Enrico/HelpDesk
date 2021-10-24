@@ -28,6 +28,7 @@ def user_tickets():
                    .join(Users, Users.id == Tickets.Agent_ID, isouter=True)\
                    .filter(Tickets.User_ID == user_id)\
                    .filter(True if status_filter is None else Tickets.Status == status_filter)\
+                   .order_by(Tickets.Status)\
                    .paginate(page, per_page, error_out=False)
     return jsonify_pagination(pagination)
 
