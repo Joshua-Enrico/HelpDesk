@@ -17,5 +17,5 @@ def editar_ticket(ticket_id):
     if ticket is None:
         abort(404)
     owner = Users.query.get(ticket.User_ID)
-    agent = Users.query.get(ticket.Agent_ID)
-    return render_template('Administrador/ticket_detalle.html', owner=owner, agent=agent, ticket=ticket, token=token)
+    agent = Users.query.filter_by(id=ticket.Agent_ID).first()
+    return render_template('Administrador/ticket_detalle.html', owner=owner, agent=agent, ticket=ticket, token=token, User_session_id=current_user.id)

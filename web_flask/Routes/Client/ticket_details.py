@@ -15,5 +15,7 @@ def ver_ticket_user(ticket_id):
     token = session.get('token')
     ticket = Tickets.query.get(ticket_id)
     owner = Users.query.get(ticket.User_ID)
-    agent = Users.query.get(ticket.Agent_ID)
+    print('hola')
+    print(ticket.to_dict())
+    agent = Users.query.filter_by(id=ticket.Agent_ID).first()
     return render_template('Usuario/ticket_user.html', owner=owner, agent=agent, ticket=ticket, token=token)

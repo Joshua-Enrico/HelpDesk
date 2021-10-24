@@ -19,36 +19,52 @@
 {% endblock %}
 {% block main %}
 
+
 <section class="hero is-primary">
   <p></p>
-  <div class="hero-body" data-id='{{ User_id }}'>
+  <div class="hero-body" data-id='{{ user_id }}'>
     <div class="columns is-centered">
       <div class="column is-8">
         <!-- Form -->
-        <form action=""  id='create_ticket' class="box form_ticket">
+        <form id='create_ticket' class="box form_ticket">
           <label class="label"> Titulo</label>
-          <input class="input" id='subject' type="text" placeholder="¿Qué Problema tiene?">
+          <input class="input" id='Subject' type="text" placeholder="¿Qué Problema tiene?">
+          <span id='err-Subject'></span>
+
+          <label class="label"> Usuario </label>
+          <div class="select">
+            <select id='User_ID'>
+              {% for u in users %}
+              <option value="{{ u.id }}">{{ u.Username }} - {{ u.Nombre }} {{ u.Apellido }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <span id='err-User_ID'></span>
+
           <!--  form.subject(class_="input", placeholder="¿Qué Problema tiene?"")  -->
           <label class="label"> Tipo </label>
           <div class="select">
-            <select id='problemType'>
-              <option>Seleccionar</option>
+            <select id='ProblemType'>
               <option>Hardware</option>
               <option>Software</option>
             </select>
           </div>
+          <span id='err-ProblemType'></span>
+
           <label class="label"> Area </label>
           <!-- <input class="input" type="text" placeholder="¿Area de la compañia?"> -->
           <div class="select">
-            <select id='company_area'>
-              <option>Seleccionar</option>
+            <select id='CompanyArea'>
               <option>Recursos Humanos</option>
               <option>Marketing</option>
               <option>Gerencia</option>
             </select>
           </div>
+          <span id='err-CompanyArea'></span>
+
           <label class="label"> Descripcion </label>
-          <textarea class="textarea" id='description' placeholder="Describa su problema"></textarea>
+          <textarea class="textarea" id='Description' placeholder="Describa su problema"></textarea>
+          <span id='err-Description'></span>
 
           <!-- Botones -->
           <div class="file has-name is-boxed mt-4 mb-4" >
@@ -73,37 +89,15 @@
             </label>
             <button class="button is-large is-link m-auto">Crear Ticket</button>
           </div>
-          <p id='complete'>{{ complete }}</p>
         </form>
-          
+
       </div>
     </div>
 
   </div>
-  <button class="button is-large is-link m-auto" id="this_window">Ejemplo de Ventana Modal</button>
 </section>
-
-<!-- Ejemplo de ventana Modal -->
-<div class="modal">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
-      <button class="delete" aria-label="close"></button>
-    </header>
-    <section class="modal-card-body">
-      <!-- Content ... -->
-      Contenido
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-success">Save changes</button>
-      <button class="button">Cancel</button>
-    </footer>
-  </div>
-</div>
 
 {% endblock %}
 
 {% block jsimport %}
-<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
 {% endblock %}
