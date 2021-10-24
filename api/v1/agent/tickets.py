@@ -47,6 +47,24 @@ def agent_ticket(ticket_id):
     return jsonify(ticket.to_dict())
 
 
+@app_views.route('/agent/tickets/<ticket_id>/solved', methods=['PUT'], strict_slashes=False)
+@isagent
+def solve_ticket(ticket_id):
+    user = request.environ.get('user', {})
+    agent_id = user.get('id', None)
+    ticket = Tickets.query\
+                .filter(Tickets.id == ticket_id)\
+                .filter(Tickets.Agent_ID == agent_id)\
+                .first()
+    if ticket is None:
+        abort(404)
+
+    ticket.Status = 2
+    db.session.commit()
+
+    return jsonify({'id': ticket_id}), 200
+
+
 @app_views.route('/agent/tickets/<ticket_id>/assign', methods=['PUT'], strict_slashes=False)
 @isagent
 def update_agent_ticket(ticket_id):
@@ -58,6 +76,9 @@ def update_agent_ticket(ticket_id):
                 .first()
     if ticket is None:
         abort(404)
+
+    if ticket.Status != 0 and ticket.Status != None:
+        return jsonify({'success': False, 'msg': 'Este ticket ya ha sido asignado a un agente'}), 403
 
     ticket.Status = 1
     ticket.Agent_ID = agent_id
