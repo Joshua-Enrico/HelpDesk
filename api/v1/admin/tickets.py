@@ -26,6 +26,7 @@ def get_all_tickets(page=1):
                           (Users.Nombre + ' ' + Users.Apellido).label('Agent'))\
                    .join(Users, Users.id == Tickets.Agent_ID, isouter=True)\
                    .filter(True if status_filter is None else Tickets.Status == status_filter)\
+                   .order_by(Tickets.Status, Tickets.DateTime)\
                    .paginate(page, per_page, error_out=False)
     return jsonify_pagination(pagination)
 
