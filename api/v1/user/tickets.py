@@ -47,7 +47,7 @@ def user_ticket(ticket_id):
     return jsonify(ticket.to_dict())
 
 
-@app_views.route('/user/tickets/<ticket_id>/solved', methods=['PUT'], strict_slashes=False)
+@app_views.route('/user/tickets/<ticket_id>/set_score', methods=['PUT'], strict_slashes=False)
 def update_user_ticket(ticket_id):
     user = request.environ.get('user', {})
     user_id = user.get('id', None)
@@ -57,6 +57,12 @@ def update_user_ticket(ticket_id):
                 .first()
     if ticket is None:
         abort(404)
+
+    if ticket.Service_Score is not None:
+        return jsonify({'success': False, 'msg': 'Este ticket ya ha sido calificado'}), 400
+
+    if ticket.Status != 2:
+        return jsonify({'success': False, 'msg': 'Para poder calificar, el ticket debe estar marcado como resuelto'}), 400
 
     data = request.get_json()
     if not data:
@@ -69,11 +75,9 @@ def update_user_ticket(ticket_id):
         if not data.get(attr[0]):
             errors[attr[0]] = 'El campo "{}" es requerido'.format(attr[1])
     if errors != {}:
-        return jsonify(errors), 400
+        return jsonify({'success': False, 'errors':errors}), 400
 
-    allowed = ['Service_Score']
-    [setattr(ticket, k, v) for k, v in data.items() if hasattr(ticket, k) and k in allowed]
-    ticket.Status = 2
+    ticket.Service_Score = data.get('Service_Score')
     db.session.commit()
 
     return jsonify({'id': ticket_id}), 200
