@@ -3,6 +3,7 @@
 from api.utils import jsonify_pagination
 from api.v1 import app_views
 from datetime import datetime
+from sqlalchemy import or_
 from flask import abort, jsonify, make_response, request
 from web_flask.models.user import Users
 from web_flask.models.tickets import Tickets
@@ -26,9 +27,9 @@ def agent_tickets():
                    .query(Tickets.id, Tickets.Status, Tickets.Status, Tickets.Subject, Tickets.Company_Area, Tickets.DateTime,
                           (Users.Nombre + ' ' + Users.Apellido).label('Agent'))\
                    .join(Users, Users.id == Tickets.Agent_ID, isouter=True)\
-                   .filter(Tickets.Agent_ID == agent_id or Tickets.Status.in_([0, None]))\
+                   .filter(or_(Tickets.Agent_ID == agent_id, Tickets.Status.in_([0, None])))\
                    .filter(True if status_filter is None else Tickets.Status == status_filter)\
-                   .order_by(Tickets.Status, Tickets.DateTime)\
+                   .order_by(Tickets.Status, Tickets.DateTime.desc())\
                    .paginate(page, per_page, error_out=False)
     return jsonify_pagination(pagination)
 
