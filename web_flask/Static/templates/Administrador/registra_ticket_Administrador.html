@@ -38,8 +38,8 @@
               <option value="{{ u.id }}">{{ u.Username }} - {{ u.Nombre }} {{ u.Apellido }}</option>
               {% endfor %}
             </select>
-            <span id='err-User_ID'></span>
           </div>
+          <span id='err-User_ID'></span>
 
           <!--  form.subject(class_="input", placeholder="¿Qué Problema tiene?"")  -->
           <label class="label"> Tipo </label>
@@ -48,8 +48,9 @@
               <option>Hardware</option>
               <option>Software</option>
             </select>
-            <span id='err-ProblemType'></span>
           </div>
+          <span id='err-ProblemType'></span>
+
           <label class="label"> Area </label>
           <!-- <input class="input" type="text" placeholder="¿Area de la compañia?"> -->
           <div class="select">
@@ -58,8 +59,9 @@
               <option>Marketing</option>
               <option>Gerencia</option>
             </select>
-            <span id='err-CompanyArea'></span>
           </div>
+          <span id='err-CompanyArea'></span>
+
           <label class="label"> Descripcion </label>
           <textarea class="textarea" id='Description' placeholder="Describa su problema"></textarea>
           <span id='err-Description'></span>

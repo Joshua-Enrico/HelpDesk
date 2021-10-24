@@ -5,7 +5,7 @@
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
   crossorigin="anonymous"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='scripts/create_ticket_admin.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='scripts/Usuario/create_ticket.js') }}"></script>
 {% endblock %}
 
 {% block title %}Registra un ticket{% endblock %}
@@ -20,6 +20,8 @@
 
 {% block main %}
 
+<input type="hidden" id="token" name="token" value="{{ token }}">
+
 <section class="hero is-primary">
   <p></p>
   <div class="hero-body" data-id='{{ user_id }}'>
@@ -28,28 +30,33 @@
         <!-- Form -->
         <form action=""  id='create_ticket' class="box form_ticket">
           <label class="label"> Titulo</label>
-          <input class="input" id='subject' type="text" placeholder="¿Qué Problema tiene?">
+          <input class="input" id='Subject' type="text" placeholder="¿Qué Problema tiene?">
+          <span id='err-Subject'></span>
+
           <!--  form.subject(class_="input", placeholder="¿Qué Problema tiene?"")  -->
           <label class="label"> Tipo </label>
           <div class="select">
-            <select id='problemType'>
-              <option>Seleccionar</option>
-              <option>Hardware</option>
-              <option>Software</option>
+            <select id='Problem_Type'>
+              <option value="">Seleccionar</option>
+              <option value="Hardware">Hardware</option>
+              <option value="Software">Software</option>
             </select>
           </div>
-          <label class="label"> Area </label>
-          <!-- <input class="input" type="text" placeholder="¿Area de la compañia?"> -->
+          <span id='err-Problem_Type'></span>
+
+          <label class="label"> Prioridad </label>
           <div class="select">
-            <select id='company_area'>
-              <option>Seleccionar</option>
-              <option>Recursos Humanos</option>
-              <option>Marketing</option>
-              <option>Gerencia</option>
+            <select id='Priority'>
+              <option>Baja</option>
+              <option>Media</option>
+              <option>Alta</option>
             </select>
           </div>
+          <span id='err-Priority'></span>
+
           <label class="label"> Descripcion </label>
-          <textarea class="textarea" id='description' placeholder="Describa su problema"></textarea>
+          <textarea class="textarea" id='Description' placeholder="Describa su problema"></textarea>
+          <span id='err-Description'></span>
 
           <!-- Botones -->
           <div class="file has-name is-boxed mt-4 mb-4" >
@@ -74,37 +81,15 @@
             </label>
             <button class="button is-large is-link m-auto">Crear Ticket</button>
           </div>
-          <p id='complete'>{{ complete }}</p>
         </form>
-          
+
       </div>
     </div>
 
   </div>
-  <button class="button is-large is-link m-auto" id="this_window">Ejemplo de Ventana Modal</button>
 </section>
-
-<!-- Ejemplo de ventana Modal -->
-<div class="modal">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
-      <button class="delete" aria-label="close"></button>
-    </header>
-    <section class="modal-card-body">
-      <!-- Content ... -->
-      Contenido
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-success">Save changes</button>
-      <button class="button">Cancel</button>
-    </footer>
-  </div>
-</div>
 
 {% endblock %}
 
 {% block jsimport %}
-<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
 {% endblock %}

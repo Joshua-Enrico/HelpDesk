@@ -6,9 +6,10 @@ from .Functions.access_validation import client_acces_val
 
 
 
-@app.route("/registra_ticket_usr")
+@app.route("/registra_ticket_user")
 @login_required
 def ticket_register_usuario():
     if (current_user.Rol != 'Usuario'):
         return redirect(url_for(client_acces_val(current_user.Rol)))
-    return render_template('Usuario/registra_ticket_Usuario.html', User_id=current_user.id)
+    token = session.get('token')
+    return render_template('Usuario/registra_ticket_Usuario.html', User_id=current_user.id, token=token)

@@ -11,11 +11,13 @@
   <p class="panel-heading ">
   Ticket #000
   </p>
-  
+
 </div>
 {% endblock %}
 
 {% block main %}
+
+<input type="hidden" id="token" name="token" value="{{ token }}">
 
 <section class="hero is-primary">
   <div class="hero-body">
@@ -25,8 +27,7 @@
           <header class="card-header">
             <!-- Problema -->
             <p class="card-header-title">
-              Titulo del problema: Se incendio mi computadora y necesito sacar la informacion de mi disco duro de manera urgente por favor, besos.
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, temporibus.
+              {{ ticket.Subject }}
             </p>
             <button class="card-header-icon btn-hide" aria-label="more options">
               <span class="icon">
@@ -45,7 +46,7 @@
                       Reportado por:
                     </div>
                     <div class="column">
-                      <strong>Nombre Apellido largos Lorem ipsum dolor sit amet.</strong>
+                      <strong>{{ owner.Nombre }} {{ owner.Apellido }}</strong>
                     </div>
                   </div>
                 </div>
@@ -56,7 +57,7 @@
                       Asignado a:
                     </div>
                     <div class="column">
-                      <strong>Nombre Apellido largos Lorem ipsum dolor sit amet.</strong>
+                      <strong>{{ agent.Nombre | default('---') }} {{ agent.Apellido }}</strong>
                     </div>
                   </div>
                 </div>
@@ -68,7 +69,7 @@
                       Creado el:
                     </div>
                     <div class="column">
-                      <strong>14/10/2021</strong>
+                      <strong>{{ ticket.DateTime }}</strong>
                     </div>
                   </div>
                 </div>
@@ -78,7 +79,7 @@
                       Actualizado el:
                     </div>
                     <div class="column">
-                      <strong>14/10/2021</strong>
+                      <strong>{{ ticket.UpdateTime }}</strong>
                     </div>
                   </div>
                 </div>
@@ -91,12 +92,17 @@
                       <label class="label is-size-7 has-text-primary-light">Estado</label>
                       <p class="control">
                         <span class="select open_modal">
-                          <input class="input" type="text" value="Completado" readonly>
+                          {{ {
+                            0:'No Asignado',
+                            1:'Asignado',
+                            2:'Completado'
+                           }[ticket.Status] | default('---')
+                        }}
                         </span>
                       </p>
                     </div>
                   </div>
-            
+
                   <div class="column">
                     <div class="field">
                       <label class="label is-size-7 has-text-primary-light">Prioridad</label>
@@ -111,10 +117,7 @@
             </div>
             <div class="content">
               <p><strong>Descipción</strong></p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque aliquid ipsum voluptatibus nesciunt nemo sed cumque obcaecati,
-                voluptate quidem expedita quia. Ratione nemo recusandae provident vel. Mollitia delectus nulla nobis!  
-              </p>
+              <p>{{ ticket.Description }}</p>
               <!-- Imagenes -->
               <div class="columns">
                 <div class="column is-3">
@@ -173,7 +176,7 @@
             Vestibulum, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
           </div>
         </article>
-        
+
         <hr>
         <div class="field">
           <label class="label">Responder:</label>
@@ -182,7 +185,7 @@
           </p>
         </div>
         <div class="field is-grouped">
-          
+
           <p class="control">
             <button class="button is-primary">Aceptar</button>
           </p>

@@ -1,5 +1,5 @@
 const API_URL_BASE = 'http://localhost:5001/api/v1'
-const url = `${API_URL_BASE}/admin/tickets`
+const url = `${API_URL_BASE}/user/tickets`
 let statusFilter = null
 
 const status_class = {
@@ -32,15 +32,6 @@ function renderPagination(pag) {
       <a class="pagination-previous" ${pag.has_prev? clickPrev: 'disabled'}>Previous</a>
       <a class="pagination-next" ${pag.has_next? clickNext: 'disabled'}>Next page</a>
       <ul class="pagination-list">
-        <!--
-        <li><a class="pagination-link is-current" aria-label="Goto page 1" aria-current="page">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-        <li><a class="pagination-link" aria-label="Page 46">46</a></li>
-        <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-        -->
         ${pagLinks}
       </ul>
     </div>
@@ -80,11 +71,8 @@ function renderTickets(tickets, page, per_page) {
                         </div>
                         <div class="dropdown-menu" id="dropdown-menu" role="menu">
                             <div class="dropdown-content">
-                                <a href="/admin/tickets/ver/${el.id}" class="dropdown-item">
+                                <a href="/user/tickets/ver/${el.id}" class="dropdown-item">
                                     Ver
-                                </a>
-                                <a href="/admin/tickets/editar/${el.id}" class="dropdown-item">
-                                    Actualizar
                                 </a>
                             </div>
                         </div>
@@ -139,4 +127,3 @@ $(document).ready(() => {
     renderPanelTabs()
     getTickets(`${url}?page=1`)
 })
-
