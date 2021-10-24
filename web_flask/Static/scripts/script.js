@@ -16,6 +16,7 @@ $(document).ready(function () {
       type: 'POST',
       data: JSON.stringify(form),
       url: 'http://localhost:5001/api/v1/users',
+      headers: {'Authorization': 'Bearer ' + $('#token').val()},
       contentType: 'application/json; charset=utf-8',
       success: data => {
         result = data;

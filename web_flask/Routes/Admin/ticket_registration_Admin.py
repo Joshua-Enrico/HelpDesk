@@ -15,4 +15,4 @@ def ticket_register_Administrador():
         return redirect(url_for(admins_acces_val(current_user.Rol)))
     token = session.get('token')
     users = Users.query.filter(Users.Rol == 'Usuario')
-    return render_template('Administrador/registra_ticket_Administrador.html', User_id=current_user.id, token=token, users=users)
+    return render_template('Administrador/registra_ticket_Administrador.html', User_session_id=current_user.id, User_id=current_user.id, token=token, users=users)

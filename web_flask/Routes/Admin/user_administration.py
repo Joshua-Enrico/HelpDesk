@@ -15,4 +15,4 @@ def User_Administration():
         return redirect(url_for(admins_acces_val(current_user.Rol)))
     form = CreateUser()
     token = session.get('token')
-    return render_template('Administrador/administracion_usuario.html', form=form, User_id=current_user.id, token=token)
+    return render_template('Administrador/administracion_usuario.html', User_session_id=current_user.id,form=form, User_id=current_user.id, token=token)

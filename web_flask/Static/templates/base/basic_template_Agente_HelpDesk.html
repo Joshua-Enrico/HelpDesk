@@ -18,6 +18,7 @@
 </head>
 
 <body>
+  <input type="hidden" id="token" name="token" value="{{ token }}">
   <!-- Burger Menu js/navbar.js to work-->
   <!-- navbar -->
   <nav class="navbar is-fixed-top box-shadow-y">
@@ -51,7 +52,7 @@
 
           </a>
           <div class="navbar-dropdown is-right">
-            <a href="/agent_profile/{{User_id}}" class="navbar-item">
+            <a href="/agent_profile/{{User_session_id}}" class="navbar-item">
               Perfil
             </a>
             <hr class="navbar-divider" />

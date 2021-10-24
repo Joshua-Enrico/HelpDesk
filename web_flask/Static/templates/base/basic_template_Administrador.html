@@ -16,9 +16,8 @@
   <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
   <title>{% block title %}{% endblock %}</title>
 </head>
-
 <body>
-  
+  <input type="hidden" id="token" name="token" value="{{ token }}">
   <!-- navbar -->
   <nav class="navbar is-fixed-top box-shadow-y">
     <!-- Burger Menu js/navbar.js to work-->
@@ -52,7 +51,7 @@
 
           </a>
           <div class="navbar-dropdown is-right">
-            <a href="/admin_profile/{{User_id}}" class="navbar-item">
+            <a href="/admin_profile/{{User_session_id}}" class="navbar-item">
               Perfil
             </a>
             <a href="#" class="navbar-item">Settings</a>
