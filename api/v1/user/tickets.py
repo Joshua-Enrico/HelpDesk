@@ -47,7 +47,7 @@ def user_ticket(ticket_id):
     return jsonify(ticket.to_dict())
 
 
-@app_views.route('/user/tickets/<ticket_id>/set_score', methods=['PUT'], strict_slashes=False)
+@app_views.route('/user/tickets/<ticket_id>/rate_service', methods=['PUT'], strict_slashes=False)
 def update_user_ticket(ticket_id):
     user = request.environ.get('user', {})
     user_id = user.get('id', None)
