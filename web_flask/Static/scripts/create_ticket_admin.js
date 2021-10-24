@@ -11,6 +11,10 @@ $(document).ready(function () {
             'Description': document.getElementById('Description').value,
         }
 
+        Object.keys(form).forEach(key => {
+            $(`#err-${key}`).html('')
+        })
+
         $.ajax({
             type: 'POST',
             data: JSON.stringify(form),
