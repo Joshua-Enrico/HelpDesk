@@ -23,12 +23,12 @@ def user_tickets():
     page = int(request.args.get('page', 1))
     status_filter = request.args.get('status', None)
     pagination = db.session\
-                   .query(Tickets.id, Tickets.Status, Tickets.Subject, Tickets.Company_Area, Tickets.DateTime,
+                   .query(Tickets.id, Tickets.Status, Tickets.Service_Score, Tickets.Subject, Tickets.Company_Area, Tickets.DateTime,
                           (Users.Nombre + ' ' + Users.Apellido).label('Agent'))\
                    .join(Users, Users.id == Tickets.Agent_ID, isouter=True)\
                    .filter(Tickets.User_ID == user_id)\
                    .filter(True if status_filter is None else Tickets.Status == status_filter)\
-                   .order_by(Tickets.Status)\
+                   .order_by(Tickets.Status, Tickets.DateTime)\
                    .paginate(page, per_page, error_out=False)
     return jsonify_pagination(pagination)
 
@@ -76,6 +76,14 @@ def update_user_ticket(ticket_id):
             errors[attr[0]] = 'El campo "{}" es requerido'.format(attr[1])
     if errors != {}:
         return jsonify({'success': False, 'errors':errors}), 400
+
+    service_score = str(data.get('Service_Score', ''))
+    if not service_score.isdigit():
+        return jsonify({'success': False, 'msg': 'La calificación debe ser un valor numérico'}), 400
+
+    score = int(service_score)
+    if score < 1 or score > 10:
+        return jsonify({'success': False, 'msg': 'La calificación debe ser un valor numérico entre 1 y 10'}), 400
 
     ticket.Service_Score = data.get('Service_Score')
     db.session.commit()

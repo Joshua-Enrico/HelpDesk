@@ -18,6 +18,7 @@ from .Routes.Client.ticket_registration_user import *
 from .Routes.Client.dashboard_user import *
 from .Routes.Client.profile_user import *
 from .Routes.Client.ticket_details import *
+from .Routes.Client.rate_service import *
 
 from .Routes.General.auth import *
 from .Routes.General.confirm_email import *

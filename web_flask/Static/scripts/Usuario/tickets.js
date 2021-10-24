@@ -74,6 +74,10 @@ function renderTickets(tickets, page, per_page) {
                                 <a href="/user/tickets/ver/${el.id}" class="dropdown-item">
                                     Ver
                                 </a>
+                                ${(el.Status == 2 && el.Service_Score === null)?
+                                    `<a href="/user/rate_service/${el.id}" class="dropdown-item">
+                                        Calificar
+                                    </a>`: ''}
                             </div>
                         </div>
                     </div>
