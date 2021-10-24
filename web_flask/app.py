@@ -8,6 +8,7 @@ from .Routes.Admin.user_administration import *
 from .Routes.Admin.create_user_admin import *
 from .Routes.Admin.profile_admin import *
 from .Routes.Admin.ticket_registration_Admin import *
+from .Routes.Admin.ticket_details import *
 from .Routes.Admin.ticket_update_Admin import *
 from .Routes.Client.ticket_registration_user import *
 from .Routes.Client.dashboard_user import *
