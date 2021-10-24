@@ -47,6 +47,9 @@ def update_ticket(ticket_id):
     if ticket is None:
         abort(404)
 
+    if ticket.Status == 2:
+        abort(403)
+
     data = request.get_json()
     if not data:
         abort(400, description="Not a JSON")
@@ -67,8 +70,11 @@ def update_ticket(ticket_id):
         return jsonify(errors), 400
 
     allowed = ['User_ID', 'Agent_ID', 'Subject', 'Description',
-               'Problem_Type', 'Company_Area', 'Status']
+               'Problem_Type', 'Company_Area']
     [setattr(ticket, k, v) for k, v in data.items() if hasattr(ticket, k) and k in allowed]
+
+    ticket.Status = 0 if ticket.Agent_ID == None else 1
+
     db.session.commit()
 
     return jsonify({'id': ticket_id}), 200
