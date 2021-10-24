@@ -16,7 +16,6 @@ from ..middlewares.isadmin import isadmin
 
 
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
-@isadmin
 def get_users():
     new_dic = []
     objs = Users.query.all()
@@ -26,7 +25,6 @@ def get_users():
 
 
 @app_views.route('/users/', methods=['POST'], strict_slashes=False)
-@isadmin
 def create_user():
     flag = 0
     User_Exists = ''

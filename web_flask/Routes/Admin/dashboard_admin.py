@@ -15,7 +15,7 @@ def admin():
         return redirect(url_for(admins_acces_val(current_user.Rol)))
     ticket = TicketForm()
     token = session.get('token')
-    return render_template('Administrador/dashboard_Admin.html', ticket=ticket, name=current_user.Nombre, User_id=current_user.id, token=token)
+    return render_template('Administrador/dashboard_Admin.html', ticket=ticket, name=current_user.Nombre, User_id=current_user.id, token=token, User_session_id=current_user.id)
 
 
 @app.route('/admin/tickets/ver/<ticket_id>', methods=['GET'])
@@ -27,4 +27,4 @@ def editar_ticket(ticket_id):
     ticket = Tickets.query.get(ticket_id)
     owner = Users.query.get(ticket.User_ID)
     agent = Users.query.get(ticket.Agent_ID)
-    return render_template('Administrador/ticket_detalle.html', owner=owner, agent=agent, ticket=ticket, token=token)
+    return render_template('Administrador/ticket_detalle.html', owner=owner, agent=agent, ticket=ticket, token=token, User_session_id=current_user.id)

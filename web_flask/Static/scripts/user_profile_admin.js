@@ -35,6 +35,7 @@ $('#submitButton').attr("disabled", "disabled");
             type: 'PUT',
             data: JSON.stringify(form),
             url: 'http://localhost:5001/api/v1/users_profile',
+            headers: {'Authorization': 'Bearer ' + $('#token').val()},
             contentType: 'application/json; charset=utf-8',
             success: data => {
                 result = data;

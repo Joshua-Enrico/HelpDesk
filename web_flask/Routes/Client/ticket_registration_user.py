@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from ...models import app
 from flask_login import login_required, current_user
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, session
 from .Functions.access_validation import client_acces_val
 
 
