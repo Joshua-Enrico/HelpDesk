@@ -83,6 +83,9 @@ function renderTickets(tickets, page, per_page) {
                                 <a href="/admin/tickets/ver/${el.id}" class="dropdown-item">
                                     Ver
                                 </a>
+                                <a href="/admin/tickets/editar/${el.id}" class="dropdown-item">
+                                    Actualizar
+                                </a>
                             </div>
                         </div>
                     </div>
