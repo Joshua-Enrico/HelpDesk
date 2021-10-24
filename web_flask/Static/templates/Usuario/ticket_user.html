@@ -22,134 +22,137 @@
 <section class="hero is-primary">
   <div class="hero-body">
     <div class="section">
-      <div class="columns is-centered">
-        <div class="card">
-          <header class="card-header">
-            <!-- Problema -->
-            <p class="card-header-title">
-              {{ ticket.Subject }}
-            </p>
-            <button class="card-header-icon btn-hide" aria-label="more options">
-              <span class="icon">
-                <i class="fas fa-angle-up" aria-hidden="true"></i>
-                <i class="fas fa-angle-down is-hidden" aria-hidden="true"></i>
-              </span>
-            </button>
-          </header>
-          <div class="card-content">
-            <div class="content">
-              <div class="columns is-size-7 ">
-                <div class="column">
-                  <div class="columns is-gapless">
-                    <!-- Reporte -->
-                    <div class="column">
-                      Reportado por:
-                    </div>
-                    <div class="column">
-                      <strong>{{ owner.Nombre }} {{ owner.Apellido }}</strong>
-                    </div>
-                  </div>
-                </div>
-                <div class="column ">
-                  <div class="columns is-gapless">
-                    <!-- Responsable -->
-                    <div class="column">
-                      Asignado a:
-                    </div>
-                    <div class="column">
-                      <strong>{{ agent.Nombre | default('---') }} {{ agent.Apellido }}</strong>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="columns is-size-7">
-                <div class="column ">
-                  <div class="columns is-gapless">
-                    <div class="column">
-                      Creado el:
-                    </div>
-                    <div class="column">
-                      <strong>{{ ticket.DateTime }}</strong>
-                    </div>
-                  </div>
-                </div>
-                <div class="column ">
-                  <div class="columns is-gapless">
-                    <div class="column">
-                      Actualizado el:
-                    </div>
-                    <div class="column">
-                      <strong>{{ ticket.UpdateTime }}</strong>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Dropboxes -->
-              <div class="box has-background-link">
-                <div class="columns">
-                  <div class="column">
-                    <div class="field">
-                      <label class="label is-size-7 has-text-primary-light">Estado</label>
-                      <p class="control">
-                        <span class="select open_modal">
-                          {{ {
-                            0:'No Asignado',
-                            1:'Asignado',
-                            2:'Completado'
-                           }[ticket.Status] | default('---')
-                        }}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
 
+      <div class="columns">
+        <div class="column is-three-fifths is-offset-one-fifth">
+          <div class="card">
+            <header class="card-header">
+              <!-- Problema -->
+              <p class="card-header-title">
+                {{ ticket.Subject }}
+              </p>
+              <button class="card-header-icon btn-hide" aria-label="more options">
+                <span class="icon">
+                  <i class="fas fa-angle-up" aria-hidden="true"></i>
+                  <i class="fas fa-angle-down is-hidden" aria-hidden="true"></i>
+                </span>
+              </button>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                <div class="columns is-size-7 ">
                   <div class="column">
-                    <div class="field">
-                      <label class="label is-size-7 has-text-primary-light">Prioridad</label>
-                      <p class="control">
-                        <input class="input" type="text" value="Alta" readonly>
+                    <div class="columns is-gapless">
+                      <!-- Reporte -->
+                      <div class="column">
+                        Reportado por:
+                      </div>
+                      <div class="column">
+                        <strong>{{ owner.Nombre }} {{ owner.Apellido }}</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column ">
+                    <div class="columns is-gapless">
+                      <!-- Responsable -->
+                      <div class="column">
+                        Asignado a:
+                      </div>
+                      <div class="column">
+                        <strong>{{ agent.Nombre | default('---') }} {{ agent.Apellido }}</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="columns is-size-7">
+                  <div class="column ">
+                    <div class="columns is-gapless">
+                      <div class="column">
+                        Creado el:
+                      </div>
+                      <div class="column">
+                        <strong>{{ ticket.DateTime }}</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column ">
+                    <div class="columns is-gapless">
+                      <div class="column">
+                        Actualizado el:
+                      </div>
+                      <div class="column">
+                        <strong>{{ ticket.UpdateTime }}</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Dropboxes -->
+                <div class="box has-background-link">
+                  <div class="columns">
+                    <div class="column">
+                      <div class="field">
+                        <label class="label is-size-7 has-text-primary-light">Estado</label>
+                        <p class="control">
+                          <span class="select open_modal">
+                            {{ {
+                              0:'No Asignado',
+                              1:'Asignado',
+                              2:'Completado'
+                            }[ticket.Status] | default('---')
+                          }}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="column">
+                      <div class="field">
+                        <label class="label is-size-7 has-text-primary-light">Prioridad</label>
+                        <p class="control">
+                          <input class="input" type="text" value="Alta" readonly>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Dropboxes Fin -->
+              </div>
+              <div class="content">
+                <p><strong>Descipción</strong></p>
+                <p>{{ ticket.Description }}</p>
+                <!-- Imagenes -->
+                <div class="columns">
+                  <div class="column is-3">
+                    <div class="panel">
+                      <p class="is-marginless">
+                        <img src="https://bulma.io/images/placeholders/256x256.png">
+                      </p>
+                    </div>
+                  </div>
+                  <div class="column is-3">
+                    <div class="panel">
+                      <p class="is-marginless">
+                        <img src="https://bulma.io/images/placeholders/600x480.png">
+                      </p>
+                    </div>
+                  </div>
+                  <div class="column is-3">
+                    <div class="panel">
+                      <p class="is-marginless">
+                        <img src="https://bulma.io/images/placeholders/480x600.png">
+                      </p>
+                    </div>
+                  </div>
+                  <div class="column is-3">
+                    <div class="panel">
+                      <p class="is-marginless">
+                        <img src="https://bulma.io/images/placeholders/256x256.png">
                       </p>
                     </div>
                   </div>
                 </div>
+                <!-- Imagenes Fin -->
               </div>
-              <!-- Dropboxes Fin -->
-            </div>
-            <div class="content">
-              <p><strong>Descipción</strong></p>
-              <p>{{ ticket.Description }}</p>
-              <!-- Imagenes -->
-              <div class="columns">
-                <div class="column is-3">
-                  <div class="panel">
-                    <p class="is-marginless">
-                      <img src="https://bulma.io/images/placeholders/256x256.png">
-                    </p>
-                  </div>
-                </div>
-                <div class="column is-3">
-                  <div class="panel">
-                    <p class="is-marginless">
-                      <img src="https://bulma.io/images/placeholders/600x480.png">
-                    </p>
-                  </div>
-                </div>
-                <div class="column is-3">
-                  <div class="panel">
-                    <p class="is-marginless">
-                      <img src="https://bulma.io/images/placeholders/480x600.png">
-                    </p>
-                  </div>
-                </div>
-                <div class="column is-3">
-                  <div class="panel">
-                    <p class="is-marginless">
-                      <img src="https://bulma.io/images/placeholders/256x256.png">
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Imagenes Fin -->
             </div>
           </div>
         </div>
