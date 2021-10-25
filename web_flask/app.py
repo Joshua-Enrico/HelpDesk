@@ -23,6 +23,7 @@ from .Routes.Client.ticket_details import *
 from .Routes.Client.rate_service import *
 
 from .Routes.General.auth import *
+from .Routes.General.Functions.chat import *
 from .Routes.General.confirm_email import *
 from .Routes.General.recover import *
 from .Routes.General.home import *

@@ -136,6 +136,24 @@ INSERT INTO `tickets__summary` VALUES ('260efc5e-527d-4dac-bb97-e08269220754',1,
 UNLOCK TABLES;
 
 --
+-- Table structure for table `chathistory`
+--
+
+DROP TABLE IF EXISTS `chathistory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `chathistory` (
+  `id` varchar(60) NOT NULL,
+  `Ticket_id` varchar(60) DEFAULT NULL,
+  `Agent_ID` varchar(60) DEFAULT NULL,
+  `User_ID` varchar(60) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `DateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `time__access`
 --
 

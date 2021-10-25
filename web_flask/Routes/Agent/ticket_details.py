@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 from ...models import app
 from flask_login import login_required
+from sqlalchemy import desc, asc
 from flask import render_template, session, redirect, url_for, abort
 from flask_login import current_user
 from ...models.user import Users
+from ...models.chat_history import chathistory
 from ...models.tickets import Tickets
 from .Functions.access_validation import agent_acces_val
 
@@ -18,4 +20,5 @@ def agent_ticket_details(ticket_id):
         abort(404)
     owner = Users.query.filter_by(id=ticket.User_ID).first()
     agent = Users.query.filter_by(id=ticket.Agent_ID).first()
-    return render_template('Agente_HelpDesk/ticket_detalle.html', owner=owner, agent=agent, ticket=ticket, token=token, User_session_id=current_user.id)
+    messages = chathistory.query.filter_by(Ticket_id=ticket_id).order_by(asc(chathistory.DateTime))
+    return render_template('Agente_HelpDesk/ticket_detalle.html',messages=messages, owner=owner, agent=agent, ticket=ticket, token=token, User_session_id=current_user.id)

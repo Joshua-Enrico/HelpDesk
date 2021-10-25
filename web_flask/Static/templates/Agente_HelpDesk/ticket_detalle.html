@@ -3,6 +3,10 @@
 {% block cssimport %}
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/imagegrid.css') }}">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js" integrity="sha512-zN6KYOtONNTOGXz0RkWX2EpavN9VdIs+2w+To+fhciFv83YA9maUpi2lzZWrOfKXdFIZZomWufBznkyHi3a8oQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
 {% endblock %}
 
 {% block title %}Ticket{% endblock %}
@@ -27,7 +31,7 @@
         <div class="card">
           <header class="card-header">
             <!-- Problema -->
-            <p class="card-header-title">
+            <p class="card-header-title ticket_id" ticket_id='{{ ticket.id }}'>
               {{ ticket.Subject }}
             </p>
             <button class="card-header-icon btn-hide" aria-label="more options">
@@ -51,13 +55,13 @@
                     </div>
                   </div>
                 </div>
-                <div class="column ">
+                <div class="column user_id" nombre='{{ owner.Nombre }}  {{ owner.Apellido }}' data-id='{{ owner.id }}'>
                   <div class="columns is-gapless">
                     <!-- Responsable -->
                     <div class="column">
                       Asignado a:
                     </div>
-                    <div class="column">
+                    <div class="column agent_id" data-id='{{agent.id}}' nombre='{{ agent.Nombre }}  {{ agent.Apellido }}'>
                       <strong>{{ agent.Nombre | default('---') }} {{ agent.Apellido }}</strong>
                     </div>
                   </div>
@@ -119,40 +123,41 @@
 
     <div class="section">
       <div class="box">
-        <article class="message is-info">
-          <div class="message-header">
-            <p>Nombre de la persona que hace el mensaje cliente o HelpDesk</p>
-          </div>
-          <div class="message-body">
-            Mensaje de la persona
-            Vestibulum, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-          </div>
-        </article>
-        <article class="message is-info">
-          <div class="message-header">
-            <p>Otro mensaje hecho por el cliente o el HelpDesk</p>
-          </div>
-          <div class="message-body">
-            Mensaje de la persona
-            Vestibulum, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-          </div>
-        </article>
-
+        <div class='chat' id='messages'>
+          <!-- Messages -->
+          {% for msg in messages %}
+            {% if msg.Agent_ID %}
+            <article class="message is-info align-right">
+              <div class="message-header">
+                <p>Tu</p>
+              </div>
+              <div class="message-body">{{ msg.message }}</div>
+            </article>
+            {% else %}
+              <article class="message is-info">
+                <div class="message-header">
+                  <p>{{ owner.Nombre }}</p>
+                </div>
+                <div class="message-body">{{ msg.message }}</div>
+              </article>
+              {% endif %}
+          {% endfor %}
+        </div>
         <hr>
         <div class="field">
           <label class="label">Responder:</label>
           <p class="control">
-            <textarea class="textarea" placeholder="Discusion del problema"></textarea>
+            <textarea class="textarea" id='myMessage' placeholder="Discusion del problema"></textarea>
           </p>
         </div>
         <div class="field is-grouped">
-
+          {% if message %}
           <p class="control">
-            <button class="button is-primary">Aceptar</button>
+            <button class="button is-primary" id='send'>Enviar</button>
           </p>
-          <p class="control">
-            <button class="button is-link">Cancelar</button>
-          </p>
+          {% else %}
+            <p>El chat se activara cuando el ticket sea asignado</p>
+          {% endif %}
         </div>
 
       </div>
@@ -165,9 +170,6 @@
 
 <div class="box">
 
-
-
-
 </div>
 
 {% endblock %}
@@ -175,4 +177,5 @@
 {% block jsimport %}
 <!-- <script src="{{ url_for('static', filename='js/modal.js') }}"></script> -->
 <script src="{{ url_for('static', filename='js/hidde_button.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/Agente/chat.js') }}"></script>
 {% endblock %}

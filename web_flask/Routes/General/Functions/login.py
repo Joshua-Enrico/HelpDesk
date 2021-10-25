@@ -36,7 +36,7 @@ def login_validations():
             check_acces = Time_Access.query.filter_by(User_id=user.id).first()
             if(user.Rol != 'Administrador'):
                 if(now >= check_acces.To):
-                    return render_template('login.html', predict_content='Acceso Al Sistema Denegado, contacte a un administrador', form=form)
+                    return render_template('General/login.html', predict_content='Acceso Al Sistema Denegado, contacte a un administrador', form=form)
             if check_password_hash(user.Password, form.password.data):
                 login_user(user, remember=form.remember.data)
                 token = generate_token(user.to_dict())

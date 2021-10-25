@@ -31,4 +31,4 @@ def user_edit_admin(User_id):
     User_data.UpdateTime = Modified_at.strftime("%d/%m/%Y")
     User_time_acces.Last_login = L_login.strftime("%d/%m/%Y a las %H:%M")
     User_time_acces.Last_activity = Last_activity.strftime("%d/%m/%Y a las %H:%M")
-    return render_template('Administrador/user_edit.html', User_session_id=current_user.id,User_id=User_id ,User_data=User_data, Time_Access=User_time_acces, token=token)
+    return render_template('Administrador/user_edit.html', User_session_id=current_user.id, User_id=User_id ,User_data=User_data, Time_Access=User_time_acces, token=token)
