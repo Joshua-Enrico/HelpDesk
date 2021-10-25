@@ -19,8 +19,6 @@ def ver_ticket_user(ticket_id):
     owner = Users.query.get(ticket.User_ID)
     agent = Users.query.filter_by(id=ticket.Agent_ID).first()
     messages = chathistory.query.filter_by(Ticket_id=ticket_id).order_by(asc(chathistory.DateTime))
-    try:
-        print(messages[0])
-    except  IndexError:
+    if (agent == None):
         flag = 1
     return render_template('Usuario/ticket_user.html',flag=flag, messages=messages, owner=owner, agent=agent, ticket=ticket, token=token, User_id=current_user.id)

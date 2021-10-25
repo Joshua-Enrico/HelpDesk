@@ -22,8 +22,4 @@ def editar_ticket(ticket_id):
     owner = Users.query.filter_by(id=ticket.User_ID).first()
     agent = Users.query.filter_by(id=ticket.Agent_ID).first()
     messages = chathistory.query.filter_by(Ticket_id=ticket_id).order_by(asc(chathistory.DateTime))
-    try:
-        print(messages[0])
-    except  IndexError:
-        flag = 1
     return render_template('Administrador/ticket_detalle.html',flag=flag,messages=messages, owner=owner, agent=agent, ticket=ticket, token=token, User_session_id=current_user.id)
