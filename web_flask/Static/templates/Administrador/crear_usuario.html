@@ -6,6 +6,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
   crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/bulmavalidator/bulma-validator.js') }}"></script>
 {% endblock %}
 
 {% block title %}Registrar Usuario{% endblock %}
@@ -30,7 +32,7 @@
       <div class="field">
         <label class="label">Username para el usuario</label>
         <div class="control has-icons-left has-icons-right">
-          <input class="input" name='id-name' type="text" placeholder="codigo" required>
+          <input class="input" name='id-name' type="username" placeholder="codigo" data-validation="username" required>
           <span class="icon is-small is-left">
             <i class="fas fa-user"></i>
           </span>
@@ -44,7 +46,7 @@
       <div class="field">
         <label class="label">Email</label>
         <div class="control has-icons-left has-icons-right">
-          <input class="input" name='user-email' type="email" placeholder="Email" value="hello@" required>
+          <input class="input" name='user-email' type="email" placeholder="Email" value="hello@" data-validation="username" required>
           <span class="icon is-small is-left">
             <i class="fas fa-envelope"></i>
           </span>
@@ -58,13 +60,13 @@
       <div class="field">
         <label class="label">Nombre</label>
         <div class="control">
-          <input class="input" name='nombre' type="text" placeholder="Nombre" required>
+          <input class="input" name='nombre' type="text" placeholder="Nombre" data-validation="name" required>
         </div>
       </div>
       <div class="field">
         <label class="label">Apellido</label>
         <div class="control">
-          <input class="input" name='apellido'  type="text" placeholder="Nombre" required>
+          <input class="input" name='apellido'  type="text" placeholder="Nombre" data-validation="name" required>
         </div>
       </div>
 
@@ -148,12 +150,19 @@
 </section>
 
 
-
+<script>
+  $(function() {
+  $("form").BulmaValidator({
+    name: "BulmaValidator"
+  });
+});
+</script>
 
 
 {% endblock %}
 
 {% block jsimport %}
+<script src="https://cdn.jsdelivr.net/npm/@emretulek/jbvalidator"></script>
 <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
 <script src="{{ url_for('static', filename='js/panels.js') }}"></script>
 {% endblock %}
