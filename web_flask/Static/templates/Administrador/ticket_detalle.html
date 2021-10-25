@@ -3,6 +3,10 @@
 {% block cssimport %}
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/imagegrid.css') }}">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js" integrity="sha512-zN6KYOtONNTOGXz0RkWX2EpavN9VdIs+2w+To+fhciFv83YA9maUpi2lzZWrOfKXdFIZZomWufBznkyHi3a8oQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
 {% endblock %}
 
 {% block title %}Ticket{% endblock %}
@@ -121,39 +125,31 @@
 
     <div class="section">
       <div class="box">
-        <article class="message is-info">
-          <div class="message-header">
-            <p>Nombre de la persona que hace el mensaje cliente o HelpDesk</p>
-          </div>
-          <div class="message-body">
-            Mensaje de la persona
-            Vestibulum, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-          </div>
-        </article>
-        <article class="message is-info">
-          <div class="message-header">
-            <p>Otro mensaje hecho por el cliente o el HelpDesk</p>
-          </div>
-          <div class="message-body">
-            Mensaje de la persona
-            Vestibulum, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-          </div>
-        </article>
-
-        <hr>
-        <div class="field">
-          <label class="label">Responder:</label>
-          <p class="control">
-            <textarea class="textarea" placeholder="Discusion del problema"></textarea>
-          </p>
+        <div class='chat' id='messages'>
+          <!-- Messages -->
+          {% for msg in messages %}
+            {% if msg.Agent_ID %}
+            <article class="message is-info align-right">
+              <div class="message-header">
+                <p>Tu</p>
+              </div>
+              <div class="message-body">{{ msg.message }}</div>
+            </article>
+            {% else %}
+              <article class="message is-info align-left">
+                <div class="message-header">
+                  <p>{{ owner.Nombre }}</p>
+                </div>
+                <div class="message-body">{{ msg.message }}</div>
+              </article>
+              {% endif %}
+          {% endfor %}
         </div>
+        <hr>
         <div class="field is-grouped">
 
           <p class="control">
-            <button class="button is-primary">Aceptar</button>
-          </p>
-          <p class="control">
-            <button class="button is-link">Cancelar</button>
+            Solo puedes Leer la conversacion
           </p>
         </div>
 
@@ -177,4 +173,5 @@
 {% block jsimport %}
 <!-- <script src="{{ url_for('static', filename='js/modal.js') }}"></script> -->
 <script src="{{ url_for('static', filename='js/hidde_button.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/Admin/chat.js') }}"></script>
 {% endblock %}
