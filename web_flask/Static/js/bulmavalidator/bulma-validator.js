@@ -11,24 +11,30 @@
                 success: "is-success",
                 helptext: "help"
             },
-            fields: ["name", "text", "email"],
+            fields: ["username", "name", "text", "email", "#password"],
             settings: {
                 username: {
-                    regex: "^[A-Za-z ,.'-]{4,30}$",
+                    regex: "^[A-Za-z,.'-]{4,30}$",
                     maxlength: "30",
                     minlength:"4"
                 },
                 name: {
-                    regex: "^[A-Za-z ,.'-]{4,30}$",
+                    regex: "^[A-Za-z ,.'-]{3,30}$",
                     maxlength: "30",
                     minlength:"4"
                 },
                 text: {
                     regex: "^[A-Za-z ,.'-]{4,30}$",
-                    maxlength: "30",
+                    maxlength: "100",
                 },
                 email: {
-                    regex: "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                    regex: "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$",
+                    maxlength: "50",
+                },
+                password: {
+                    regex: "{3,30}$",
+                    minlength:"8",
+                    maxlength: "300"
                 }
             }
         }, opts);

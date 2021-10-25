@@ -73,7 +73,7 @@
       <div class="field">
         <label class="label">Clave</label>
         <p class="control has-icons-left">
-          <input class="input" name='pswrd' type="password" placeholder="Clave" required>
+          <input class="input" name='pswrd' type="password" placeholder="Clave" id="password" data-validation="password" required>
           <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
           </span>
@@ -83,7 +83,7 @@
       <div class="field">
         <label class="label">Repetir Clave</label>
         <p class="control has-icons-left">
-          <input class="input" name='confirm-paswrd' type="password" placeholder="Repetir Clave" required>
+          <input class="input" name='confirm-paswrd' type="password" placeholder="Repetir Clave" data-v-equal="#password" required>
           <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
           </span>
