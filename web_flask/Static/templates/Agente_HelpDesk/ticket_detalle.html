@@ -134,7 +134,7 @@
               <div class="message-body">{{ msg.message }}</div>
             </article>
             {% else %}
-              <article class="message is-info">
+              <article class="message is-info align-left">
                 <div class="message-header">
                   <p>{{ owner.Nombre }}</p>
                 </div>
@@ -151,7 +151,7 @@
           </p>
         </div>
         <div class="field is-grouped">
-          {% if message %}
+          {% if flag == 0 %}
           <p class="control">
             <button class="button is-primary" id='send'>Enviar</button>
           </p>

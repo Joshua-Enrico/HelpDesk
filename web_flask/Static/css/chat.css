@@ -7,6 +7,10 @@
 
 .align-right {
     text-align: right;
+    margin-left: 60%;
+}
+.align-left {
+    margin-right: 60%;
 }
 .message-header {
     display: block;
