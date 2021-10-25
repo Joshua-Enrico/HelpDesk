@@ -55,17 +55,18 @@
           Renzo Perez
           Joshua Enrico
           Renato Leon
+          
         </p>
       </div>
     </div>
   </footer>
-  <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <script src="{{ url_for('.static', filename='js/navbar.js') }}"></script>
+  <script src="{{ url_for('.static', filename='js/dropdown.js') }}"></script>
   {% block jsimport %}
-    <!-- js block -->
-    
+  <!-- js block -->
+
   {% endblock %}
-  
+
 </body>
 
 </html>
