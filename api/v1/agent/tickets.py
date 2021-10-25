@@ -3,6 +3,7 @@
 from api.utils import jsonify_pagination
 from api.v1 import app_views
 from datetime import datetime
+from sqlalchemy import or_
 from flask import abort, jsonify, make_response, request
 from web_flask.models.user import Users
 from web_flask.models.tickets import Tickets
@@ -26,9 +27,9 @@ def agent_tickets():
                    .query(Tickets.id, Tickets.Status, Tickets.Status, Tickets.Subject, Tickets.Company_Area, Tickets.DateTime,
                           (Users.Nombre + ' ' + Users.Apellido).label('Agent'))\
                    .join(Users, Users.id == Tickets.Agent_ID, isouter=True)\
-                   .filter(Tickets.Agent_ID == agent_id or Tickets.Status.in_([0, None]))\
+                   .filter(or_(Tickets.Agent_ID == agent_id, Tickets.Status.in_([0, None])))\
                    .filter(True if status_filter is None else Tickets.Status == status_filter)\
-                   .order_by(Tickets.Status, Tickets.DateTime)\
+                   .order_by(Tickets.Status, Tickets.DateTime.desc())\
                    .paginate(page, per_page, error_out=False)
     return jsonify_pagination(pagination)
 
@@ -47,6 +48,24 @@ def agent_ticket(ticket_id):
     return jsonify(ticket.to_dict())
 
 
+@app_views.route('/agent/tickets/<ticket_id>/solved', methods=['PUT'], strict_slashes=False)
+@isagent
+def solve_ticket(ticket_id):
+    user = request.environ.get('user', {})
+    agent_id = user.get('id', None)
+    ticket = Tickets.query\
+                .filter(Tickets.id == ticket_id)\
+                .filter(Tickets.Agent_ID == agent_id)\
+                .first()
+    if ticket is None:
+        abort(404)
+
+    ticket.Status = 2
+    db.session.commit()
+
+    return jsonify({'id': ticket_id}), 200
+
+
 @app_views.route('/agent/tickets/<ticket_id>/assign', methods=['PUT'], strict_slashes=False)
 @isagent
 def update_agent_ticket(ticket_id):
@@ -58,6 +77,9 @@ def update_agent_ticket(ticket_id):
                 .first()
     if ticket is None:
         abort(404)
+
+    if ticket.Status != 0 and ticket.Status != None:
+        return jsonify({'success': False, 'msg': 'Este ticket ya ha sido asignado a un agente'}), 403
 
     ticket.Status = 1
     ticket.Agent_ID = agent_id

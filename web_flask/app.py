@@ -13,6 +13,8 @@ from .Routes.Admin.ticket_details import *
 
 from .Routes.Agent.help_desk_routes import *
 from .Routes.Agent.profile_agent import *
+from .Routes.Agent.ticket_details import *
+from .Routes.Agent.self_assign_ticket import *
 
 from .Routes.Client.ticket_registration_user import *
 from .Routes.Client.dashboard_user import *
