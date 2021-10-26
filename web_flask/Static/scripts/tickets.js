@@ -80,7 +80,7 @@ function renderTickets(tickets, page, per_page) {
                         </div>
                         <div class="dropdown-menu" id="dropdown-menu" role="menu">
                             <div class="dropdown-content">
-                                <a href="/admin/tickets/ver/${el.id}" class="dropdown-item">
+                                <a href="/admin/tickets/${el.id}" class="dropdown-item">
                                     Ver
                                 </a>
                                 <a href="/admin/tickets/editar/${el.id}" class="dropdown-item">
