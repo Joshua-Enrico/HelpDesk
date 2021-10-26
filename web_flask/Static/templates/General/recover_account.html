@@ -10,7 +10,7 @@
 {% block header %}
 <div class="hero">
   <p class="panel-heading ">
-    Login
+    Recover
   </p>
 </div>
 {% endblock %}
@@ -29,7 +29,7 @@
           <div class="control has-icons-left ">
             {{ form.hidden_tag() }}
             <!-- {{ wtf.form_field(form.email) }} -->
-            {{ form.email(class_="email", placeholder="mail@") }}
+            {{ form.email(class_="input", placeholder="mail@") }}
             <p>{{ wrong_email }}</p>
             <span class="icon is-small is-left">
               <i class="fa fa-user"></i>
