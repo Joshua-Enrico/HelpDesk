@@ -125,6 +125,7 @@ def create_user_ticket():
     user_time_access.Last_activity = datetime.utcnow()
     summary = User_Tickets_Summary.query.filter_by(User_id=user.get('id')).first()
     all_summary = Tickets_Summary.query.first()
+    print(all_summary)
     if (all_summary == None):
         obj = Tickets_Summary(All_tickets=0, Pendings=0, Solved=0, Assigned=0)
         db.session.add(obj)
