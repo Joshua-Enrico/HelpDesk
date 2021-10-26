@@ -3,6 +3,9 @@ from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from werkzeug.security import generate_password_hash
 from ....models.forms.recover import *
+from ....models.user import Users
+from ....models import s, db
+import smtplib
 
 
 def recover_validations():
