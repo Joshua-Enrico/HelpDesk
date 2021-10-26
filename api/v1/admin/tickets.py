@@ -142,6 +142,6 @@ def create_tickets():
 @isadmin
 def get_ticket_all():
     new_dic = []
-    objs = Tickets_Summary.query.all()
+    objs = Tickets_Summary.query.first()
     new_dic.append(objs.to_dict())
     return jsonify(new_dic)
