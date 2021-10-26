@@ -7,8 +7,13 @@
     crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/hidde_button.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+
 <script type="application/json"
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript"
+    src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+
+<!-- Local "> -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/user_profile.css') }}">
 <script type="text/javascript" src="{{url_for('.static', filename='scripts/user_profile_admin.js')}}"></script>
 {% endblock %}
@@ -42,7 +47,7 @@
                 </div>
                 <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                   <div class="text-center text-sm-left mb-2 mb-sm-0">
-                    <h4 data-id='{{ id }}' name='nombre' class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ User_data.Nombre }} {{ User_data.Apellido }}</h4>
+                    <h4 data-id='{{ User_id }}' name='nombre' class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ User_data.Nombre }} {{ User_data.Apellido }}</h4>
                     <p name='correo' class="mb-0">{{ User_data.Email }}</p>
                     <div name='Last-Activity' class="text-muted"><small>Last seen 2 hours ago</small></div>
                   </div>
@@ -55,7 +60,36 @@
                 </div>
               </div>
               <ul class="nav nav-tabs">
-                <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                  <div class="control">
+                    <div class="select">
+                      <select name='ROL'>
+                        <option hidden value="">Rol: {{ User_data.Rol }}</option>
+                        <option>Administrador</option>
+                        <option>Agente Helpdesk</option>
+                        <option>Usuario</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="control">
+                    <div class="select">
+                      <select name='Area'>
+                        <option hidden value="">Area: {{ User_data.Area }}</option>
+                        <option>Sistemas</option>
+                        <option>Administracion</option>
+                        <option>Logistica</option>
+                        <option>Marketing</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="control">
+                    <div class="select">
+                      <select name='Status'>
+                        <option hidden value="">Status: {{ User_data.Estado }}</option>
+                        <option>Activo</option>
+                        <option>Desabilidato</option>
+                      </select>
+                    </div>
+                  </div>
               </ul>
               <div class="tab-content pt-3">
                 <div class="tab-pane active">
