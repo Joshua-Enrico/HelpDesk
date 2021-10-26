@@ -1,8 +1,9 @@
-{% extends "base/basic_template_login.html" %}
+{% extends "base/experimental_general_base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block cssimport %}
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 {% endblock %}
 
 {% block title %}Login{% endblock %}

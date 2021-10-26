@@ -11,7 +11,7 @@
                 success: "is-success",
                 helptext: "help"
             },
-            fields: ["username", "name", "text", "email", "#password"],
+            fields: ["username", "name", "text", "email", "password"],
             settings: {
                 username: {
                     regex: "^[A-Za-z,.'-]{4,30}$",
@@ -19,7 +19,7 @@
                     minlength:"4"
                 },
                 name: {
-                    regex: "^[A-Za-z ,.'-]{3,30}$",
+                    regex: "^[A-Za-z ,.'-]{4,30}$",
                     maxlength: "30",
                     minlength:"4"
                 },
@@ -32,7 +32,7 @@
                     maxlength: "50",
                 },
                 password: {
-                    regex: "{3,30}$",
+                    regex: "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,300}$",
                     minlength:"8",
                     maxlength: "300"
                 }
