@@ -140,7 +140,7 @@ def create_tickets():
 
 @app_views.route('/admin/tickets/summary', methods=['GET'], strict_slashes=False)
 @isadmin
-def get_ticket():
+def get_ticket_all():
     new_dic = []
     objs = Tickets_Summary.query.all()
     new_dic.append(objs.to_dict())
