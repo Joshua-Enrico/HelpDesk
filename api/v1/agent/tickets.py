@@ -103,14 +103,14 @@ def update_agent_ticket(ticket_id):
 
     user_sumamry.Pendings -= 1
     user_sumamry.Assigned += 1
+    all_summary.Pendings -= 1
+    all_summary.Assigned += 1
     if(agent_summary == None):
-        agnet_table =  Agent_Tickets_Summary(All_tickets=1, Pendings=0, Assigned=1, Solved=0, User_id=ticket.Agent_ID)
-        db.session.add(agnet_table)
+        agent_table =  Agent_Tickets_Summary(All_tickets=1, Pendings=0, Assigned=1, Solved=0, User_id=ticket.Agent_ID)
+        db.session.add(agent_table)
     else:
         agent_summary.All_tickets += 1
         agent_summary.Assigned += 1
-    agent_summary.Pendings -= 1
-    agent_summary.Assigned += 1
     db.session.commit()
 
 

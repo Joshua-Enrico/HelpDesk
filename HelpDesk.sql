@@ -47,6 +47,33 @@ LOCK TABLES `agent__tickets__summary` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `chathistory`
+--
+
+DROP TABLE IF EXISTS `chathistory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `chathistory` (
+  `id` varchar(60) NOT NULL,
+  `Ticket_id` varchar(60) DEFAULT NULL,
+  `Agent_ID` varchar(60) DEFAULT NULL,
+  `User_ID` varchar(60) DEFAULT NULL,
+  `message` text,
+  `DateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `chathistory`
+--
+
+LOCK TABLES `chathistory` WRITE;
+/*!40000 ALTER TABLE `chathistory` DISABLE KEYS */;
+/*!40000 ALTER TABLE `chathistory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `reviews`
 --
 
@@ -101,6 +128,10 @@ CREATE TABLE `tickets` (
 -- Dumping data for table `tickets`
 --
 
+LOCK TABLES `tickets` WRITE;
+/*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tickets__summary`
@@ -125,25 +156,10 @@ CREATE TABLE `tickets__summary` (
 -- Dumping data for table `tickets__summary`
 --
 
-
-
---
--- Table structure for table `chathistory`
---
-
-DROP TABLE IF EXISTS `chathistory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `chathistory` (
-  `id` varchar(60) NOT NULL,
-  `Ticket_id` varchar(60) DEFAULT NULL,
-  `Agent_ID` varchar(60) DEFAULT NULL,
-  `User_ID` varchar(60) DEFAULT NULL,
-  `message` text DEFAULT NULL,
-  `DateTime` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `tickets__summary` WRITE;
+/*!40000 ALTER TABLE `tickets__summary` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tickets__summary` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `time__access`
@@ -173,7 +189,7 @@ CREATE TABLE `time__access` (
 
 LOCK TABLES `time__access` WRITE;
 /*!40000 ALTER TABLE `time__access` DISABLE KEYS */;
-INSERT INTO `time__access` VALUES ('45a77e20-f44f-413c-b6e6-943cc2b703a7','29729e77-05e1-4356-b48a-ae3ec4a44f47','2021-10-14 00:00:00','2022-12-31 00:00:00', '2021-10-14 20:59:16', '2021-10-14 20:59:16','2021-10-14 20:51:36','2021-10-14 20:51:36');
+INSERT INTO `time__access` VALUES ('35df7a1d-b933-495b-b8b6-ccdee2788f57','89e0df05-b184-4f94-a96b-59aae59c3d57','2021-10-26 00:00:00','2021-10-31 00:00:00','2021-10-26 17:03:52','2021-10-26 17:03:52','2021-10-26 17:03:52','2021-10-26 17:03:52'),('45a77e20-f44f-413c-b6e6-943cc2b703a7','29729e77-05e1-4356-b48a-ae3ec4a44f47','2021-10-14 00:00:00','2022-12-31 00:00:00','2021-10-14 20:59:16','2021-10-26 17:02:49','2021-10-14 20:51:36','2021-10-14 20:51:36'),('782a5987-5bb2-4761-ac21-fef54e8e9c22','a065bd83-0777-497c-823d-7ebee7a17d55','2021-10-26 00:00:00','2021-10-31 00:00:00','2021-10-26 17:03:18','2021-10-26 17:03:18','2021-10-26 17:03:18','2021-10-26 17:03:18');
 /*!40000 ALTER TABLE `time__access` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,6 +219,10 @@ CREATE TABLE `user__tickets__summary` (
 -- Dumping data for table `user__tickets__summary`
 --
 
+LOCK TABLES `user__tickets__summary` WRITE;
+/*!40000 ALTER TABLE `user__tickets__summary` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user__tickets__summary` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -237,7 +257,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('29729e77-05e1-4356-b48a-ae3ec4a44f47','Admin','Admin','Admin','tmrfack@gmail.com','sha256$7dvrKr3kKi7R3CTO$cf28d6a26fc2536e3bf23956f31803891ff212cd96327adf44012b9b06b26491','Administrador','Sistemas','Activo',NULL,'2021-10-14 20:51:36','2021-10-14 20:51:36');
+INSERT INTO `users` VALUES ('29729e77-05e1-4356-b48a-ae3ec4a44f47','Admin','Admin','Admin','tmrfack@gmail.com','sha256$7dvrKr3kKi7R3CTO$cf28d6a26fc2536e3bf23956f31803891ff212cd96327adf44012b9b06b26491','Administrador','Sistemas','Activo',NULL,'2021-10-14 20:51:36','2021-10-14 20:51:36'),('89e0df05-b184-4f94-a96b-59aae59c3d57','usuariodesk','Martinez','Perez','hello@3213.com','sha256$K4L2goPfae4MSG9T$5cbd8c011691ebf7218db4d9c01a8d95bef79b25f432f0c65c37fa3a3264eb65','Agente Helpdesk','Administracion','Activo',NULL,'2021-10-26 17:03:52','2021-10-26 17:03:52'),('a065bd83-0777-497c-823d-7ebee7a17d55','usuario','Jorge','Martinez','hello@321.com','sha256$YBTY3q7RhALMz9uR$c91839f993ebc9ae38303e8143cfe44f7bf5b6f1b29d3b1ed72b3c2a57017867','Usuario','Finanzas','Activo',NULL,'2021-10-26 17:03:18','2021-10-26 17:03:18');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -278,4 +298,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-14 19:27:48
+-- Dump completed on 2021-10-26 12:04:11
