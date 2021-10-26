@@ -136,3 +136,12 @@ def create_tickets():
         db.session.commit()
 
     return jsonify({'id': New_Ticket.id}), 201
+
+
+@app_views.route('/admin/tickets/summary', methods=['GET'], strict_slashes=False)
+@isadmin
+def get_ticket():
+    new_dic = []
+    objs = Tickets_Summary.query.all()
+    new_dic.append(objs.to_dict())
+    return jsonify(new_dic)

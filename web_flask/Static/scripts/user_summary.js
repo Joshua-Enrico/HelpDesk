@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    console.log($('#token').val())
     const User_id = ($(this).find('.container').data("id"));
     $.ajax({
         type: 'GET',
