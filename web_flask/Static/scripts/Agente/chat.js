@@ -5,8 +5,8 @@ $(document).ready(function () {
     var Agent_names = ($(this).find('.agent_id').attr("nombre"))
     var ticket_id = ($(this).find('.ticket_id').attr("ticket_id"))
     const socket = io.connect('http://localhost:5000/private')
-    socket.emit('username', Agent_id)
-    socket.on('private_chat', function (msg) {
+    socket.emit('ticket_agent', ticket_id)
+    socket.on(ticket_id, function (msg) {
       $('#messages').append('<article class="message is-info"><div class="message-header"><p>'+ User_names + '</p></div><div class="message-body">' + msg + '</div></article>')
     });
     $('#send').on('click', function () {
