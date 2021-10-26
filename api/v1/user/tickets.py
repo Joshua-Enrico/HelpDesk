@@ -103,7 +103,6 @@ def create_user_ticket():
         ('Description', 'Descripción')
     ]
 
-    print(data)
     errors = {}
     for attr in required:
         if not data.get(attr[0]):
@@ -125,19 +124,18 @@ def create_user_ticket():
     user_time_access.Last_activity = datetime.utcnow()
     summary = User_Tickets_Summary.query.filter_by(User_id=user.get('id')).first()
     all_summary = Tickets_Summary.query.first()
-    print(all_summary)
-    if (all_summary == None):
-        obj = Tickets_Summary(All_tickets=0, Pendings=0, Solved=0, Assigned=0)
-        db.session.add(obj)
-        db.session.commit()
 
     if (summary == None):
         User_Summary =  User_Tickets_Summary(All_tickets=1, Pendings=1, Assigned=0, Solved=0, User_id=user.get('id'))
         db.session.add(User_Summary)
 
         """ updating all summary """
-        all_summary.All_tickets += 1
-        all_summary.Pendings += 1
+        try:
+            all_summary.All_tickets += 1
+            all_summary.Pendings += 1
+        except AttributeError:
+            all_summary = Tickets_Summary(All_tickets=1, Pendings=1, Solved=0, Assigned=0)
+            db.session.add(all_summary)
         all_summary.UpdateTime = datetime.now()
         db.session.commit()
     else:
