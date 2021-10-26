@@ -12,6 +12,10 @@ from web_flask.models import db
 from web_flask.models.user import Users
 from sqlalchemy import func
 import json
+from web_flask.models.user_tickets_summary import User_Tickets_Summary
+from web_flask.models.tickets_summary import Tickets_Summary
+from web_flask.models.agent_tickets_summary import Agent_Tickets_Summary
+
 from ..middlewares.isagent import isagent
 
 
@@ -84,5 +88,31 @@ def update_agent_ticket(ticket_id):
     ticket.Status = 1
     ticket.Agent_ID = agent_id
     db.session.commit()
+
+
+
+    """ Updating users activity """
+    agent_time_access = Time_Access.query.filter_by(User_id=ticket.Agent_ID).first()
+    agent_time_access.Last_activity = datetime.utcnow()
+
+
+    user_sumamry = User_Tickets_Summary.query.filter_by(User_id=ticket.User_ID).first()
+    agent_summary = Agent_Tickets_Summary.query.filter_by(User_id=ticket.Agent_ID).first()
+    all_summary = Tickets_Summary.query.first()
+
+
+    user_sumamry.Pendings -= 1
+    user_sumamry.Assigned += 1
+    if(agent_summary == None):
+        agnet_table =  Agent_Tickets_Summary(All_tickets=1, Pendings=0, Assigned=1, Solved=0, User_id=ticket.Agent_ID)
+        db.session.add(agnet_table)
+    else:
+        agent_summary.All_tickets += 1
+        agent_summary.Assigned += 1
+    agent_summary.Pendings -= 1
+    agent_summary.Assigned += 1
+    db.session.commit()
+
+
 
     return jsonify({'id': ticket_id}), 200
