@@ -16,13 +16,14 @@
 
 {% block header %}
 <div class="hero">
-  <p class="panel-heading ">
-    Dashboard Admin
+  <p class="panel-heading" data-id='{{ User_id }}'>
+    Dashboard
   </p>
   <div class="panel-heading is-right">
-    <a class="button is-rounded is-outlined is-link">Completados Hoy: 5</a>
-    <a class="button is-rounded is-outlined is-danger">Pendientes: 2</a>
-    <a class="button is-rounded is-outlined is-info">Sin asignar: 2</a>
+    <a name='Complete' class="button is-rounded is-outlined is-link">Todos: 0</a>
+    <a name='Pending' class="button is-rounded is-outlined is-danger">Pendientes: 0</a>
+    <a name='Asigned' class="button is-rounded is-outlined is-info">Asignados: 0</a>
+    <a name='Solved'class="button is-rounded is-outlined is-success">Resueltos: 0</a>
   </div>
 </div>
 {% endblock %}

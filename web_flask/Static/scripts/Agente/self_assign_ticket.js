@@ -1,6 +1,5 @@
 $(document).ready(function () {
     const ticketID = $('#ticket_id').val()
-    console.log(ticketID)
 
     $('#asign_ticket').submit(function (e) {
         e.preventDefault();
@@ -11,7 +10,6 @@ $(document).ready(function () {
         Object.keys(form).forEach(key => {
             $(`#err-${key}`).html('')
         })
-        console.log(form)
         $.ajax({
             type: 'PUT',
             data: JSON.stringify(form),

@@ -17,7 +17,6 @@ def signup_validations():
             return render_template('signup.html', form=form, email_in_use='El Correo Ingresado Ye exite')
 
         if(user_id):
-            print(user_id)
             if (user_id.Used != 'used'):
                 unique_id =  Workers_ids(User_id=form.user_id.data, Used='used')
             else:
@@ -29,7 +28,6 @@ def signup_validations():
 
         link = url_for('confirmed', token=token, user_id=form.user_id.data, _external=True)
         message = '\nTu link de confirmacion es: {}'.format(link)
-        print(message)
         server = smtplib.SMTP("smtp.gmail.com",587)
         server.starttls()
         server.login("helpdesk.notificacions@gmail.com", "vwwgjfvxxlwseqlz")

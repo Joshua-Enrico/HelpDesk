@@ -36,7 +36,6 @@ $('#submitButton').attr("disabled", "disabled");
             'Rol': Rol,
             'Estado': Status,
         }
-        console.log(form)
         $.ajax({
             type: 'PUT',
             data: JSON.stringify(form),
@@ -45,7 +44,6 @@ $('#submitButton').attr("disabled", "disabled");
             contentType: 'application/json; charset=utf-8',
             success: data => {
                 result = data;
-                console.log(result);
                 $("p[name=User_exists]").text(result.User_Exists);
                 if(result.User_Exists != ''){
                     $("input[name=username]").addClass("is-invalid");

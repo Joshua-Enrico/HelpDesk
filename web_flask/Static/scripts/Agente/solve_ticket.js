@@ -1,6 +1,5 @@
 $(document).ready(function () {
     const ticketID = $('#ticket_id').val()
-    console.log('Connected!!!')
 
     $('#solve_ticket').submit(function (e) {
         e.preventDefault();

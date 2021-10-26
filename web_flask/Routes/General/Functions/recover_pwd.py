@@ -11,7 +11,6 @@ import smtplib
 def recover_validations():
     form = recover()
     if form.validate_on_submit():
-        print(form.email.data)
         user = Users.query.filter_by(Email=form.email.data).first()
         if (user == None):
             return render_template('General/recover_account.html', form=form, wrong_email='El Correo No Existe')
@@ -20,7 +19,6 @@ def recover_validations():
 
         link = url_for('recover_account', token=token, Email=form.email.data , password=hashed_paswrd,  _external=True)
         message = '\nTu link de confirmacion es:  {}'.format(link)
-        print(message)
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
         server.login("helpdesk.notificacions@gmail.com", "vwwgjfvxxlwseqlz")

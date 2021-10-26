@@ -9,7 +9,6 @@ def confirmed_func(token, user_id):
 
         link = url_for('confirmed', token=token, user_id=user_id, _external=True)
         message = '\nTu link de confirmacion es: {}'.format(link)
-        print(message)
         server = smtplib.SMTP("smtp.gmail.com",587)
         server.starttls()
         server.login("helpdesk.notificacions@gmail.com", "vwwgjfvxxlwseqlz")

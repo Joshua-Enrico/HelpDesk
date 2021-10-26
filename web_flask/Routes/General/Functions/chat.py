@@ -13,7 +13,6 @@ def handleMessage(ticket_id):
         ticket_user[ticket_id].append(request.sid)
     except KeyError:
         ticket_user[ticket_id] = [request.sid]
-    print(ticket_user)
 
 @socketio.on('ticket_agent', namespace='/private')
 def handleMessage(ticket_id):
@@ -21,7 +20,6 @@ def handleMessage(ticket_id):
         ticket_agent[ticket_id].append(request.sid)
     except KeyError:
         ticket_agent[ticket_id] = [request.sid]
-    print(ticket_agent)
 
 
 @socketio.on('message', namespace='/private')
@@ -55,7 +53,6 @@ def handleMessage_agent(msg):
 
 @socketio.on('disconnect', namespace='/private')
 def disconnect():
-    print('desconectado')
     key_to_del = ''
     flag_user = 0
     flag_agent = 0
@@ -82,7 +79,4 @@ def disconnect():
     if flag_agent == 1:
         del ticket_agent[key_to_del]
 
-    print('list de usuario')
-    print(ticket_user)
-    print('lista de agente')
-    print(ticket_agent)
+

@@ -45,9 +45,7 @@ def create_user():
         if(Email):
             flag = 1
             Email_Exist = 'El Correo Ya Existe'
-        print(form['Desde'])
         if (form['Password'] != form['Confirmed_Password']):
-            print("diferent")
             flag = 1
             Not_equal='Las contraseñas no son iguales'
         if(form['Desde'] == '' or form['Hasta'] == ''):
@@ -56,7 +54,6 @@ def create_user():
         if(form['Desde'] != '' and form['Hasta'] != ''):
             now = current.date.today()
             date_time_obj = datetime.strptime(form['Desde'], '%Y-%m-%d').date()
-            print(type(date_time_obj))
             if (date_time_obj < now):
                 flag = 1
                 Wrong_date='Las Fechas tienen que ser mayor a la actual'
@@ -99,7 +96,6 @@ def create_user():
         db.session.add(new_user)
         db.session.add(Access_Time)
         db.session.commit()
-        print(new_user.id)
         return jsonify(
             complete='Usuario Creado Corectamente',
             Wrong_date=Wrong_date,
