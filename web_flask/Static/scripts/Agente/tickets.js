@@ -74,10 +74,16 @@ function renderTickets(tickets, page, per_page) {
                                 <a href="/agent/tickets/${el.id}" class="dropdown-item">
                                     Ver
                                 </a>
+                                ${(el.Status == 1)?
+                                    `<a href="/agent/tickets/${el.id}/solve" class="dropdown-item">
+                                        Marcar resuelto
+                                    </a>`: ''
+                                }
                                 ${(el.Status == 0 || el.Status == null)?
                                     `<a href="/agent/assign-ticket/${el.id}" class="dropdown-item">
                                         Tomar ticket
-                                    </a>`: ''}
+                                    </a>`: ''
+                                }
                             </div>
                         </div>
                     </div>

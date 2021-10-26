@@ -1,0 +1,140 @@
+{% extends "base/basic_template_Usuario.html" %}
+
+{% block cssimport %}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
+{% endblock %}
+
+{% block title %}Ticket #000{% endblock %}
+
+{% block header %}
+<div class="hero">
+  <p class="panel-heading ">
+  Ticket #000
+  </p>
+
+</div>
+{% endblock %}
+
+{% block main %}
+
+<input type="hidden" id="token" name="token" value="{{ token }}">
+<input type="hidden" id="ticket_id" name="ticket_id" value="{{ ticket.id }}">
+
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="section">
+      <div class="columns is-centered">
+        <div class="card">
+          <header class="card-header">
+            <!-- Problema -->
+            <p class="card-header-title">
+              {{ ticket.Subject }}
+            </p>
+            <button class="card-header-icon btn-hide" aria-label="more options">
+              <span class="icon">
+                <i class="fas fa-angle-up" aria-hidden="true"></i>
+                <i class="fas fa-angle-down is-hidden" aria-hidden="true"></i>
+              </span>
+            </button>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <div class="columns is-size-7 ">
+                <div class="column">
+                  <div class="columns is-gapless">
+                    <!-- Reporte -->
+                    <div class="column">
+                      Reportado por:
+                    </div>
+                    <div class="column">
+                      <strong>{{ owner.Nombre }} {{ owner.Apellido }}</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="column ">
+                  <div class="columns is-gapless">
+                    <!-- Responsable -->
+                    <div class="column">
+                      Asignado a:
+                    </div>
+                    <div class="column">
+                      <strong>{{ agent.Nombre | default('---') }} {{ agent.Apellido }}</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="columns is-size-7">
+                <div class="column ">
+                  <div class="columns is-gapless">
+                    <div class="column">
+                      Creado el:
+                    </div>
+                    <div class="column">
+                      <strong>{{ ticket.DateTime }}</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="column ">
+                  <div class="columns is-gapless">
+                    <div class="column">
+                      Actualizado el:
+                    </div>
+                    <div class="column">
+                      <strong>{{ ticket.UpdateTime }}</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dropboxes -->
+              <div class="box has-background-link">
+                <div class="columns">
+                  <div class="column">
+                    <div class="field">
+                      <label class="label is-size-7 has-text-primary-light">Estado</label>
+                      <p class="control">
+                        <span class="select open_modal">
+                          {{ {
+                            0:'No Asignado',
+                            1:'Asignado',
+                            2:'Completado'
+                          }[ticket.Status] | default('---')
+                        }}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="column">
+                    <div class="field">
+                      <label class="label is-size-7 has-text-primary-light">Prioridad</label>
+                      <p class="control">
+                        <input class="input" type="text" value="Alta" readonly>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Dropboxes Fin -->
+
+              <form id='solve_ticket' class="box form_ticket">
+                <button class="button is-large is-link m-auto">Marcar como resuelto</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Modal -->
+
+{% endblock %}
+
+{% block jsimport %}
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/hidde_button.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/Agente/solve_ticket.js') }}"></script>
+{% endblock %}

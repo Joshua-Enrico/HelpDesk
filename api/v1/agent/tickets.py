@@ -52,7 +52,7 @@ def agent_ticket(ticket_id):
     return jsonify(ticket.to_dict())
 
 
-@app_views.route('/agent/tickets/<ticket_id>/solved', methods=['PUT'], strict_slashes=False)
+@app_views.route('/agent/tickets/<ticket_id>/solve', methods=['PUT'], strict_slashes=False)
 @isagent
 def solve_ticket(ticket_id):
     user = request.environ.get('user', {})
