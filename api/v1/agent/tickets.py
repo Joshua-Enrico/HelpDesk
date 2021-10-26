@@ -67,6 +67,25 @@ def solve_ticket(ticket_id):
     ticket.Status = 2
     db.session.commit()
 
+
+    """ Actualizando summarys   """
+    """ Updating users activity """
+    agent_time_access = Time_Access.query.filter_by(User_id=ticket.Agent_ID).first()
+    agent_time_access.Last_activity = datetime.utcnow()
+
+
+    user_sumamry = User_Tickets_Summary.query.filter_by(User_id=ticket.User_ID).first()
+    agent_summary = Agent_Tickets_Summary.query.filter_by(User_id=ticket.Agent_ID).first()
+    all_summary = Tickets_Summary.query.first()
+
+    user_sumamry.Assigned -= 1
+    user_sumamry.Solved += 1
+    agent_summary.Assigned -= 1
+    agent_summary.Solved += 1
+    all_summary.Assigned -= 1
+    all_summary.Solved += 1
+    db.session.commit()
+
     return jsonify({'id': ticket_id}), 200
 
 
