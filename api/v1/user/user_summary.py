@@ -15,3 +15,5 @@ def get_user_summary(User_id):
     objs = User_Tickets_Summary.query.filter_by(User_id=User_id).first()
     new_dic.append(objs.to_dict())
     return jsonify(new_dic)
+
+

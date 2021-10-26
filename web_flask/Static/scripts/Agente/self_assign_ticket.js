@@ -11,7 +11,7 @@ $(document).ready(function () {
         Object.keys(form).forEach(key => {
             $(`#err-${key}`).html('')
         })
-
+        console.log(form)
         $.ajax({
             type: 'PUT',
             data: JSON.stringify(form),

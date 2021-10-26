@@ -108,6 +108,16 @@ def user_profile_admin():
             flag = 2
             User_time_acces.To = form['To']
 
+        if(form['Area'] != ''):
+            flag = 2
+            Update_user.Area = form['Area']
+        if(form['Estado'] != '' ):
+            flag = 2
+            Update_user.Estado = form['Estado']
+        if(form['Rol'] != ''):
+            flag = 2
+            Update_user.Rol = form['Rol']
+
         if(form['Username'] != ''):
             validate = Users.query.filter_by(Username=form['Username']).first()
             if(validate):

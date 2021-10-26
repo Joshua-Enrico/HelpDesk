@@ -8,7 +8,7 @@
   crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
 <link rel="stylesheet" href="{{url_for('.static', filename='user_tickets.css')}}">
-<script type="text/javascript" src="{{url_for('.static', filename='scripts/user_summary.js')}}"></script>
+<script type="text/javascript" src="{{url_for('.static', filename='scripts/Admin/summary.js')}}"></script>
 <script type="text/javascript" src="{{url_for('.static', filename='scripts/tickets.js')}}"></script>
 {% endblock %}
 
@@ -31,8 +31,8 @@
 
 
 <section class="hero is-link">
+  <!-- Tabs horizontales 
   <div class="hero-body">
-    <!-- Tabs horizontales -->
     <div class="tabs is-boxed has-text-black-bis is-size-5 ">
       <ul>
         <li class="is-active" data-target="search">
@@ -43,15 +43,13 @@
         </li>
       </ul>
     </div>
-    <!-- Tabs horizontales fin -->
 
-    <!-- Este contenido es un ejemplo de la funcionalidad del file js/tabs.js
-    En este caso todo el contenido es cargado a la web pero ocultado excepto
-    por el contenido con el tag "is-active"  -->
+
+
     <div class="px-2" id="tab-content">
       <div id="search">
         <div class="box">
-          <!-- Filtros -->
+
           <div class="field has-addons">
             <div class="control is-expanded">
               <input class="input" type="text" placeholder="Buscar usuario">
@@ -62,7 +60,7 @@
               </a>
             </div>
           </div>
-          <!-- Dropbox de Busqueda -->
+
           <div class="columns">
             <div class="column">
               <div class="field">
@@ -96,82 +94,84 @@
             </div>
 
           </div>
-          <!-- Dropbox de Busqueda Fin -->
+           
 
 
-          <!-- Filtros Fin -->
+
         </div>
-      </div>
+        
+  </div>
+  Dropbox de Busqueda Fin -->
 
-      <div  id="edit" class="is-hidden">
-        <div class="columns">
-          <div class="column">
-            <div class="field">
-              <label class="label has-text-white">Cambiar Estado de la tarea</label>
-              <div class="control">
-                <div class="select">
-                  <select>
-                    <option>Acciones</option>
-                    <option>Asignado</option>
-                    <option>No Asignado</option>
-                    <option>Completado</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="control">
-              <a class="button is-info">
-                Aplicar
-              </a>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="field">
-              <label class="label has-text-white">Personal Asignado</label>
-              <div class="control">
-                <div class="select">
-                  <select>
-                    <option>Nombre A</option>
-                    <option>Nombre B</option>
-                    <option>Nombre C</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="control">
-              <a class="button is-info">
-                Aplicar
-              </a>
-            </div>
-          </div>
-          <div class="column">
-            <div class="field">
-              <label class="label has-text-white">Area de la tarea</label>
-              <div class="control">
-                <div class="select">
-                  <select>
-                    <option>Administracion</option>
-                    <option>Marketing</option>
-                    <option>Finanzas</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="control">
-              <a class="button is-info">
-                Aplicar
-              </a>
+  <div id="edit" class="is-hidden">
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <label class="label has-text-white">Cambiar Estado de la tarea</label>
+          <div class="control">
+            <div class="select">
+              <select>
+                <option>Acciones</option>
+                <option>Asignado</option>
+                <option>No Asignado</option>
+                <option>Completado</option>
+              </select>
             </div>
           </div>
         </div>
-
-
+        <div class="control">
+          <a class="button is-info">
+            Aplicar
+          </a>
+        </div>
       </div>
 
-
+      <div class="column">
+        <div class="field">
+          <label class="label has-text-white">Personal Asignado</label>
+          <div class="control">
+            <div class="select">
+              <select>
+                <option>Nombre A</option>
+                <option>Nombre B</option>
+                <option>Nombre C</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="control">
+          <a class="button is-info">
+            Aplicar
+          </a>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field">
+          <label class="label has-text-white">Area de la tarea</label>
+          <div class="control">
+            <div class="select">
+              <select>
+                <option>Administracion</option>
+                <option>Marketing</option>
+                <option>Finanzas</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="control">
+          <a class="button is-info">
+            Aplicar
+          </a>
+        </div>
+      </div>
     </div>
-    <!-- Fin Ejemplo -->
+
+
+  </div>
+
+
+  </div>
+  <!-- Fin Ejemplo -->
 
 
   </div>
@@ -224,18 +224,14 @@
                   <th>
                     <button class="card-header-icon" aria-label="more options">
                       <span class="icon">
-                        <i class="fas fa-angle-up"></i>
                         <strong>Estado</strong>
-                        <i class="fas fa-angle-down"></i>
                       </span>
                     </button>
                   </th>
                   <th>
                     <button class="card-header-icon" aria-label="more options">
                       <span class="icon">
-                        <i class="fas fa-angle-up"></i>
                         <strong>Titulo</strong>
-                        <i class="fas fa-angle-down"></i>
                       </span>
                     </button>
                   </th>
@@ -243,35 +239,29 @@
                   <th>
                     <button class="card-header-icon" aria-label="more options">
                       <span class="icon">
-                        <i class="fas fa-angle-up"></i>
                         <strong>Personal Asignado</strong>
-                        <i class="fas fa-angle-down"></i>
                       </span>
                     </button>
                   </th>
                   <th>
                     <button class="card-header-icon" aria-label="more options">
                       <span class="icon">
-                        <i class="fas fa-angle-up"></i>
                         <strong>Area</strong>
-                        <i class="fas fa-angle-down"></i>
                       </span>
                     </button>
                   </th>
                   <th>
                     <button class="card-header-icon" aria-label="more options">
                       <span class="icon">
-                        <i class="fas fa-angle-up"></i>
                         <strong>Fecha</strong>
-                        <i class="fas fa-angle-down"></i>
                       </span>
                     </button>
                   </th>
                   <th><button class="card-header-icon is-static" aria-label="more options">
-                    <span class="icon">
-                      <strong>Accion</strong>
-                    </span>
-                  </button></th>
+                      <span class="icon">
+                        <strong>Accion</strong>
+                      </span>
+                    </button></th>
                 </tr>
               </tfoot>
 
@@ -313,35 +303,29 @@
                   <th>
                     <button class="card-header-icon" aria-label="more options">
                       <span class="icon">
-                        <i class="fas fa-angle-up"></i>
                         <strong>Personal Asignado</strong>
-                        <i class="fas fa-angle-down"></i>
                       </span>
                     </button>
                   </th>
                   <th>
                     <button class="card-header-icon" aria-label="more options">
                       <span class="icon">
-                        <i class="fas fa-angle-up"></i>
                         <strong>Area</strong>
-                        <i class="fas fa-angle-down"></i>
                       </span>
                     </button>
                   </th>
                   <th>
                     <button class="card-header-icon" aria-label="more options">
                       <span class="icon">
-                        <i class="fas fa-angle-up"></i>
                         <strong>Fecha</strong>
-                        <i class="fas fa-angle-down"></i>
                       </span>
                     </button>
                   </th>
                   <th><button class="card-header-icon is-static" aria-label="more options">
-                    <span class="icon">
-                      <strong>Accion</strong>
-                    </span>
-                  </button></th>
+                      <span class="icon">
+                        <strong>Accion</strong>
+                      </span>
+                    </button></th>
                 </tr>
 
                 <tr>

@@ -120,4 +120,34 @@ def create_user_ticket():
     db.session.add(newticket)
     db.session.commit()
 
+    """ Actualizando actividad de usuario y tablas de resumen  """
+    user_time_access = Time_Access.query.filter_by(User_id=user.get('id')).first()
+    user_time_access.Last_activity = datetime.utcnow()
+    summary = User_Tickets_Summary.query.filter_by(User_id=user.get('id')).first()
+    all_summary = Tickets_Summary.query.first()
+    if (all_summary == None):
+        obj = Tickets_Summary(All_tickets=0, Pendings=0, Solved=0, Assigned=0)
+        db.session.add(obj)
+        db.session.commit()
+
+    if (summary == None):
+        User_Summary =  User_Tickets_Summary(All_tickets=1, Pendings=1, Assigned=0, Solved=0, User_id=user.get('id'))
+        db.session.add(User_Summary)
+
+        """ updating all summary """
+        all_summary.All_tickets += 1
+        all_summary.Pendings += 1
+        all_summary.UpdateTime = datetime.now()
+        db.session.commit()
+    else:
+        """ updating user summary table """
+        summary.All_tickets +=  1
+        summary.Pendings +=  1
+        summary.UpdateTime = datetime.now()
+        """ updating all summary table """
+        all_summary.All_tickets += 1
+        all_summary.Pendings += 1
+        all_summary.UpdateTime = datetime.now()
+        db.session.commit()
+
     return jsonify({'id': newticket.id}), 200

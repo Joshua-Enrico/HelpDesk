@@ -62,16 +62,42 @@
                       <div name='Last-Activity' class="text-muted"><small>Ultima Actividad el {{ Time_Access.Last_activity }} horas</small></div>
                     </div>
                     <div class="text-center text-sm-right">
-                      <span name='user_rol' class="badge badge-secondary">Rol: {{ User_data.Rol }}</span>
-                      <span name='user_Area' class="badge badge-secondary">Area: {{ User_data.Area }}</span>
                       <div name='from' class="text-muted"><small>Modificado El  {{ User_data.UpdateTime }}</small></div>
                       <div name='from' class="text-muted"><small>Creado El  {{ User_data.DateTime }}</small></div>
                     </div>
-
                   </div>
                 </div>
                 <ul class="nav nav-tabs">
-                  <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                  <div class="control">
+                    <div class="select">
+                      <select name='ROL'>
+                        <option hidden value="">Rol: {{ User_data.Rol }}</option>
+                        <option>Administrador</option>
+                        <option>Agente Helpdesk</option>
+                        <option>Usuario</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="control">
+                    <div class="select">
+                      <select name='Area'>
+                        <option hidden value="">Area: {{ User_data.Area }}</option>
+                        <option>Sistemas</option>
+                        <option>Administracion</option>
+                        <option>Logistica</option>
+                        <option>Marketing</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="control">
+                    <div class="select">
+                      <select name='Status'>
+                        <option hidden value="">Status: {{ User_data.Estado }}</option>
+                        <option>Activo</option>
+                        <option>Desabilidato</option>
+                      </select>
+                    </div>
+                  </div>
                 </ul>
                 <div class="tab-content pt-3">
                   <div class="tab-pane active">

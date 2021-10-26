@@ -26,6 +26,7 @@ CREATE TABLE `agent__tickets__summary` (
   `id` varchar(60) NOT NULL,
   `All_tickets` int DEFAULT NULL,
   `Pendings` int DEFAULT NULL,
+  `Assigned` int DEFAULT NULL,
   `Solved` int DEFAULT NULL,
   `User_id` varchar(60) DEFAULT NULL,
   `DateTime` datetime DEFAULT NULL,
@@ -100,11 +101,6 @@ CREATE TABLE `tickets` (
 -- Dumping data for table `tickets`
 --
 
-LOCK TABLES `tickets` WRITE;
-/*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
-INSERT INTO `tickets` VALUES ('c262f8c6-7eb7-4ae5-9da8-ef2ba6a58940',NULL,'29729e77-05e1-4356-b48a-ae3ec4a44f47','testing','1231','Hardware','Recursos Humanos',NULL,NULL,'2021-10-14 20:58:11','2021-10-14 20:58:11'),('e5a2a62c-dbca-4fd4-81fa-f913559b948c',NULL,'29729e77-05e1-4356-b48a-ae3ec4a44f47','testing','123123','Hardware','Recursos Humanos',NULL,NULL,'2021-10-15 00:19:59','2021-10-15 00:19:59');
-/*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `tickets__summary`
@@ -129,11 +125,7 @@ CREATE TABLE `tickets__summary` (
 -- Dumping data for table `tickets__summary`
 --
 
-LOCK TABLES `tickets__summary` WRITE;
-/*!40000 ALTER TABLE `tickets__summary` DISABLE KEYS */;
-INSERT INTO `tickets__summary` VALUES ('260efc5e-527d-4dac-bb97-e08269220754',1,1,0,0,'2021-10-14 20:58:11','2021-10-14 19:19:59');
-/*!40000 ALTER TABLE `tickets__summary` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
 -- Table structure for table `chathistory`
@@ -181,7 +173,7 @@ CREATE TABLE `time__access` (
 
 LOCK TABLES `time__access` WRITE;
 /*!40000 ALTER TABLE `time__access` DISABLE KEYS */;
-INSERT INTO `time__access` VALUES ('1fcdc39e-751f-425d-aad9-48c910343122','8a9d44ff-6629-441d-b812-0b476f28faad','2021-10-14 00:00:00','2021-10-14 00:00:00','2021-10-14 20:59:16', '2021-10-14 20:59:16', '2021-10-14 20:59:16', '2021-10-14 20:59:16'),('45a77e20-f44f-413c-b6e6-943cc2b703a7','29729e77-05e1-4356-b48a-ae3ec4a44f47','2021-10-14 00:00:00','2022-12-31 00:00:00', '2021-10-14 20:59:16', '2021-10-14 20:59:16','2021-10-14 20:51:36','2021-10-14 20:51:36'),('8c8b7c70-706f-47a8-bcea-991fa5688c3f','213e294e-8e9c-4c8d-98a8-52faecc357ad','2021-10-14 00:00:00','2021-10-14 00:00:00', '2021-10-14 20:59:16', '2021-10-14 20:59:16', '2021-10-14 21:13:01','2021-10-14 21:13:01'),('e8f88d67-3688-4f17-95c7-21b6f942998b','2cc76cbe-7e44-4e96-8038-307d2c9b6ce8','2021-10-07 00:00:00','2021-10-13 00:00:00', '2021-10-14 20:59:16', '2021-10-14 20:59:16', '2021-10-14 21:52:31','2021-10-14 21:52:31');
+INSERT INTO `time__access` VALUES ('45a77e20-f44f-413c-b6e6-943cc2b703a7','29729e77-05e1-4356-b48a-ae3ec4a44f47','2021-10-14 00:00:00','2022-12-31 00:00:00', '2021-10-14 20:59:16', '2021-10-14 20:59:16','2021-10-14 20:51:36','2021-10-14 20:51:36');
 /*!40000 ALTER TABLE `time__access` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,11 +203,6 @@ CREATE TABLE `user__tickets__summary` (
 -- Dumping data for table `user__tickets__summary`
 --
 
-LOCK TABLES `user__tickets__summary` WRITE;
-/*!40000 ALTER TABLE `user__tickets__summary` DISABLE KEYS */;
-INSERT INTO `user__tickets__summary` VALUES ('35f520eb-4590-4895-9ce0-196df60cada5',1,1,0,0,'29729e77-05e1-4356-b48a-ae3ec4a44f47','2021-10-15 00:19:59','2021-10-15 00:19:59');
-/*!40000 ALTER TABLE `user__tickets__summary` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -250,7 +237,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('213e294e-8e9c-4c8d-98a8-52faecc357ad','user','user','user','jibome3847@specialistblog.com','sha256$QQ0JGLAsmu11voYe$8876cb4f714d471985fdfc56349dcb00654bb8a1b3d467c4c6e12431946a8d8f','Usuario','Recursos Humanos','Activo',NULL,'2021-10-14 21:13:01','2021-10-14 21:13:01'),('29729e77-05e1-4356-b48a-ae3ec4a44f47','Admin','Admin','Admin','tmrfack@gmail.com','sha256$7dvrKr3kKi7R3CTO$cf28d6a26fc2536e3bf23956f31803891ff212cd96327adf44012b9b06b26491','Administrador','Sistemas','Activo',NULL,'2021-10-14 20:51:36','2021-10-14 20:51:36'),('2cc76cbe-7e44-4e96-8038-307d2c9b6ce8','user1','user1','user1','gokav32860@wawue.com','sha256$4PPDLXSu8KWxlpOC$a5292912bd768370bde8f906cf27693a653756c8858048052c88513a1497cedd','Usuario','Recursos Humanos','Activo',NULL,'2021-10-14 21:52:31','2021-10-14 21:52:31'),('8a9d44ff-6629-441d-b812-0b476f28faad','Admin1','joshua','enrico','joshuaenrico123@gmail.com','sha256$qjDFIlxSm9zLBr7w$7c9f0c34ad403d457fa4b9be987c2b54d6e3b7eec7d7180cdd9b9e20d8750d18','Usuario','Recursos Humanos','Activo',NULL,'2021-10-14 20:59:16','2021-10-14 20:59:16');
+INSERT INTO `users` VALUES ('29729e77-05e1-4356-b48a-ae3ec4a44f47','Admin','Admin','Admin','tmrfack@gmail.com','sha256$7dvrKr3kKi7R3CTO$cf28d6a26fc2536e3bf23956f31803891ff212cd96327adf44012b9b06b26491','Administrador','Sistemas','Activo',NULL,'2021-10-14 20:51:36','2021-10-14 20:51:36');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 

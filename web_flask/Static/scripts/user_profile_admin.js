@@ -17,6 +17,9 @@ $('#submitButton').attr("disabled", "disabled");
         event.stopImmediatePropagation();
         var Nombre = $("input[name=name]").val()
         var Apellido = $("input[name=Apellido_Usuario]").val();
+        var Area = $("select[name=Area]").val();
+        var Rol = $("select[name=ROL]").val();
+        var Status = $("select[name=Status]").val();
 
         $("input[name=name]").removeClass("is-invalid");
         var form = {
@@ -29,6 +32,9 @@ $('#submitButton').attr("disabled", "disabled");
             'Password': $("input[name=new_pswrd]").val(),
             'Confirm_Pasword': $("input[name=confirm_pswrd]").val(),
             'User_id': User_id,
+            'Area': Area,
+            'Rol': Rol,
+            'Estado': Status,
         }
         console.log(form)
         $.ajax({

@@ -106,6 +106,8 @@ def create_tickets():
     New_Ticket = Tickets(User_ID=ticket['User_ID'], Subject=ticket['Subject'], Problem_Type=ticket['Problem_Type'], Company_Area=ticket['Company_Area'], Description=ticket['Description'])
     db.session.add(New_Ticket)
     db.session.commit()
+
+
     user_time_access = Time_Access.query.filter_by(User_id=ticket['User_ID']).first()
     user_time_access.Last_activity = datetime.utcnow()
     summary = User_Tickets_Summary.query.filter_by(User_id=ticket['User_ID']).first()
@@ -136,3 +138,12 @@ def create_tickets():
         db.session.commit()
 
     return jsonify({'id': New_Ticket.id}), 201
+
+
+@app_views.route('/admin/tickets/summary', methods=['GET'], strict_slashes=False)
+@isadmin
+def get_ticket_all():
+    new_dic = []
+    objs = Tickets_Summary.query.first()
+    new_dic.append(objs.to_dict())
+    return jsonify(new_dic)

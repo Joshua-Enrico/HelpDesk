@@ -19,17 +19,21 @@
   <p class="panel-heading ">
     Dashboard Usuario
   </p>
+  <div class="panel-heading is-right">
+    <a class="button is-rounded is-outlined is-link">Completados Hoy: 5</a>
+    <a class="button is-rounded is-outlined is-danger">Pendientes: 2</a>
+    <a class="button is-rounded is-outlined is-info">Sin asignar: 2</a>
+  </div>
 </div>
 {% endblock %}
 
 {% block main %}
 
-<input type="hidden" id="token" name="token" value="{{ token }}">
 
 
 <section class="hero is-link">
+  <!-- Tabs horizontales 
   <div class="hero-body">
-    <!-- Tabs horizontales -->
     <div class="tabs is-boxed has-text-black-bis is-size-5 ">
       <ul>
         <li class="is-active" data-target="search">
@@ -40,15 +44,15 @@
         </li>
       </ul>
     </div>
-    <!-- Tabs horizontales fin -->
+     Tabs horizontales fin
 
-    <!-- Este contenido es un ejemplo de la funcionalidad del file js/tabs.js
+     Este contenido es un ejemplo de la funcionalidad del file js/tabs.js
     En este caso todo el contenido es cargado a la web pero ocultado excepto
-    por el contenido con el tag "is-active"  -->
+    por el contenido con el tag "is-active"  
     <div class="px-2" id="tab-content">
       <div id="search">
         <div class="box">
-          <!-- Filtros -->
+           Filtros 
           <div class="field has-addons">
             <div class="control is-expanded">
               <input class="input" type="text" placeholder="Buscar usuario">
@@ -59,7 +63,7 @@
               </a>
             </div>
           </div>
-          <!-- Dropbox de Busqueda -->
+           Dropbox de Busqueda 
           <div class="columns">
             <div class="column">
               <div class="field">
@@ -78,12 +82,12 @@
             </div>
 
           </div>
-          <!-- Dropbox de Busqueda Fin -->
+           Dropbox de Busqueda Fin 
 
 
-          <!-- Filtros Fin -->
         </div>
       </div>
+      Filtros Fin -->
 
       <div  id="edit" class="is-hidden">
         <div class="columns">
@@ -154,18 +158,14 @@
                   <th>
                     <button class="card-header-icon" aria-label="more options">
                       <span class="icon">
-                        <i class="fas fa-angle-up"></i>
                         <strong>Estado</strong>
-                        <i class="fas fa-angle-down"></i>
                       </span>
                     </button>
                   </th>
                   <th>
                     <button class="card-header-icon" aria-label="more options">
                       <span class="icon">
-                        <i class="fas fa-angle-up"></i>
                         <strong>Titulo</strong>
-                        <i class="fas fa-angle-down"></i>
                       </span>
                     </button>
                   </th>
@@ -173,27 +173,21 @@
                   <th>
                     <button class="card-header-icon" aria-label="more options">
                       <span class="icon">
-                        <i class="fas fa-angle-up"></i>
                         <strong>Personal Asignado</strong>
-                        <i class="fas fa-angle-down"></i>
                       </span>
                     </button>
                   </th>
                   <th>
                     <button class="card-header-icon" aria-label="more options">
                       <span class="icon">
-                        <i class="fas fa-angle-up"></i>
                         <strong>Area</strong>
-                        <i class="fas fa-angle-down"></i>
                       </span>
                     </button>
                   </th>
                   <th>
                     <button class="card-header-icon" aria-label="more options">
                       <span class="icon">
-                        <i class="fas fa-angle-up"></i>
                         <strong>Fecha</strong>
-                        <i class="fas fa-angle-down"></i>
                       </span>
                     </button>
                   </th>
@@ -217,125 +211,22 @@
               </tfoot>
 
               <tbody>
-                <tr>
-                  <th>
-                    <button class="card-header-icon is-static" aria-label="more options">
-                      <span class="icon">
-                        <strong>Selecciona</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <strong>ID</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <i class="fas fa-angle-up"></i>
-                        <strong>Estado</strong>
-                        <i class="fas fa-angle-down"></i>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <i class="fas fa-angle-up"></i>
-                        <strong>Titulo</strong>
-                        <i class="fas fa-angle-down"></i>
-                      </span>
-                    </button>
-                  </th>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <i class="fas fa-angle-up"></i>
-                        <strong>Personal Asignado</strong>
-                        <i class="fas fa-angle-down"></i>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <i class="fas fa-angle-up"></i>
-                        <strong>Area</strong>
-                        <i class="fas fa-angle-down"></i>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <i class="fas fa-angle-up"></i>
-                        <strong>Fecha</strong>
-                        <i class="fas fa-angle-down"></i>
-                      </span>
-                    </button>
-                  </th>
-                  <th><button class="card-header-icon is-static" aria-label="more options">
-                    <span class="icon">
-                      <strong>Accion</strong>
-                    </span>
-                  </button></th>
-                </tr>
 
-                <tr>
-                  <th>Selecciona</th>
-                  <th>002</th>
-                  <th>
-                    <button class="button is-success">Completado</button>
-                  </th>
-                  <td>Impresora malograda</td>
-                  <td>Vegeta ABC</td>
-                  <td>IT</td>
-                  <td>12-10-2021</td>
-                </tr>
 
-                <tr>
-                  <th>Selecciona</th>
-                  <th>003</th>
-                  <th>
-                    <button class="button is-danger">No Asignado</button>
-                  </th>
-                  <td>Se acabo la comida</td>
-                  <td> </td>
-                  <td>Finanzas</td>
-                  <td>12-10-2021</td>
-                </tr>
 
-                <tr>
-                  <th>Selecciona</th>
-                  <th>004</th>
-                  <th>
-                    <button class="button is-info">Asignado</button>
-                  </th>
-                  <td>Configuracion de permisos de usuario</td>
-                  <td>Yamcha ABC</td>
-                  <td>Ventas</td>
-                  <td>11-10-2021</td>
-                </tr>
+
+
+
+
+
+
 
               </tbody>
             </table>
             <!-- Pagination -->
             <div class="pagination is-rounded" role="navigation" aria-label="pagination">
-              <a class="pagination-previous">Previous</a>
-              <a class="pagination-next">Next page</a>
-              <ul class="pagination-list">
-                <li><a class="pagination-link is-current" aria-label="Goto page 1" aria-current="page">1</a></li>
-                <li><span class="pagination-ellipsis">&hellip;</span></li>
-                <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-                <li><a class="pagination-link" aria-label="Page 46">46</a></li>
-                <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-                <li><span class="pagination-ellipsis">&hellip;</span></li>
-                <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-              </ul>
+
+
             </div>
             <!-- Pagination End-->
           </div>

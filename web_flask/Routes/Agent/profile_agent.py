@@ -52,4 +52,4 @@ def agent_user_edit(User_id):
     User_data.UpdateTime = Modified_at.strftime("%d/%m/%Y")
     User_time_acces.Last_login = L_login.strftime("%d/%m/%Y a las %H:%M")
     User_time_acces.Last_activity = Last_activity.strftime("%d/%m/%Y a las %H:%M")
-    return render_template('Agente_HelpDesk/profile_Agent.html',token = session.get('token'),User_session_id=current_user.id, User_id=User_id ,User_data=User_data, Time_Access=User_time_acces)
+    return render_template('Agente_HelpDesk/user_edit_HelpDesk.html',token = session.get('token'),User_session_id=current_user.id, User_id=User_id ,User_data=User_data, Time_Access=User_time_acces)
