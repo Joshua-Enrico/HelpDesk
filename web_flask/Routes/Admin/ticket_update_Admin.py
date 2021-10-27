@@ -15,10 +15,10 @@ def ticket_update_Administrador(ticket_id):
     if (current_user.Rol != 'Administrador'):
         return redirect(url_for(admins_acces_val(current_user.Rol)))
     token = session.get('token')
-    users = Users.query.filter_by(Rol='Usuario').first()
-    agents = Users.query.filter_by(Rol='Agente Helpdesk').first()
+    users = Users.query.filter_by(Rol='Usuario')
+    agents = Users.query.filter_by(Rol='Agente Helpdesk')
     ticket = Tickets.query.get(ticket_id)
-    return render_template('Administrador/actualiza_ticket_Administrador.html',
+    return render_template('Administrador/actualiza_ticket.html',
                            User_id=current_user.id,
                            token=token,
                            users=users,

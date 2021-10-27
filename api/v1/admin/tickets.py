@@ -59,20 +59,19 @@ def update_ticket(ticket_id):
         ('Subject', 'Título'),
         ('User_ID', 'Id de usuario'),
         ('Problem_Type', 'Tipo de problema'),
-        ('Company_Area', 'Area de la compañía'),
         ('Description', 'Descripción')
     ]
 
     errors = {}
     for attr in required:
-        if not data.get(attr[0]):
+        val = data.get(attr[0])
+        if not val or not str(val).strip():
             errors[attr[0]] = 'El campo "{}" es requerido'.format(attr[1])
     if errors != {}:
         return jsonify(errors), 400
 
-    allowed = ['User_ID', 'Agent_ID', 'Subject', 'Description',
-               'Problem_Type', 'Company_Area']
-    [setattr(ticket, k, v) for k, v in data.items() if hasattr(ticket, k) and k in allowed]
+    allowed = ['User_ID', 'Agent_ID', 'Subject', 'Description', 'Problem_Type']
+    [setattr(ticket, k, str(v).strip()) for k, v in data.items() if hasattr(ticket, k) and k in allowed]
 
     ticket.Status = 0 if ticket.Agent_ID == None else 1
 
