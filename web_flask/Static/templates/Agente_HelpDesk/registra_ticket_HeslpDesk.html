@@ -30,7 +30,7 @@
         <form id='create_ticket' class="box form_ticket">
           <label class="label"> Titulo</label>
           <input class="input" id='Subject' type="text" placeholder="¿Qué Problema tiene?">
-          <span id='err-Subject'></span>
+          <span id='err-Subject' class="has-text-danger"></span>
 
           <label class="label"> Usuario </label>
           <div class="select">
@@ -40,7 +40,7 @@
               {% endfor %}
             </select>
           </div>
-          <span id='err-User_ID'></span>
+          <span id='err-User_ID' class="has-text-danger"></span>
 
           <!--  form.subject(class_="input", placeholder="¿Qué Problema tiene?"")  -->
           <label class="label"> Tipo </label>
@@ -50,7 +50,7 @@
               <option>Software</option>
             </select>
           </div>
-          <span id='err-ProblemType'></span>
+          <span id='err-ProblemType' class="has-text-danger"></span>
 
           <label class="label"> Area </label>
           <!-- <input class="input" type="text" placeholder="¿Area de la compañia?"> -->
@@ -61,11 +61,11 @@
               <option>Gerencia</option>
             </select>
           </div>
-          <span id='err-CompanyArea'></span>
+          <span id='err-CompanyArea' class="has-text-danger"></span>
 
           <label class="label"> Descripcion </label>
           <textarea class="textarea" id='Description' placeholder="Describa su problema"></textarea>
-          <span id='err-Description'></span>
+          <span id='err-Description' class="has-text-danger"></span>
 
           <!-- Botones -->
           <div class="file has-name is-boxed mt-4 mb-4" >

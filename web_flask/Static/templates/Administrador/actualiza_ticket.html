@@ -28,7 +28,7 @@
         <form id='update_ticket' class="box form_ticket">
           <label class="label"> Titulo</label>
           <input class="input" id='Subject' type="text" placeholder="¿Qué Problema tiene?" value="{{ ticket.Subject }}">
-          <span id='err-Subject'></span>
+          <span id='err-Subject' class="has-text-danger"></span>
 
           <div class="columns mt-1">
 
@@ -40,7 +40,7 @@
                   <option {% if ticket.Problem_Type=="Software" %} selected="selected" {% endif %}>Software</option>
                 </select>
               </div>
-              <span id='err-ProblemType'></span>
+              <span id='err-ProblemType' class="has-text-danger"></span>
             </div>
 
             <div class="column">
@@ -54,7 +54,7 @@
                   {% endfor %}
                 </select>
               </div>
-              <span id='err-User_ID'></span>
+              <span id='err-User_ID' class="has-text-danger"></span>
             </div>
 
             <div class="column">
@@ -71,14 +71,14 @@
                   {% endfor %}
                 </select>
               </div>
-              <span id='err-Agent_ID'></span>
+              <span id='err-Agent_ID' class="has-text-danger"></span>
             </div>
 
           </div>
 
           <label class="label"> Descripcion </label>
           <textarea class="textarea" id='Description' placeholder="Describa su problema">{{ ticket.Description }}</textarea>
-          <span id='err-Description'></span>
+          <span id='err-Description' class="has-text-danger"></span>
 
           <!-- Botones -->
           <div class="file has-name is-boxed mt-4 mb-4" >
