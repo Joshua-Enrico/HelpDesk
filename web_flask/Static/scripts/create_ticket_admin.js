@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    const User_id = ($(this).find('.hero-body').data("id"));
-
     $('#create_ticket').submit(function (e) {
         e.preventDefault();
         var form = {
@@ -21,9 +19,7 @@ $(document).ready(function () {
             url: 'http://localhost:5001/api/v1/admin/tickets',
             headers: {'Authorization': 'Bearer ' + $('#token').val()},
             contentType: 'application/json; charset=utf-8',
-            success: data => {
-                window.location = `/admin/tickets/ver/${data.id}`
-            },
+            success: () => window.location = `/admin`,
             error: err => {
                 resp = (err && err.responseJSON) || {}
                 Object.entries(resp).forEach(([key, val]) => {
