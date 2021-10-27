@@ -14,5 +14,6 @@ from ..middlewares.isagent import isagent
 def get_agent_summary(User_id):
     new_dic = []
     objs = Agent_Tickets_Summary.query.filter_by(User_id=User_id).first()
-    new_dic.append(objs.to_dict())
+    if objs is not None:
+        new_dic.append(objs.to_dict())
     return jsonify(new_dic)

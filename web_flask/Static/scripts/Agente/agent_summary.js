@@ -6,7 +6,11 @@ $(document).ready(function () {
         headers: {'Authorization': 'Bearer ' + $('#token').val()},
         contentType: 'application/json',
         success: data => {
-            result = data[0]
+            let def = { All_tickets: 0,
+                        Pendings: 0,
+                        Assigned: 0,
+                        Solved: 0}
+            result = data[0] || def
             $("a[name=Complete]").text('Todos tus tickets: ' + result.All_tickets);
             $("a[name=Pending]").text('Tickets Pendientes: ' + result.Pendings);
             $("a[name=Asigned]").text('Todos Asignados: ' + result.Assigned);
