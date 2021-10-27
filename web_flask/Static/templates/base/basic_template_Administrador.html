@@ -31,13 +31,13 @@
         <a class="navbar-item" href="{{ url_for('admin')}}">
           Ver Tickets
         </a>
-        <a class="navbar-item" href="{{ url_for('ticket_register_Administrador')}}">
+        <a class="navbar-item has-background-link has-text-white" href="{{ url_for('ticket_register_Administrador')}}">
           Crea un ticket
         </a>
         <a class="navbar-item" href="{{ url_for('User_Administration')}}">
           Administra Usuarios
         </a>
-        <a class="navbar-item" href="{{ url_for('create_usr')}}">
+        <a class="navbar-item has-background-link has-text-white" href="{{ url_for('create_usr')}}">
           Crear Usuario
         </a>
       </div>
@@ -54,7 +54,7 @@
             <a href="/admin_profile/{{User_session_id}}" class="navbar-item">
               Perfil
             </a>
-            <a href="#" class="navbar-item">Settings</a>
+            <a href="#" class="navbar-item">Opciones</a>
             <hr class="navbar-divider" />
             <a href="{{ url_for('logout')}}" class="navbar-item">Salir</a>
           </div>
