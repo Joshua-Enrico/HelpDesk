@@ -89,18 +89,28 @@
                   </div>
                 </div>
                 <!-- Dropboxes -->
-                <div class="box has-background-link">
+                <div class="box has-background-{{ {
+                                                    0: 'danger',
+                                                    1: 'info',
+                                                    2: 'success'
+                                                  }[ticket.Status] | default('danger') }}">
                   <div class="columns">
                     <div class="column">
                       <div class="field">
-                        <label class="label is-size-7 has-text-primary-light">Estado</label>
+                        <label class="label is-size-7 has-text-{{ {
+                                                                    0: 'danger',
+                                                                    1: 'info',
+                                                                    2: 'success'
+                                                                  }[ticket.Status] | default('danger') }}-light">
+                          Estado
+                        </label>
                         <p class="control">
-                          <span class="select">
+                          <span class="tag">
                             {{ {
                                 0:'No Asignado',
                                 1:'Asignado',
                                 2:'Completado'
-                              }[ticket.Status] | default('---')
+                              }[ticket.Status] | default('No Asignado')
                             }}
                           </span>
                         </p>

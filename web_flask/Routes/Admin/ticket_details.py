@@ -22,6 +22,7 @@ def editar_ticket(ticket_id):
     owner = Users.query.filter_by(id=ticket.User_ID).first()
     agent = Users.query.filter_by(id=ticket.Agent_ID).first()
     messages = chathistory.query.filter_by(Ticket_id=ticket_id).order_by(asc(chathistory.DateTime))
+
     return render_template('Administrador/ticket_detalle.html',
                            flag=flag,
                            messages=messages,
