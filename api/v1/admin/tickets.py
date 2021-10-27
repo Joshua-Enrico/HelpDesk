@@ -114,7 +114,6 @@ def create_tickets():
     db.session.add(New_Ticket)
     db.session.commit()
 
-
     user_time_access = Time_Access.query.filter_by(User_id=data['User_ID']).first()
     user_time_access.Last_activity = datetime.utcnow()
     summary = User_Tickets_Summary.query.filter_by(User_id=data['User_ID']).first()
