@@ -10,11 +10,9 @@ thisButton.addEventListener('click', () =>  {
         thisContent.classList.add('is-hidden');
         iconUp.classList.add('is-hidden');
         iconDown.classList.remove('is-hidden');
-        console.log(hidden);
     } else {
         thisContent.classList.remove('is-hidden');
         iconUp.classList.remove('is-hidden');
         iconDown.classList.add('is-hidden');
-        console.log(hidden)
     }
 });

@@ -248,7 +248,6 @@ def user_profile_admin():
             else:
                 flag = 2
                 Update_user.Apellido = form['Apellido']
-        print('hola mundo')
         Update_user.UpdateTime = datetime.utcnow()
         db.session.commit()
         return jsonify(

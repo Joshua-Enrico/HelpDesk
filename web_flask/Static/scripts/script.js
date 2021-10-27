@@ -11,7 +11,6 @@ $(document).ready(function () {
                 'Rol': $("select[name=ROL]").val(),
                 'Desde': $("input[name=date-start]").val(),
                 'Hasta': $("input[name=date-end]").val()}
-    console.log(form)
     $.ajax({
       type: 'POST',
       data: JSON.stringify(form),
@@ -20,7 +19,6 @@ $(document).ready(function () {
       contentType: 'application/json; charset=utf-8',
       success: data => {
         result = data;
-        console.log(result);
         $("p[name=user_exists]").text(result.User_Exists);
         if(result.User_Exists !=''){
           $("input[name=id-name]").addClass("is-danger");

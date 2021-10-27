@@ -16,13 +16,14 @@
 
 {% block header %}
 <div class="hero">
-  <p class="panel-heading ">
-    Dashboard Usuario
+  <p class="panel-heading" data-id='{{ User_id }}'>
+    Dashboard
   </p>
   <div class="panel-heading is-right">
-    <a class="button is-rounded is-outlined is-link">Completados Hoy: 5</a>
-    <a class="button is-rounded is-outlined is-danger">Pendientes: 2</a>
-    <a class="button is-rounded is-outlined is-info">Sin asignar: 2</a>
+    <a name='Complete' class="button is-rounded is-outlined is-link">Todos: 0</a>
+    <a name='Pending' class="button is-rounded is-outlined is-danger">Pendientes: 0</a>
+    <a name='Asigned' class="button is-rounded is-outlined is-info">Sin asignar: 0</a>
+    <a name='Solved'class="button is-rounded is-outlined is-success">Resueltos: 0</a>
   </div>
 </div>
 {% endblock %}
@@ -241,19 +242,7 @@
 
 </section>
 
-<div class="container bootdey" data-id='{{ User_id }}'>
-  <div class="row bootstrap snippets bootdey">
-    <div class="col-md-4">
-      <div class="box box-widget widget-user-2">
-        <div class="widget-user-header bg-yellow">
-          <h3 class="widget-user-username">Tus tickets</h3>
-        </div>
-        <div class="box-footer no-padding">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 {% endblock %}
 
 {% block jsimport %}

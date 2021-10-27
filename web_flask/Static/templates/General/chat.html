@@ -28,7 +28,6 @@
         
             socket.on('message', function(msg) {
                 $("#messages").append('<li>'+msg+'</li>');
-                console.log('Received message');
             });
         
             $('#sendbutton').on('click', function() {

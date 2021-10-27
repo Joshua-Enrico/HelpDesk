@@ -12,7 +12,6 @@ $(document).ready(function () {
             'Description': document.getElementById('Description').value
         }
 
-        console.log(form)
 
         $.ajax({
             type: 'PUT',

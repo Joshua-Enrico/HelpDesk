@@ -41,7 +41,6 @@
 
         // main function
         function Validate($e) {
-            console.log($e.attr('type'))
             var fieldtype = $e.attr('type');
             var regex = new RegExp(config.settings[fieldtype].regex);
 
@@ -66,8 +65,6 @@
         function ValidateAll($form) {
                $form.find("input").each(function(index, element) {
                     var $element = $(element);
-                    console.log(config.fields);
-                    console.log($element.attr('type'));
                     if($.inArray($element.attr('type'), config.fields) !== -1){
                         Validate($(element));
                     }
@@ -75,7 +72,6 @@
         }
         
         function RegisterValidator(e) {
-            console.log("sadsad");
                 e.keyup(function(){
                     Validate(e)
                 });

@@ -14,7 +14,6 @@ def agent_assign_ticket(ticket_id):
         return redirect(url_for(agent_acces_val(current_user.Rol)))
     token = session.get('token')
     ticket = Tickets.query.get(ticket_id)
-    print(ticket)
     if ticket is None:
         abort(404)
     owner = Users.query.filter_by(id=ticket.User_ID).first()
