@@ -73,7 +73,7 @@ def update_ticket(ticket_id):
     allowed = ['User_ID', 'Agent_ID', 'Subject', 'Description', 'Problem_Type']
     [setattr(ticket, k, str(v).strip()) for k, v in data.items() if hasattr(ticket, k) and k in allowed]
 
-    ticket.Status = 0 if ticket.Agent_ID == None else 1
+    ticket.Status = 0 if data.get('Agent_ID') == None else 1
 
     db.session.commit()
 
