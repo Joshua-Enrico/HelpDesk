@@ -4,12 +4,8 @@
 {% block cssimport %}
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/hidde_button.css') }}">
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
 <link rel="stylesheet" href="{{url_for('.static', filename='user_tickets.css')}}">
-<script type="text/javascript" src="{{url_for('.static', filename='scripts/Admin/summary.js')}}"></script>
-<script type="text/javascript" src="{{url_for('.static', filename='scripts/tickets.js')}}"></script>
 {% endblock %}
 
 {% block title %}Dashboard{% endblock %}
@@ -32,7 +28,7 @@
 
 
 <section class="hero is-link">
-  <!-- Tabs horizontales 
+  <!-- Tabs horizontales
   <div class="hero-body">
     <div class="tabs is-boxed has-text-black-bis is-size-5 ">
       <ul>
@@ -95,12 +91,12 @@
             </div>
 
           </div>
-           
+
 
 
 
         </div>
-        
+
   </div>
   Dropbox de Busqueda Fin -->
 
@@ -129,7 +125,7 @@
 
       <div class="column">
         <div class="field">
-          <label class="label has-text-white">Personal Asignado</label>
+          <label class="label has-text-white">Encargado</label>
           <div class="control">
             <div class="select">
               <select>
@@ -183,233 +179,108 @@
   <div class="box">
     <nav class="panel">
       <p class="panel-tabs">
-        <a class="is-active">Todos</a>
+        <!-- <a class="is-active">Todos</a>
         <a>No asignados</a>
         <a>Asignados</a>
-        <a>Completados</a>
+        <a>Completados</a> -->
       </p>
-
-      <!-- Tabla -->
-      <div class="columns is-size-6">
-        <div class="column is-three-fifths is-offset-one-fifth">
-          <div class="table-container">
-            <table class="table is-striped is-hoverable">
-              <thead>
-                <tr>
-                  <th>Selecciona</th>
-                  <th>ID</th>
-                  <th>Estado</th>
-                  <th>Titulo</th>
-                  <th>Personal Asignado</th>
-                  <th>Area</th>
-                  <th>Fecha</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th>
-                    <button class="card-header-icon is-static" aria-label="more options">
-                      <span class="icon">
-                        <strong>Selecciona</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <strong>ID</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <strong>Estado</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <strong>Titulo</strong>
-                      </span>
-                    </button>
-                  </th>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <strong>Personal Asignado</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <strong>Area</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <strong>Fecha</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th><button class="card-header-icon is-static" aria-label="more options">
-                      <span class="icon">
-                        <strong>Accion</strong>
-                      </span>
-                    </button></th>
-                </tr>
-              </tfoot>
-
-              <tbody>
-                <tr>
-                  <th>
-                    <button class="card-header-icon is-static" aria-label="more options">
-                      <span class="icon">
-                        <strong>Selecciona</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <strong>ID</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <i class="fas fa-angle-up"></i>
-                        <strong>Estado</strong>
-                        <i class="fas fa-angle-down"></i>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <i class="fas fa-angle-up"></i>
-                        <strong>Titulo</strong>
-                        <i class="fas fa-angle-down"></i>
-                      </span>
-                    </button>
-                  </th>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <strong>Personal Asignado</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <strong>Area</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th>
-                    <button class="card-header-icon" aria-label="more options">
-                      <span class="icon">
-                        <strong>Fecha</strong>
-                      </span>
-                    </button>
-                  </th>
-                  <th><button class="card-header-icon is-static" aria-label="more options">
-                      <span class="icon">
-                        <strong>Accion</strong>
-                      </span>
-                    </button></th>
-                </tr>
-
-                <tr>
-                  <th><input type="checkbox"></th>
-                  <th>002</th>
-                  <th>
-                    <button class="button is-success">Completado</button>
-                  </th>
-                  <td>Impresora malograda</td>
-                  <td>Vegeta ABC</td>
-                  <td>IT</td>
-                  <td>12-10-2021</td>
-                  <td>
-                    <a class="button">
-                      <span class="icon is-small">
-                        <i class="fa fa-ellipsis-v "></i>
-                      </span>
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th><input type="checkbox"></th>
-                  <th>003</th>
-                  <th>
-                    <button class="button is-danger">No Asignado</button>
-                  </th>
-                  <td>Se acabo la comida</td>
-                  <td> </td>
-                  <td>Finanzas</td>
-                  <td>12-10-2021</td>
-                  <td>
-                    <a class="button">
-                      <span class="icon is-small">
-                        <i class="fa fa-ellipsis-v "></i>
-                      </span>
-                    </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th><input type="checkbox"></th>
-                  <th>004</th>
-                  <th>
-                    <button class="button is-info">Asignado</button>
-                  </th>
-                  <td>Configuracion de permisos de usuario</td>
-                  <td>Yamcha ABC</td>
-                  <td>Ventas</td>
-                  <td>11-10-2021</td>
-                  <td>
-                    <a class="button">
-                      <span class="icon is-small">
-                        <i class="fa fa-ellipsis-v "></i>
-                      </span>
-                    </a>
-                  </td>
-                </tr>
-
-              </tbody>
-            </table>
-            <!-- Pagination -->
-            <div class="pagination is-rounded" role="navigation" aria-label="pagination">
-              <a class="pagination-previous">Previous</a>
-              <a class="pagination-next">Next page</a>
-              <ul class="pagination-list">
-                <li><a class="pagination-link is-current" aria-label="Goto page 1" aria-current="page">1</a></li>
-                <li><span class="pagination-ellipsis">&hellip;</span></li>
-                <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-                <li><a class="pagination-link" aria-label="Page 46">46</a></li>
-                <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-                <li><span class="pagination-ellipsis">&hellip;</span></li>
-                <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-              </ul>
-            </div>
-            <!-- Pagination End-->
-          </div>
-        </div>
-      </div>
-      <!-- Tabla Fin-->
 
     </nav>
 
+    <!-- Tabla -->
+    <div class="columns is-size-6">
+      <div class="column is-three-fifths is-offset-one-fifth">
+        <div class="table-container">
+          <table class="table is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th class="has-text-centered">ID</th>
+                <th class="has-text-centered">Estado</th>
+                <th class="has-text-centered">Titulo</th>
+                <th class="has-text-centered">Encargado</th>
+                <th class="has-text-centered">Area</th>
+                <th class="has-text-centered">Fecha</th>
+                <th class="has-text-centered">Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th>002</th>
+                <th>
+                  <button class="button is-success">Completado</button>
+                </th>
+                <td>Impresora malograda</td>
+                <td>Vegeta ABC</td>
+                <td>IT</td>
+                <td>12-10-2021</td>
+                <td>
+                  <a class="button">
+                    <span class="icon is-small">
+                      <i class="fa fa-ellipsis-v "></i>
+                    </span>
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <th>003</th>
+                <th>
+                  <button class="button is-danger">No Asignado</button>
+                </th>
+                <td>Se acabo la comida</td>
+                <td> </td>
+                <td>Finanzas</td>
+                <td>12-10-2021</td>
+                <td>
+                  <a class="button">
+                    <span class="icon is-small">
+                      <i class="fa fa-ellipsis-v "></i>
+                    </span>
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <th>004</th>
+                <th>
+                  <button class="button is-info">Asignado</button>
+                </th>
+                <td>Configuracion de permisos de usuario</td>
+                <td>Yamcha ABC</td>
+                <td>Ventas</td>
+                <td>11-10-2021</td>
+                <td>
+                  <a class="button">
+                    <span class="icon is-small">
+                      <i class="fa fa-ellipsis-v "></i>
+                    </span>
+                  </a>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          <!-- Pagination -->
+          <div class="pagination is-rounded" role="navigation" aria-label="pagination">
+            <a class="pagination-previous">Previous</a>
+            <a class="pagination-next">Next page</a>
+            <ul class="pagination-list">
+              <li><a class="pagination-link is-current" aria-label="Goto page 1" aria-current="page">1</a></li>
+              <li><span class="pagination-ellipsis">&hellip;</span></li>
+              <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
+              <li><a class="pagination-link" aria-label="Page 46">46</a></li>
+              <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+              <li><span class="pagination-ellipsis">&hellip;</span></li>
+              <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+            </ul>
+          </div>
+          <!-- Pagination End-->
+        </div>
+      </div>
+    </div>
+    <!-- Tabla Fin-->
   </div>
 
 
@@ -419,6 +290,10 @@
 {% endblock %}
 
 {% block jsimport %}
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{url_for('.static', filename='scripts/Admin/summary.js')}}"></script>
+<script type="text/javascript" src="{{url_for('.static', filename='scripts/Admin/tickets.js')}}"></script>
 <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
 <script src="{{ url_for('static', filename='js/panels.js') }}"></script>
 {% endblock %}
