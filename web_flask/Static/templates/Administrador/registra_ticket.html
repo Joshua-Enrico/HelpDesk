@@ -3,9 +3,6 @@
 
 {% block cssimport %}
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/debugger.css') }}"> -->
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='scripts/create_ticket_admin.js') }}"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 {% endblock %}
 
@@ -32,36 +29,43 @@
           <input class="input" id='Subject' type="text" placeholder="¿Qué Problema tiene?">
           <span id='err-Subject'></span>
 
-          <label class="label"> Usuario </label>
-          <div class="select">
-            <select id='User_ID'>
-              {% for u in users %}
-              <option value="{{ u.id }}">{{ u.Username }} - {{ u.Nombre }} {{ u.Apellido }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <span id='err-User_ID'></span>
+          <div class="columns mt-1">
 
-          <!--  form.subject(class_="input", placeholder="¿Qué Problema tiene?"")  -->
-          <label class="label"> Tipo </label>
-          <div class="select">
-            <select id='ProblemType'>
-              <option>Hardware</option>
-              <option>Software</option>
-            </select>
-          </div>
-          <span id='err-ProblemType'></span>
+            <div class="column">
+              <label class="label"> Usuario </label>
+              <div class="select">
+                <select id='User_ID'>
+                  {% for u in users %}
+                  <option value="{{ u.id }}">{{ u.Username }} - {{ u.Nombre }} {{ u.Apellido }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <span id='err-User_ID'></span>
+            </div>
 
-          <label class="label"> Area </label>
+            <div class="column">
+              <label class="label"> Tipo Problema</label>
+              <div class="select">
+                <select id='ProblemType'>
+                  <option>Hardware</option>
+                  <option>Software</option>
+                </select>
+              </div>
+              <span id='err-ProblemType'></span>
+            </div>
+
+          </div>
+
+          <!-- <label class="label"> Area </label> -->
           <!-- <input class="input" type="text" placeholder="¿Area de la compañia?"> -->
-          <div class="select">
+          <!-- <div class="select">
             <select id='CompanyArea'>
               <option>Recursos Humanos</option>
               <option>Marketing</option>
               <option>Gerencia</option>
             </select>
           </div>
-          <span id='err-CompanyArea'></span>
+          <span id='err-CompanyArea'></span> -->
 
           <label class="label"> Descripcion </label>
           <textarea class="textarea" id='Description' placeholder="Describa su problema"></textarea>
@@ -101,4 +105,7 @@
 {% endblock %}
 
 {% block jsimport %}
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/Admin/create_ticket.js') }}"></script>
 {% endblock %}

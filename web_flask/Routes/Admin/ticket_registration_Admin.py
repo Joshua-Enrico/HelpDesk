@@ -8,11 +8,11 @@ from flask import render_template, session
 from ...models.user import Users
 
 
-@app.route("/registra_ticket_Admin")
+@app.route("/admin/register-ticket")
 @login_required
 def ticket_register_Administrador():
     if (current_user.Rol != 'Administrador'):
         return redirect(url_for(admins_acces_val(current_user.Rol)))
     token = session.get('token')
     users = Users.query.filter(Users.Rol == 'Usuario')
-    return render_template('Administrador/registra_ticket_Administrador.html', User_session_id=current_user.id, User_id=current_user.id, token=token, users=users)
+    return render_template('Administrador/registra_ticket.html', User_session_id=current_user.id, User_id=current_user.id, token=token, users=users)

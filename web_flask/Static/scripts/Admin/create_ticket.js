@@ -5,7 +5,6 @@ $(document).ready(function () {
             'Subject': document.getElementById('Subject').value,
             'User_ID': document.getElementById('User_ID').value,
             'Problem_Type': document.getElementById('ProblemType').value,
-            'Company_Area': document.getElementById('CompanyArea').value,
             'Description': document.getElementById('Description').value,
         }
 

@@ -84,33 +84,41 @@ def update_ticket(ticket_id):
 @app_views.route('/admin/tickets', methods=['POST'], strict_slashes=False)
 @isadmin
 def create_tickets():
-    ticket = request.get_json()
-    if not ticket:
+    data = request.get_json()
+    if not data:
         abort(400, description="Not a JSON")
 
     required = [
         ('Subject', 'Título'),
         ('User_ID', 'Id de usuario'),
         ('Problem_Type', 'Tipo de problema'),
-        ('Company_Area', 'Area de la compañía'),
         ('Description', 'Descripción')
     ]
 
     errors = {}
     for attr in required:
-        if not ticket.get(attr[0]):
+        if not data.get(attr[0]):
             errors[attr[0]] = 'El campo "{}" es requerido'.format(attr[1])
+
+    user = Users.query.filter_by(id=data.get('User_ID')).first()
+    if user is None:
+        errors['User_ID'] = 'El ID de usuario es inválido'
+
     if errors != {}:
         return jsonify(errors), 400
 
-    New_Ticket = Tickets(User_ID=ticket['User_ID'], Subject=ticket['Subject'], Problem_Type=ticket['Problem_Type'], Company_Area=ticket['Company_Area'], Description=ticket['Description'])
+    New_Ticket = Tickets(User_ID=user.id,
+                         Subject=data['Subject'],
+                         Problem_Type=data['Problem_Type'],
+                         Company_Area=user.Area,
+                         Description=data['Description'])
     db.session.add(New_Ticket)
     db.session.commit()
 
 
-    user_time_access = Time_Access.query.filter_by(User_id=ticket['User_ID']).first()
+    user_time_access = Time_Access.query.filter_by(User_id=data['User_ID']).first()
     user_time_access.Last_activity = datetime.utcnow()
-    summary = User_Tickets_Summary.query.filter_by(User_id=ticket['User_ID']).first()
+    summary = User_Tickets_Summary.query.filter_by(User_id=data['User_ID']).first()
     all_summary = Tickets_Summary.query.first()
     if (all_summary == None):
         obj = Tickets_Summary(All_tickets=0, Pendings=0, Solved=0, Assigned=0)
@@ -118,7 +126,7 @@ def create_tickets():
         db.session.commit()
 
     if (summary == None):
-        User_Summary =  User_Tickets_Summary(All_tickets=1, Pendings=1, Assigned=0, Solved=0, User_id=ticket['User_ID'])
+        User_Summary =  User_Tickets_Summary(All_tickets=1, Pendings=1, Assigned=0, Solved=0, User_id=data['User_ID'])
         db.session.add(User_Summary)
 
         """ updating all summary """
