@@ -1,25 +1,33 @@
-# HelpDesk
+# Ticket system
+##HelpDesk
+To install the application please run the Env_conf.sh file
+This application have 3 types of users:
+---
+The application right now supports 3 types of users:
+* Admin
+* Helpdesk
+* User
+---
+The users of type User have minimal permissions, they can:
+* Create Tickets
+* Edit their own Names
+* See the list and status of their own tickets
+* Chat with the Helpdesk user which has the ticket assigned
 
-desde mysql
-- create database HelpDesk;
-- CREATE USER 'Helpdesk'@'localhost' IDENTIFIED BY 'Helpdesk';
-- 
-- grant usage on *.* to 'Helpdesk'@'localhost';
-- grant all privileges on HelpDesk.* to 'Helpdesk'@'localhost';
+The users of type Helpdesk can:
+* Can see the list of unassigned tickets
+* Can see the list of their own assigned and completed tickets
+* Create Users
+* Enable/Disable users
+* Change users names/email/password
+* Chat with the User which has the ticket assigned
 
-Para hacer uso del mvp, crea la base de datos y setealo con python, primero crea la base de datos con mysql y crea el usuario que se muetra en el codigo con los permisos en la misma base de datos, desde el directorio web_dynamic
-- from Class import db
-- db.create_all
-
-
-para crear un usuario necesitaras un user id, en mysql crea ese id
-- USE HelpDesk;
-- INSERT INTO workers_ids (user_id, used, admin) VALUES ('321', 'false', 'yes');
-- luego ya puedes interactuar con el app
-
-
-Para ejecutar la aplicacion desde el directorio web_dynamic
-- FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000
-
-Para ejecutar api, desde root
-- python3 -m api.v1.api
+The users of type Admin can:
+---
+* Can see the list of all the tickets
+* Can see the list of their own assigned and completed tickets
+* Create Users
+* Create Tickets
+* Enable/Disable users
+* Change users names/email/password
+* See the chat history of each ticket
